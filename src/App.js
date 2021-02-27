@@ -5,6 +5,8 @@ import SignIn from "./components/sign-in.component";
 import SignUp from "./components/sign-up.component";
 import Home from "./components/home.component";
 import AdminSignIn from "./components/admin-signin.component";
+import AddProperty from "./components/admin-addproperty.component"
+import AdminHome from "./components/admin-home.component"
 
 function App() {
     return (
@@ -13,6 +15,8 @@ function App() {
                 <Route path = "/SignIn" component = {SignIn}/>
                 <Route path = "/SignUp" component = {SignUp}/>
                 <Route path = "/AdminSignIn" component = {AdminSignIn}/>  
+                <Route path = "/AdminHome" component = {AdminHome}/>  
+                <Route path = "/admin/AddProperty" component = {AddProperty}/>  
                 <Route path="/" exact={true}>
                       <Home/>
                 </Route>
