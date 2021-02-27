@@ -15,6 +15,9 @@ import ApartmentRoundedIcon from '@material-ui/icons/ApartmentRounded';
 import AppBar from "@material-ui/core/AppBar";
 import SearchAppBar from './search-bar.component';
 import FooterComponent from "./footer.component";
+import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
+import DateFnsUtils from '@date-io/date-fns';
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -36,6 +39,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AddProperty() {
 
+    const [selectedDate, setSelectedDate] = React.useState(new Date());
+    const handleDateChange = (date) => {
+      setSelectedDate(date);
+    };
+
     const classes = useStyles();
 
     return (
@@ -49,6 +57,7 @@ export default function AddProperty() {
                 <Typography component="h1" variant="h5">
                     Add New Property
                 </Typography>
+  
                 <form className={classes.addpropertyform} noValidate>
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
@@ -63,6 +72,7 @@ export default function AddProperty() {
                                 autoComplete="Property Name"
                             />
                         </Grid>
+                        
                         <Grid item xs={12}  sm={6}>
                             <TextField
                                 variant="outlined"
@@ -87,6 +97,7 @@ export default function AddProperty() {
                                 autoComplete="Address Two"
                             />
                         </Grid>
+                        
                         <Grid item xs={12}  md={3} sm={6}> 
                             <TextField
                                 variant="outlined"
@@ -135,6 +146,7 @@ export default function AddProperty() {
                                 autoComplete="Zip"
                             />
                         </Grid>
+                        
                         <Grid item xs={12}>
                             <TextField
                                 variant="outlined"
@@ -147,6 +159,7 @@ export default function AddProperty() {
                                 autoComplete="Property Description"
                             />
                         </Grid>
+                        
                         <Grid item xs={12}  md={3} sm={6}> 
                             <TextField
                                 variant="outlined"
@@ -170,19 +183,23 @@ export default function AddProperty() {
                                 id="propertyBathroom"
                                 autoComplete="Bathroom"
                             />
-                        </Grid>
-                       
+                        </Grid>                   
                         <Grid item xs={12}  md={3} sm={6}>
-                            <TextField
-                                variant="outlined"
-                                required
-                                fullWidth
-                                name="propertyAvailableDate"
-                                label="Available Date"
-                                type="text"
+                            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                            <KeyboardDatePicker
+                                margin="normal"
                                 id="propertyAvailableDate"
-                                autoComplete="Available Date"
-                            />
+                                label="Available date"
+                                format="MM/dd/yyyy"
+                                fullWidth
+                                minDate={selectedDate}
+                                value={selectedDate}
+                                onChange={handleDateChange}
+                                KeyboardButtonProps={{
+                                    'aria-label': 'change date',
+                                }}
+                             />
+                            </MuiPickersUtilsProvider>
                         </Grid>
                         <Grid item xs={12}  md={3} sm={6}>
                             <TextField
