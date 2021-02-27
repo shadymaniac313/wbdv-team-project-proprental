@@ -18,22 +18,223 @@ import FooterComponent from "./footer.component";
 
 
 const useStyles = makeStyles((theme) => ({
+    addpropertycss: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        marginTop: theme.spacing(10),
+        margin: theme.spacing(1),
+    },
+    addpropertyform: {
+        width: '100%',
+        marginTop: theme.spacing(1),
+       
+    },
+  
    
 }));
 
 export default function AddProperty() {
 
-
     const classes = useStyles();
 
     return (
         <div>
-        <Container component="main" maxWidth="xs">
+        <Container component="main">
         <SearchAppBar />
         <CssBaseline /> 
 
                 
-           
+        <div className={classes.addpropertycss}>
+                <Typography component="h1" variant="h5">
+                    Add New Property
+                </Typography>
+                <form className={classes.addpropertyform} noValidate>
+                    <Grid container spacing={2}>
+                        <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                name="propertyName"
+                                label="Property Name"
+                                type="text"
+                                id="propertyName"
+                                autoComplete="Property Name"
+                            />
+                        </Grid>
+                        <Grid item xs={12}  sm={6}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                name="propertyAddressOne"
+                                label="Street Address One"
+                                type="text"
+                                id="propertyAddressOne"
+                                autoComplete="Address One"
+                            />
+                        </Grid>
+                        <Grid item xs={12}  sm={6}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                name="propertyAddressTwo"
+                                label="Street Address Two"
+                                type="text"
+                                id="propertyAddressTwo"
+                                autoComplete="Address Two"
+                            />
+                        </Grid>
+                        <Grid item xs={12}  md={3} sm={6}> 
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                name="propertycity"
+                                label="City"
+                                type="text"
+                                id="propertycity"
+                                autoComplete="City"
+                            />
+                        </Grid>
+                        <Grid item xs={12}  md={3} sm={6}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                name="propertyState"
+                                label="State"
+                                type="text"
+                                id="propertyState"
+                                autoComplete="State"
+                            />
+                        </Grid>
+                        <Grid item xs={12}  md={3} sm={6}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                name="propertyCountry"
+                                label="Country"
+                                type="text"
+                                id="propertyCountry"
+                                autoComplete="Country"
+                            />
+                        </Grid>
+                        <Grid item xs={12}  md={3} sm={6}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                name="propertyZip"
+                                label="Zip"
+                                type="text"
+                                id="propertyZip"
+                                autoComplete="Zip"
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                name="propertyDescription"
+                                label="Property Description"
+                                type="text"
+                                id="propertyDescription"
+                                autoComplete="Property Description"
+                            />
+                        </Grid>
+                        <Grid item xs={12}  md={3} sm={6}> 
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                name="propertyBedroom"
+                                label="Bedroom"
+                                type="text"
+                                id="propertyBedroom"
+                                autoComplete="Bedroom"
+                            />
+                        </Grid>
+                        <Grid item xs={12}  md={3} sm={6}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                name="propertyBathroom"
+                                label="Bathroom"
+                                type="text"
+                                id="propertyBathroom"
+                                autoComplete="Bathroom"
+                            />
+                        </Grid>
+                       
+                        <Grid item xs={12}  md={3} sm={6}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                name="propertyAvailableDate"
+                                label="Available Date"
+                                type="text"
+                                id="propertyAvailableDate"
+                                autoComplete="Available Date"
+                            />
+                        </Grid>
+                        <Grid item xs={12}  md={3} sm={6}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                name="propertyRate"
+                                label="Rate"
+                                type="text"
+                                id="propertyRate"
+                                autoComplete="Rate"
+                            />
+                        </Grid>
+                        
+                        
+                    </Grid>
+                   
+                    <Grid container 
+                    className={classes.addPropertyBtns}
+                    direction="row"
+                    justify="space-around">
+                        <Grid item >
+                            <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            color="primary"
+                            className={classes.submit}
+                            >Add</Button>
+                        </Grid>
+                        <Grid item  >
+                            <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            color="primary"
+                            className={classes.submit}
+                            >Clear</Button>
+                        </Grid>
+                        <Grid item >
+                            <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            color="primary"
+                            className={classes.submit}
+                            >Cancel</Button>
+                        </Grid>
+                    </Grid>
+               
+                </form>
+            </div>
                 
             
         </Container>
