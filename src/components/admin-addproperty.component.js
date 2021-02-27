@@ -30,16 +30,14 @@ export default function AddProperty() {
         <div>
         <Container component="main" maxWidth="xs">
         <SearchAppBar />
-        <CssBaseline />
+        <CssBaseline /> 
+
+                
            
-             
+                
             
         </Container>
         <FooterComponent />
         </div>
-
-
-      
-
     );
 }

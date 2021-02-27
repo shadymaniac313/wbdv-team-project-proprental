@@ -25,7 +25,7 @@ export default function FooterComponent() {
             </Typography>
             <Typography variant="body2" color="textSecondary" align="center">
                 {'Copyright © '}
-                <Link color="inherit" href="https://material-ui.com/">
+                <Link color="inherit" to="/">
                     Property Listing
                 </Link>
                 {' '}
