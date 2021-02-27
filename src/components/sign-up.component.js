@@ -10,11 +10,14 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import HomeWorkIcon from "@material-ui/icons/HomeWork";
 
 
 const useStyles = makeStyles((theme) => ({
     paper: {
-        marginTop: theme.spacing(8),
+        marginTop: theme.spacing(10),
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -37,9 +40,16 @@ export default function SignUp() {
 
     return (
         <Container component="main" maxWidth="xs">
-            <Typography className={classes.paper} component="h1" variant="h3">
-                Property Listing
-            </Typography>
+
+            <AppBar>
+                <Toolbar>
+                    <HomeWorkIcon className={classes.icon}/>
+                    &nbsp; &nbsp;
+                    <Typography variant="h6" color="inherit" noWrap>
+                        Property Listing
+                    </Typography>
+                </Toolbar>
+            </AppBar>
 
             <CssBaseline />
             <div className={classes.paper}>
