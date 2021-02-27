@@ -11,7 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Toolbar from "@material-ui/core/Toolbar";
-import HomeWorkIcon from "@material-ui/icons/HomeWork";
+import ApartmentRoundedIcon from '@material-ui/icons/ApartmentRounded';
 import AppBar from "@material-ui/core/AppBar";
 
 
@@ -43,7 +43,7 @@ export default function SignIn() {
 
             <AppBar>
                 <Toolbar>
-                    <HomeWorkIcon className={classes.icon}/>
+                    <ApartmentRoundedIcon className={classes.icon}/>
                     &nbsp; &nbsp;
                     <Typography variant="h6" color="inherit" noWrap>
                         Property Listing

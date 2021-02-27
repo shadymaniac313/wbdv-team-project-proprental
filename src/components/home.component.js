@@ -13,6 +13,7 @@ import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {Link} from "react-router-dom";
 import HomeWorkIcon from '@material-ui/icons/HomeWork';
+import SearchAppBar from "./search-bar.component";
 
 function Copyright() {
     return (
@@ -33,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
     },
     heroContent: {
         backgroundColor: theme.palette.background.paper,
-        padding: theme.spacing(8, 0, 6),
+        padding: theme.spacing(10, 0, 6),
     },
     heroButtons: {
         marginTop: theme.spacing(4),
@@ -67,14 +68,9 @@ export default function Home() {
     return (
         <React.Fragment>
             <CssBaseline/>
-            <AppBar position="relative">
-                <Toolbar>
-                    <HomeWorkIcon className={classes.icon}/>
-                    <Typography variant="h6" color="inherit" noWrap>
-                        Property Listing
-                    </Typography>
-                </Toolbar>
-            </AppBar>
+            <div>
+                <SearchAppBar/>
+            </div>
             <main>
                 {/* Hero unit */}
                 <div className={classes.heroContent}>
@@ -115,7 +111,7 @@ export default function Home() {
                                 <Card className={classes.card}>
                                     <CardMedia
                                         className={classes.cardMedia}
-                                        image="https://source.unsplash.com/random"
+                                        image="https://www.veteransunited.com/assets/craft/images/blog/_blogHero/va-loan-home.jpg"
                                         title="Image title"
                                     />
                                     <CardContent className={classes.cardContent}>

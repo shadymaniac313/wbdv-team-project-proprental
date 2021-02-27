@@ -12,7 +12,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import HomeWorkIcon from "@material-ui/icons/HomeWork";
+import ApartmentRoundedIcon from '@material-ui/icons/ApartmentRounded';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -43,7 +43,7 @@ export default function SignUp() {
 
             <AppBar>
                 <Toolbar>
-                    <HomeWorkIcon className={classes.icon}/>
+                    <ApartmentRoundedIcon className={classes.icon}/>
                     &nbsp; &nbsp;
                     <Typography variant="h6" color="inherit" noWrap>
                         Property Listing
