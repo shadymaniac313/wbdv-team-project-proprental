@@ -3,19 +3,12 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import {Link} from "react-router-dom";
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import Toolbar from "@material-ui/core/Toolbar";
-import ApartmentRoundedIcon from '@material-ui/icons/ApartmentRounded';
-import AppBar from "@material-ui/core/AppBar";
 import SearchAppBar from './search-bar.component';
 import FooterComponent from "./footer.component";
-
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -37,15 +30,17 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function SignIn() {
-
-
+export default function AdminSignIn() {
     const classes = useStyles();
+
+    function adminlogin(){
+        console.log("Admin logged in")
+    }
 
     return (
         <Container component="main" maxWidth="xs">
-         <SearchAppBar />
-        
+
+          <SearchAppBar />
 
             <CssBaseline />
             <div className={classes.paper}>
@@ -53,7 +48,7 @@ export default function SignIn() {
                     <LockOutlinedIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">
-                    Sign in
+                   Admin Sign in
                 </Typography>
                 <form className={classes.form} noValidate>
                     <TextField
@@ -84,24 +79,13 @@ export default function SignIn() {
                         variant="contained"
                         color="primary"
                         className={classes.submit}
-                       
+                        onClick={()=>adminlogin()}
                     >
                         Sign In
                     </Button>
-                    <Grid container>
-                        <Grid item xs>
-                        </Grid>
-                        <Grid item>
-                            <Link to = "/SignUp">
-                                {"Don't have an account? Sign Up"}
-                            </Link>
-                        </Grid>
-                    </Grid>
                 </form>
             </div>
-       
-           <FooterComponent />
-
+            <FooterComponent />
         </Container>
     );
 }

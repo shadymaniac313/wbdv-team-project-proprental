@@ -13,7 +13,8 @@ import Container from '@material-ui/core/Container';
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import ApartmentRoundedIcon from '@material-ui/icons/ApartmentRounded';
-
+import SearchAppBar from './search-bar.component';
+import FooterComponent from "./footer.component";
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -41,15 +42,7 @@ export default function SignUp() {
     return (
         <Container component="main" maxWidth="xs">
 
-            <AppBar>
-                <Toolbar>
-                    <ApartmentRoundedIcon className={classes.icon}/>
-                    &nbsp; &nbsp;
-                    <Typography variant="h6" color="inherit" noWrap>
-                        Property Listing
-                    </Typography>
-                </Toolbar>
-            </AppBar>
+              <SearchAppBar />
 
             <CssBaseline />
             <div className={classes.paper}>
@@ -126,16 +119,7 @@ export default function SignUp() {
                     </Grid>
                 </form>
             </div>
-            <Box mt={5}>
-                <Typography variant="body2" color="textSecondary" align="center">
-                    {'Copyright © '}
-                    <label color="inherit">
-                        Property Listing
-                    </label>{' '}
-                    {new Date().getFullYear()}
-                    {'.'}
-                </Typography>
-            </Box>
+            <FooterComponent />
         </Container>
     );
 }

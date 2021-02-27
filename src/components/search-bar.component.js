@@ -8,6 +8,10 @@ import { fade, makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import ApartmentRoundedIcon from '@material-ui/icons/ApartmentRounded';
+import {Link, Redirect} from "react-router-dom";
+import Button from '@material-ui/core/Button';
+import Home from "../components/home.component";
+import AdminSignIn from './admin-signin.component';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -74,8 +78,15 @@ export default function SearchAppBar() {
                     <ApartmentRoundedIcon className={classes.icon}/>
                     &nbsp; &nbsp;
                     <Typography className={classes.title} variant="h6" noWrap>
-                        Property Listing
+                       <Link style={{ textDecoration: 'none', color:'white' }} to="/"> 
+                            Property Listing    
+                       </Link>
                     </Typography>
+                    <Link to="/AdminSignIn">
+                        <Button variant="contained" color="primary">
+                            Admin Login
+                        </Button>
+                   </Link>           
                     <div className={classes.search}>
                         <div className={classes.searchIcon}>
                             <SearchIcon />
