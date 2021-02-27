@@ -7,6 +7,7 @@ const useStyles = makeStyles((theme) => ({
     footerContainer: {
         backgroundColor: theme.palette.background.paper,
         padding: theme.spacing(6),
+        
     },
 }));
 
@@ -14,7 +15,8 @@ export default function FooterComponent() {
     const classes = useStyles();
 
     return (
-        <div className={classes.footerContainer}>   
+ 
+            <div className={classes.footerContainer}>   
             <Typography variant="h6" align="center" gutterBottom>
                 Property Listing
             </Typography>
@@ -30,6 +32,7 @@ export default function FooterComponent() {
                 {new Date().getFullYear()}
                 {'.'}
             </Typography>
-        </div>
+       
+  </div>
     );
 }

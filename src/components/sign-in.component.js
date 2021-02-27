@@ -43,10 +43,9 @@ export default function SignIn() {
     const classes = useStyles();
 
     return (
-        <Container component="main" maxWidth="xs">
+        <div>
+                     <Container component="main" maxWidth="xs">
          <SearchAppBar />
-        
-
             <CssBaseline />
             <div className={classes.paper}>
                 <Avatar className={classes.avatar}>
@@ -99,9 +98,14 @@ export default function SignIn() {
                     </Grid>
                 </form>
             </div>
-       
-           <FooterComponent />
-
+          
+            
         </Container>
+        <FooterComponent />
+        </div>
+
+
+      
+
     );
 }
