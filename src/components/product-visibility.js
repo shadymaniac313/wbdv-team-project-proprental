@@ -2,6 +2,8 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '@fortawesome/fontawesome-free/css/all.min.css'
 import '../index.css';
+import Hidden from '@material-ui/core/Hidden';
+
 // import { MenuIcon } from '@material-ui/icons';
 import { makeStyles } from '@material-ui/core/styles';
 // import Paper from '@material-ui/core/Paper';
@@ -45,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const names = ['James', 'Paul', 'John', 'George', 'Ringo'];
+const names = ['James', 'Paul', 'John', 'George', 'Ringo', 'James', 'Paul', 'John', 'George', 'Ringo'];
 
 
 export default function ProductVisibility(){
@@ -68,7 +70,7 @@ export default function ProductVisibility(){
             <div className={classes.root}>
 
                 <Grid container spacing={1}>
-                    <Grid item xs={6}>
+                    <Grid item md={6}>
                         {names.map((name, index) => (
                             <ProductCard
                                 img="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ_wbPYTxQPMcBh7SPzLFActXnP3uhifeVT_g&usqp=CAU"
@@ -81,9 +83,14 @@ export default function ProductVisibility(){
                             />
                         ))}
                     </Grid>
-                    <Grid item xs={6}>
-                    <SRmap/>
+                    <Grid item md={6} >
+                        <SRmap/>
                     </Grid>
+                    {/* <Hidden mdDown>
+                    <Grid item xs={6} >
+                        <SRmap/>
+                    </Grid>
+                    </Hidden> */}
                 </Grid>
             </div>
 
