@@ -55,13 +55,12 @@ export default function EditProperty() {
                         <Grid item xs={12}>
                             <TextField
                                 variant="outlined"
-                                required
                                 fullWidth
+                                disabled
                                 name="propertyName"
                                 label="Property Name"
-                                type="text"
-                                id="propertyName"
-                                autoComplete="Property Name"
+                                id="propertyName"      
+                                value="Property Name"    
                             />
                         </Grid>
                         
