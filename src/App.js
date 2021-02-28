@@ -16,7 +16,7 @@ function App() {
                 <Route path = "/SignIn" component = {SignIn}/>
                 <Route path = "/SignUp" component = {SignUp}/>
                 <Route path = "/AdminSignIn" component = {AdminSignIn}/>  
-                <Route path = "/AdminHome" component = {AdminHome}/>  
+                <Route path = "/admin/home" component = {AdminHome}/>  
                 <Route path = "/admin/AddProperty" component = {AddProperty}/> 
                 <Route path = "/admin/EditProperty" component = {EditProperty}/>  
                 <Route path="/" exact={true}>
