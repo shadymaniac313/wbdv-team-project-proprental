@@ -136,12 +136,13 @@ export default function AddProperty() {
                         </Grid>
                         <Grid item xs={12}  md={3} sm={6}>
                             <TextField
+                               
                                 variant="outlined"
                                 required
                                 fullWidth
                                 name="propertyZip"
                                 label="Zip"
-                                type="text"
+                                type="number"
                                 id="propertyZip"
                                 autoComplete="Zip"
                             />
@@ -152,6 +153,8 @@ export default function AddProperty() {
                                 variant="outlined"
                                 required
                                 fullWidth
+                                multiline
+                                rows={8}
                                 name="propertyDescription"
                                 label="Property Description"
                                 type="text"
@@ -165,9 +168,10 @@ export default function AddProperty() {
                                 variant="outlined"
                                 required
                                 fullWidth
+                                InputProps={{ inputProps: { min: 0, max: 100 } }}
                                 name="propertyBedroom"
-                                label="Bedroom"
-                                type="text"
+                                label="Number of Bedrooms"
+                                type="number"
                                 id="propertyBedroom"
                                 autoComplete="Bedroom"
                             />
@@ -177,15 +181,17 @@ export default function AddProperty() {
                                 variant="outlined"
                                 required
                                 fullWidth
+                                InputProps={{ inputProps: { min: 0, max: 100 } }}
                                 name="propertyBathroom"
-                                label="Bathroom"
-                                type="text"
+                                label="Number of Bathroom"
+                                type="number"
                                 id="propertyBathroom"
                                 autoComplete="Bathroom"
                             />
                         </Grid>                   
-                        <Grid item xs={12}  md={3} sm={6}>
-                            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                        {/* Date Picker Here */}
+                        <Grid item xs={12}  md={3} sm={6} >
+                            <MuiPickersUtilsProvider utils={DateFnsUtils} >
                             <KeyboardDatePicker
                                 margin="normal"
                                 id="propertyAvailableDate"
@@ -208,12 +214,26 @@ export default function AddProperty() {
                                 fullWidth
                                 name="propertyRate"
                                 label="Rate"
-                                type="text"
+                                type="number"
+                                InputProps={{ inputProps: { min: 0 } }}
                                 id="propertyRate"
                                 autoComplete="Rate"
                             />
                         </Grid>
-                        
+                         
+                        <Grid item xs={12} >
+                        <Button
+                            variant="contained"
+                            component="label"
+                        >
+                            Upload File
+                        <input
+                            type="file"
+                            hidden
+                        />
+                        </Button>
+                        </Grid>
+                         
                         
                     </Grid>
                    
