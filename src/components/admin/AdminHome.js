@@ -24,6 +24,9 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
+import { orange } from '@material-ui/core/colors';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -36,34 +39,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const columns = [
-    { id: 'name', label: 'Name', minWidth: 170 },
-    { id: 'code', label: 'ISO\u00a0Code', minWidth: 100 },
-    {
-      id: 'population',
-      label: 'Population',
-      minWidth: 170,
-      align: 'right',
-      format: (value) => value.toLocaleString('en-US'),
-    },
-    {
-      id: 'size',
-      label: 'Size\u00a0(km\u00b2)',
-      minWidth: 170,
-      align: 'right',
-      format: (value) => value.toLocaleString('en-US'),
-    },
-    {
-      id: 'density',
-      label: 'Density',
-      minWidth: 170,
-      align: 'right',
-      format: (value) => value.toFixed(2),
-    },
+    { id: 'name', label: 'Property Name', minWidth: 170, align:'center' },
+    { id: 'booked', label: 'Booked', minWidth: 100 , align:'center'},
+    { id: 'propertyAvailableDate', label: 'Available Date', minWidth: 100, align:'center' },
+    { id: 'propertyRate', label: 'Rate', minWidth: 100, align:'center' },
+    { id: 'edit', label: 'Edit', minWidth: 100, align:'center' },
+    { id: 'delete', label: 'Delete', minWidth: 100, align:'center' },
   ];
   
-  function createData(name, code, population, size) {
-    const density = population / size;
-    return { name, code, population, size, density };
+  function createData(name, booked, propertyAvailableDate, propertyRate) {
+    return { name, booked, propertyAvailableDate, propertyRate };
   }
   
   const rows = [
@@ -113,49 +98,71 @@ export default function AdminHome() {
                     Add Property
                 </Button>
             </Link>  
+
             {/* Table Container Starts Here */}
             <TableContainer className={classes.tablecontainer}>
                 <Table stickyHeader aria-label="sticky table">
+
                 <TableHead>
                     <TableRow>
-                    {columns.map((column) => (
+                        {columns.map((column) => (
                         <TableCell
-                        key={column.id}
-                        align={column.align}
-                        style={{ minWidth: column.minWidth }}
-                        >
-                        {column.label}
+                            key={column.id}
+                            align={column.align}
+                            style={{ minWidth: column.minWidth }} >
+                            {column.label}
                         </TableCell>
                     ))}
                     </TableRow>
                 </TableHead>
-                <TableBody>
+
+                <TableBody >
                     {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
                     return (
-                        <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-                        {columns.map((column) => {
-                            const value = row[column.id];
-                            return (
-                            <TableCell key={column.id} align={column.align}>
-                                {column.format && typeof value === 'number' ? column.format(value) : value}
+                        <TableRow hover role="checkbox" tabIndex={-1} key={row.code} >
+                            <TableCell component="th" scope="row"  align={'center'}>
+                                {row.name}
                             </TableCell>
-                            );
-                        })}
+                            <TableCell  align={'center'}>{row.booked}</TableCell>
+                            <TableCell  align={'center'}>{row.propertyAvailableDate}</TableCell>
+                            <TableCell  align={'center'}>{row.propertyRate}</TableCell>
+                            <TableCell  align={'center'}>
+                                <Link to="/admin/EditProperty">
+                                <Button
+                                    variant="contained"
+                                    style={{backgroundColor: 'orange'}}
+                                    className={classes.button}
+                                    
+                                    startIcon={<EditIcon />}
+                                >Edit</Button>
+                                </Link>
+                            </TableCell>
+                            <TableCell align={'center'}>
+                            <Button
+                                variant="contained"
+                                color="secondary"
+                                className={classes.button}
+                                startIcon={<DeleteIcon />}
+                            >Delete</Button>
+                            </TableCell>
                         </TableRow>
                     );
                     })}
                 </TableBody>
+
                 </Table>
             </TableContainer>
+
+
             <TablePagination
-                rowsPerPageOptions={[10, 25, 100]}
+                rowsPerPageOptions={[10, 25, 50]}
                 component="div"
                 count={rows.length}
                 rowsPerPage={rowsPerPage}
                 page={page}
                 onChangePage={handleChangePage}
                 onChangeRowsPerPage={handleChangeRowsPerPage}
-        />
+            />
 
         </div>
             
