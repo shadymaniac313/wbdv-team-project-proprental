@@ -1,22 +1,12 @@
 import React from 'react';
-import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
 import {Link} from "react-router-dom";
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import Toolbar from "@material-ui/core/Toolbar";
-import ApartmentRoundedIcon from '@material-ui/icons/ApartmentRounded';
-import AppBar from "@material-ui/core/AppBar";
 import SearchAppBar from '../search-bar.component';
 import FooterComponent from "../footer.component";
-import AddProperty from './AddProperty';
-import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -26,16 +16,13 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
-import { orange } from '@material-ui/core/colors';
-
 
 const useStyles = makeStyles((theme) => ({
     homepropertycss: {
         marginTop: theme.spacing(10)
     },
     tablecontainer: {
-        maxHeight: 440,
-        
+        maxHeight: 440, 
     },
 }));
 
