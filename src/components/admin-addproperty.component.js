@@ -17,8 +17,7 @@ import SearchAppBar from './search-bar.component';
 import FooterComponent from "./footer.component";
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
-
-
+import Dropzone from "./Dropzone"
 
 const useStyles = makeStyles((theme) => ({
     addpropertycss: {
@@ -38,6 +37,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function AddProperty() {
+
+ 
 
     const [selectedDate, setSelectedDate] = React.useState(new Date());
     const handleDateChange = (date) => {
@@ -222,16 +223,7 @@ export default function AddProperty() {
                         </Grid>
                          
                         <Grid item xs={12} >
-                        <Button
-                            variant="contained"
-                            component="label"
-                        >
-                            Upload File
-                        <input
-                            type="file"
-                            hidden
-                        />
-                        </Button>
+                           <Dropzone />
                         </Grid>
                          
                         
