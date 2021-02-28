@@ -1,23 +1,17 @@
 import React from 'react';
-import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import {Link} from "react-router-dom";
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import Toolbar from "@material-ui/core/Toolbar";
-import ApartmentRoundedIcon from '@material-ui/icons/ApartmentRounded';
-import AppBar from "@material-ui/core/AppBar";
-import SearchAppBar from './search-bar.component';
-import FooterComponent from "./footer.component";
+import SearchAppBar from '../search-bar.component';
+import FooterComponent from "../footer.component";
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
-import Dropzone from "./Dropzone"
+import Dropzone from "../Dropzone"
 
 const useStyles = makeStyles((theme) => ({
     addpropertycss: {
@@ -26,19 +20,16 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         marginTop: theme.spacing(10),
         margin: theme.spacing(1),
+      
     },
     addpropertyform: {
         width: '100%',
         marginTop: theme.spacing(1),
        
     },
-  
-   
 }));
 
 export default function AddProperty() {
-
- 
 
     const [selectedDate, setSelectedDate] = React.useState(new Date());
     const handleDateChange = (date) => {
@@ -169,7 +160,7 @@ export default function AddProperty() {
                                 variant="outlined"
                                 required
                                 fullWidth
-                                InputProps={{ inputProps: { min: 0, max: 100 } }}
+                                InputProps={{ inputProps: { min: 0, max: 10 } }}
                                 name="propertyBedroom"
                                 label="Number of Bedrooms"
                                 type="number"
@@ -182,7 +173,7 @@ export default function AddProperty() {
                                 variant="outlined"
                                 required
                                 fullWidth
-                                InputProps={{ inputProps: { min: 0, max: 100 } }}
+                                InputProps={{ inputProps: { min: 0, max: 10 } }}
                                 name="propertyBathroom"
                                 label="Number of Bathroom"
                                 type="number"
@@ -219,17 +210,19 @@ export default function AddProperty() {
                                 InputProps={{ inputProps: { min: 0 } }}
                                 id="propertyRate"
                                 autoComplete="Rate"
+                               
+                              
                             />
                         </Grid>
-                         
+                        {/* Drop Zone */}
                         <Grid item xs={12} >
                            <Dropzone />
                         </Grid>
-                         
-                        
                     </Grid>
-                   
+
+                    {/* Form Buttons */}
                     <Grid container 
+                    style={{marginTop:20}}
                     className={classes.addPropertyBtns}
                     direction="row"
                     justify="space-around">

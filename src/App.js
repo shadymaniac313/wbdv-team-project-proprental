@@ -4,9 +4,10 @@ import {BrowserRouter, Route} from "react-router-dom";
 import SignIn from "./components/sign-in.component";
 import SignUp from "./components/sign-up.component";
 import Home from "./components/home.component";
-import AdminSignIn from "./components/admin-signin.component";
-import AddProperty from "./components/admin-addproperty.component"
-import AdminHome from "./components/admin-home.component"
+import AdminSignIn from "./components/admin/AdminSignIn";
+import AddProperty from "./components/admin/AddProperty"
+import AdminHome from "./components/admin/AdminHome"
+import EditProperty from "./components/admin/EditProperty"
 
 function App() {
     return (
@@ -16,7 +17,8 @@ function App() {
                 <Route path = "/SignUp" component = {SignUp}/>
                 <Route path = "/AdminSignIn" component = {AdminSignIn}/>  
                 <Route path = "/AdminHome" component = {AdminHome}/>  
-                <Route path = "/admin/AddProperty" component = {AddProperty}/>  
+                <Route path = "/admin/AddProperty" component = {AddProperty}/> 
+                <Route path = "/admin/EditProperty" component = {EditProperty}/>  
                 <Route path="/" exact={true}>
                       <Home/>
                 </Route>

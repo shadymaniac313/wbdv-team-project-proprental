@@ -13,8 +13,8 @@ import Container from '@material-ui/core/Container';
 import Toolbar from "@material-ui/core/Toolbar";
 import ApartmentRoundedIcon from '@material-ui/icons/ApartmentRounded';
 import AppBar from "@material-ui/core/AppBar";
-import SearchAppBar from './search-bar.component';
-import FooterComponent from "./footer.component";
+import SearchAppBar from '../search-bar.component';
+import FooterComponent from "../footer.component";
 
 
 const useStyles = makeStyles((theme) => ({

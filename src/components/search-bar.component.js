@@ -11,7 +11,7 @@ import ApartmentRoundedIcon from '@material-ui/icons/ApartmentRounded';
 import {Link, Redirect} from "react-router-dom";
 import Button from '@material-ui/core/Button';
 import Home from "../components/home.component";
-import AdminSignIn from './admin-signin.component';
+import AdminSignIn from './admin/AdminSignIn';
 
 const useStyles = makeStyles((theme) => ({
     root: {

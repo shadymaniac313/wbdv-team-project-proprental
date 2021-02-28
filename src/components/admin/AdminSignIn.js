@@ -7,8 +7,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import SearchAppBar from './search-bar.component';
-import FooterComponent from "./footer.component";
+import SearchAppBar from '../search-bar.component';
+import FooterComponent from "../footer.component";
 
 const useStyles = makeStyles((theme) => ({
     paper: {
