@@ -3,20 +3,19 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import {Link} from "react-router-dom";
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import SearchAppBar from './search-bar.component';
+import FooterComponent from "./footer.component";
 
 
 const useStyles = makeStyles((theme) => ({
     paper: {
-        marginTop: theme.spacing(8),
+        marginTop: theme.spacing(10),
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -35,15 +34,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignIn() {
+
+
     const classes = useStyles();
 
     return (
-        <Container component="main" maxWidth="xs">
-
-            <Typography className={classes.paper} component="h1" variant="h3">
-                Property Listing
-            </Typography>
-
+        <div>
+                     <Container component="main" maxWidth="xs">
+         <SearchAppBar />
             <CssBaseline />
             <div className={classes.paper}>
                 <Avatar className={classes.avatar}>
@@ -81,6 +79,7 @@ export default function SignIn() {
                         variant="contained"
                         color="primary"
                         className={classes.submit}
+                       
                     >
                         Sign In
                     </Button>
@@ -95,16 +94,14 @@ export default function SignIn() {
                     </Grid>
                 </form>
             </div>
-            <Box mt={8}>
-                <Typography variant="body2" color="textSecondary" align="center">
-                    {'Copyright © '}
-                    <lable color="inherit">
-                        Property Listing
-                    </lable>{' '}
-                    {new Date().getFullYear()}
-                    {'.'}
-                </Typography>
-            </Box>
+          
+            
         </Container>
+        <FooterComponent />
+        </div>
+
+
+      
+
     );
 }

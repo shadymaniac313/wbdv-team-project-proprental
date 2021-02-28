@@ -9,6 +9,8 @@ import { makeStyles } from '@material-ui/core/styles';
 // import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import SRmap from './map';
+import Container from '@material-ui/core/Container';
+import SearchAppBar from './search-bar.component';
 
 import { IconButton, Typography, Button, AppBar, Toolbar } from "@material-ui/core";
 
@@ -24,6 +26,12 @@ const useStyles = makeStyles((theme) => ({
         // flexDirection: 'column',
         alignItems: 'center',
         height:"100%"
+    },
+    paper2: {
+        marginTop: theme.spacing(10),
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
     },
     avatar: {
         margin: theme.spacing(1),
@@ -55,19 +63,9 @@ export default function ProductVisibility(){
 
     return (
         <div>
-            <AppBar position="static">
-                <Toolbar>
-                    <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                        {/* <MenuIcon /> */}
-                    </IconButton>
-                    <Typography variant="h6" className={classes.title}>
-                        Search, login, logout buttons here
-                </Typography>
-                    <Button color="inherit">Login</Button>
-                </Toolbar>
-            </AppBar>
-
-            <div className={classes.root}>
+            <SearchAppBar />
+            <main className={classes.paper2}>
+            {/* <div className={classes.root}> */}
 
                 <Grid container spacing={1}>
                     <Grid item md={6}>
@@ -92,11 +90,8 @@ export default function ProductVisibility(){
                     </Grid>
                     </Hidden> */}
                 </Grid>
-            </div>
-
-            
-
-
+            {/* </div> */}
+            </main>
         </div>
     );
 }
