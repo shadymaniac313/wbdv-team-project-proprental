@@ -11,6 +11,7 @@ import FooterComponent from "../footer.component";
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import Dropzone from "../Dropzone"
+import {Link} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     addpropertycss: {
@@ -36,6 +37,17 @@ export default function AddProperty() {
     };
 
     const classes = useStyles();
+
+    function cancelEvent(){
+        var answer = window.confirm("Do you want to cancel?");
+        if (answer) {
+            console.log(answer)
+            window.location.href='http://www.google.com'
+        }
+        else {
+            //some code
+        }
+    }
 
     return (
         <div>
@@ -244,13 +256,16 @@ export default function AddProperty() {
                             >Clear</Button>
                         </Grid>
                         <Grid item >
+                           {/* <Link to="/admin/home"> */}
                             <Button
-                            type="submit"
-                            fullWidth
-                            variant="contained"
-                            color="primary"
-                            className={classes.submit}
-                            >Cancel</Button>
+                                    type="submit"
+                                    fullWidth
+                                    variant="contained"
+                                    color="primary"
+                                    onClick={()=>cancelEvent()}
+                                    className={classes.submit}
+                                >Cancel</Button>
+                           {/* </Link> */}
                         </Grid>
                     </Grid>
                
