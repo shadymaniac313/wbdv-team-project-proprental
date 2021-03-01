@@ -9,7 +9,7 @@ import AddProperty from "./components/admin/AddProperty";
 import AdminHome from "./components/admin/AdminHome";
 import EditProperty from "./components/admin/EditProperty";
 import ProductVisibility from "./components/product-visibility";
-import ProfileComponent from "./components/profile/profile-data";
+import ProfileComponent from "./components/profile/profile-component";
 
 function App() {
     return (

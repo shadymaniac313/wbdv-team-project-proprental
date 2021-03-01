@@ -1,152 +1,49 @@
 import React from "react";
-import {Card, CardHeader, CardContent} from "@material-ui/core";
-import {FormControl, FormHelperText} from "@material-ui/core";
-import {InputLabel, Input} from "@material-ui/core";
-import {Avatar} from "@material-ui/core";
-import {makeStyles} from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
-import {DataGrid} from "@material-ui/data-grid"
-import {Link} from "react-router-dom";
+import {makeStyles} from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
 
-const useStyles = makeStyles((theme) => ({
-    paper: {
-        marginTop: theme.spacing(8),
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
+const useStyles = makeStyles({
+    table: {
+        minWidth: 650,
     },
-    avatar: {
-        margin: theme.spacing(1),
-        backgroundColor: theme.palette.secondary.main,
-    },
-    form: {
-        width: '100%',
-        marginTop: theme.spacing(1),
-    },
-    submit: {
-        margin: theme.spacing(3, 0, 2),
-    },
-}));
+});
 
-export default class ProfileComponent extends React.Component {
+export const ProfileData = () => {
 
-    constructor(props) {
-        super(props);
-    }
+    const classes = useStyles();
 
-    render() {
+    const rows = [
+        {id: 1, col1: 'Email', col2: 'adalovelace@gmail.com'},
+        {id: 2, col1: 'Password', col2: '****'},
+        {id: 3, col1: 'First Name', col2: 'Ada'},
+        {id: 4, col1: 'Last Name', col2: 'Lovelace'},
+        {id: 5, col1: 'Phone', col2: '+15456362198'}
+    ];
 
-        // const classes = useStyles();
-
-        return (
-            <div className={"container"}>
-                <Card style={{width: '100%'}}>
-                    <CardHeader title={"Profile"}
-                                avatar={<Avatar src={"src\\logo.svg"}/>}
-                    />
-                    <CardContent>
-                        {/*<FormControl>*/}
-                        {/*    <InputLabel htmlFor="my-input">Email address</InputLabel>*/}
-                        {/*    <Input id="my-input" aria-describedby="my-helper-text"/>*/}
-                        {/*    <FormHelperText id="my-helper-text">We'll never share your email.</FormHelperText>*/}
-                        {/*</FormControl>*/}
-
-                        <DataGrid rows={[
-                            {id: 1, property: "Email ID", value:"adalovelace@gmail.com"},
-                            {id: 2, property: "Password", value:"adalovelace@gmail.com"}
-                        ]}
-                                  columns={
-                                      [{field: 'property', headerName: 'Property'},
-                                          {field: 'value', headerName: 'Value'}
-                                      ]
-                                  }
-                        />
-
-                        <form noValidate>
-                            <TextField
-                                variant="outlined"
-                                margin="normal"
-                                required
-                                fullWidth
-                                id="email"
-                                label="Email Address"
-                                name="email"
-                                autoComplete="email"
-                                value={"adalovelace@gmail.com"}
-                                autoFocus
-                            />
-                            <TextField
-                                variant="outlined"
-                                margin="normal"
-                                required
-                                fullWidth
-                                name="password"
-                                label="Password"
-                                type="password"
-                                id="password"
-                                value={"password"}
-                                autoComplete="current-password"
-                            />
-                            <TextField
-                                variant="outlined"
-                                margin="normal"
-                                required
-                                fullWidth
-                                id="firstname"
-                                label="First Name"
-                                name="firstname"
-                                value={"Ada"}
-                                autoComplete="Ada Lovelace"
-                                autoFocus
-                            />
-                            <TextField
-                                variant="outlined"
-                                margin="normal"
-                                required
-                                fullWidth
-                                id="lastname"
-                                label="Last Name"
-                                name="lastname"
-                                value={"Lovelace"}
-                                autoComplete="Ada Lovelace"
-                                autoFocus
-                            />
-                            <TextField
-                                variant="outlined"
-                                margin="normal"
-                                required
-                                fullWidth
-                                id="phone"
-                                type={"phone"}
-                                label="Phone"
-                                name="phone"
-                                value={"6173732130"}
-                                autoFocus
-                            />
-                            <Button
-                                type="submit"
-                                fullWidth
-                                variant="contained"
-                                color="primary"
-                            >
-                                Edit
-                            </Button>
-                            <Grid container>
-                                <Grid item xs>
-                                </Grid>
-                                <Grid item>
-                                    <Link to="/SignUp">
-                                        {"Don't have an account? Sign Up"}
-                                    </Link>
-                                </Grid>
-                            </Grid>
-                        </form>
-                    </CardContent>
-                </Card>
-            </div>
-        )
-    }
+    return (
+    <TableContainer component={Paper}>
+        <Table className={classes.table} aria-label="simple table">
+            <TableBody>
+                {rows.map((row) => (
+                    <TableRow key={row.id} >
+                        <TableCell component="th" scope="row">
+                            {row.col1}
+                        </TableCell>
+                        <TableCell component="th" scope="row">
+                            {row.col2}
+                        </TableCell>
+                    </TableRow>
+                ))}
+            </TableBody>
+        </Table>
+    </TableContainer>
+    )
 
 }
+
+export default ProfileData;
