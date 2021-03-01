@@ -1,9 +1,8 @@
-import React, {useState} from "react";
-import {Avatar, Card, CardContent, CardHeader, CardActions, CardMedia} from "@material-ui/core";
+import React from "react";
+import {Button} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 import ProfileData from "./profile-data";
 import EditableProfileData from "./profile-data-editable";
-import {Button} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -43,14 +42,7 @@ export default class ProfileComponent extends React.Component {
 
     parseProfileToDataRows = (profile) => {
         let id = 0
-        // let arr = Object.keys(profile).map((key) => {
-        //     id: {id++},
-        //     col1: {key},
-        //     col2: {profile[key]}
-        // });
-        console.log(Object.entries(profile))
         const arr = Object.entries(profile).map(e => e[1])
-        console.log(arr)
     }
 
 
