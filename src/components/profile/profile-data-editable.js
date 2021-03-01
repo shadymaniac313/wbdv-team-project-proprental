@@ -1,8 +1,17 @@
 import React from "react";
-import {TextField, Button, Grid} from "@material-ui/core";
-import {Link} from "react-router-dom";
+import {Button, TextField} from "@material-ui/core";
 
-const EditableProfileData = () => {
+const handleSave = (profile, setProfileData, setEditing) => {
+    setProfileData(profile)
+    setEditing(false)
+}
+
+
+const EditableProfileData = ({
+                                 profile,
+                                 setProfileData,
+                                 setEditing
+                             }) => {
     return (
         <form noValidate>
             <TextField
@@ -14,7 +23,7 @@ const EditableProfileData = () => {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
-                value={"adalovelace@gmail.com"}
+                value={profile.Email}
                 autoFocus
             />
             <TextField
@@ -26,7 +35,7 @@ const EditableProfileData = () => {
                 label="Password"
                 type="password"
                 id="password"
-                value={"password"}
+                value={profile.Password}
                 autoComplete="current-password"
             />
             <TextField
@@ -37,7 +46,7 @@ const EditableProfileData = () => {
                 id="firstname"
                 label="First Name"
                 name="firstname"
-                value={"Ada"}
+                value={profile.FirstName}
                 autoComplete="Ada Lovelace"
                 autoFocus
             />
@@ -49,7 +58,7 @@ const EditableProfileData = () => {
                 id="lastname"
                 label="Last Name"
                 name="lastname"
-                value={"Lovelace"}
+                value={profile.LastName}
                 autoComplete="Ada Lovelace"
                 autoFocus
             />
@@ -59,21 +68,26 @@ const EditableProfileData = () => {
                 required
                 fullWidth
                 id="phone"
-                type={"phone"}
+                type={profile.Phone}
                 label="Phone"
                 name="phone"
                 value={"6173732130"}
                 autoFocus
             />
-            <Grid container>
-                <Grid item xs>
-                </Grid>
-                <Grid item>
-                    <Link to="/SignUp">
-                        {"Don't have an account? Sign Up"}
-                    </Link>
-                </Grid>
-            </Grid>
+            <Button
+                onClick={() => handleSave({
+                        Email: 'ss',
+                        Password: '****',
+                        FirstName: 'ss',
+                        LastName: 'sss',
+                        Phone: '+15456362198'
+                    },
+                    setProfileData,
+                    setEditing)}
+                fullWidth
+                variant="contained"
+                color="primary"
+            >Save</Button>
         </form>
     )
 }

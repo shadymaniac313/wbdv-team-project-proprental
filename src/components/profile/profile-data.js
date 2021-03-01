@@ -13,35 +13,39 @@ const useStyles = makeStyles({
     },
 });
 
-export const ProfileData = () => {
+export const ProfileData = ({rows}) => {
 
     const classes = useStyles();
 
-    const rows = [
-        {id: 1, col1: 'Email', col2: 'adalovelace@gmail.com'},
-        {id: 2, col1: 'Password', col2: '****'},
-        {id: 3, col1: 'First Name', col2: 'Ada'},
-        {id: 4, col1: 'Last Name', col2: 'Lovelace'},
-        {id: 5, col1: 'Phone', col2: '+15456362198'}
-    ];
-
     return (
-    <TableContainer component={Paper}>
-        <Table className={classes.table} aria-label="simple table">
-            <TableBody>
-                {rows.map((row) => (
-                    <TableRow key={row.id} >
-                        <TableCell component="th" scope="row">
-                            {row.col1}
-                        </TableCell>
-                        <TableCell component="th" scope="row">
-                            {row.col2}
-                        </TableCell>
-                    </TableRow>
-                ))}
-            </TableBody>
-        </Table>
-    </TableContainer>
+        <TableContainer component={Paper}>
+            <Table className={classes.table} aria-label="simple table">
+                <TableBody>
+                    {
+                        Object.keys(rows).map((row) => (
+                            <TableRow key={row}>
+                                <TableCell component="td" scope="row">
+                                    <h6>{row}</h6>
+                                </TableCell>
+                                <TableCell component="td" scope="row">
+                                    {rows[row]}
+                                </TableCell>
+                            </TableRow>
+                        ))
+                    }
+                    {/*{rows.map((row) => (*/}
+                    {/*    <TableRow key={row.id} >*/}
+                    {/*        <TableCell component="th" scope="row">*/}
+                    {/*            <h6>{row.col1}</h6>*/}
+                    {/*        </TableCell>*/}
+                    {/*        <TableCell component="th" scope="row">*/}
+                    {/*            {row.col2}*/}
+                    {/*        </TableCell>*/}
+                    {/*    </TableRow>*/}
+                    {/*))}*/}
+                </TableBody>
+            </Table>
+        </TableContainer>
     )
 
 }

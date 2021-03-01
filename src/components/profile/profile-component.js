@@ -30,9 +30,29 @@ export default class ProfileComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            editing: false
+            editing: false,
+            profileData: {
+                Email: 'adalovelace@gmail.com',
+                Password: '****',
+                FirstName: 'Ada',
+                LastName: 'Lovelace',
+                Phone: '+15456362198'
+            }
         }
     }
+
+    parseProfileToDataRows = (profile) => {
+        let id = 0
+        // let arr = Object.keys(profile).map((key) => {
+        //     id: {id++},
+        //     col1: {key},
+        //     col2: {profile[key]}
+        // });
+        console.log(Object.entries(profile))
+        const arr = Object.entries(profile).map(e => e[1])
+        console.log(arr)
+    }
+
 
     handleEdit = () => {
         this.setState({
@@ -46,20 +66,40 @@ export default class ProfileComponent extends React.Component {
         })
     }
 
+    setProfileData = (newProfileData) => {
+        this.setState((prevState) => ({
+            ...prevState,
+            profileData: newProfileData
+        }))
+    }
+
+    setEditing = (value) => {
+        this.setState((prevState) => ({
+            ...prevState,
+            editing: value
+        }))
+    }
+
     render() {
+        this.parseProfileToDataRows(this.state.profileData)
 
         return (
             <div className={"container"}>
-                        <div style={{height:'100%'}}>
-                            {
-                                !this.state.editing &&
-                                <ProfileData/>
-                            }
-                            {
-                                this.state.editing &&
-                                <EditableProfileData/>
-                            }
-                        </div>
+                <h1>Profile</h1>
+                <div style={{height: '100%'}}>
+                    {
+                        !this.state.editing &&
+                        <ProfileData rows={this.state.profileData}/>
+                    }
+                    {
+                        this.state.editing &&
+                        <EditableProfileData
+                            profile={this.state.profileData}
+                            setProfileData={this.setProfileData}
+                            setEditing={this.setEditing}
+                        />
+                    }
+                </div>
                 {
                     !this.state.editing &&
                     <Button
@@ -69,15 +109,15 @@ export default class ProfileComponent extends React.Component {
                         color="primary"
                     >Edit</Button>
                 }
-                {
-                    this.state.editing &&
-                    <Button
-                        onClick={this.handleSave}
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                    >Save</Button>
-                }
+                {/*{*/}
+                {/*    this.state.editing &&*/}
+                {/*    <Button*/}
+                {/*        onClick={this.handleSave}*/}
+                {/*        fullWidth*/}
+                {/*        variant="contained"*/}
+                {/*        color="primary"*/}
+                {/*    >Save</Button>*/}
+                {/*}*/}
             </div>
         )
     }
