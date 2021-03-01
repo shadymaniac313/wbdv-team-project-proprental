@@ -7,6 +7,7 @@ import {makeStyles} from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
+import {DataGrid} from "@material-ui/data-grid"
 import {Link} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
@@ -51,6 +52,18 @@ export default class ProfileComponent extends React.Component {
                         {/*    <Input id="my-input" aria-describedby="my-helper-text"/>*/}
                         {/*    <FormHelperText id="my-helper-text">We'll never share your email.</FormHelperText>*/}
                         {/*</FormControl>*/}
+
+                        <DataGrid rows={[
+                            {id: 1, property: "Email ID", value:"adalovelace@gmail.com"},
+                            {id: 2, property: "Password", value:"adalovelace@gmail.com"}
+                        ]}
+                                  columns={
+                                      [{field: 'property', headerName: 'Property'},
+                                          {field: 'value', headerName: 'Value'}
+                                      ]
+                                  }
+                        />
+
                         <form noValidate>
                             <TextField
                                 variant="outlined"
@@ -124,7 +137,7 @@ export default class ProfileComponent extends React.Component {
                                 <Grid item xs>
                                 </Grid>
                                 <Grid item>
-                                    <Link to = "/SignUp">
+                                    <Link to="/SignUp">
                                         {"Don't have an account? Sign Up"}
                                     </Link>
                                 </Grid>
