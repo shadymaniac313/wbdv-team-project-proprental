@@ -1,0 +1,14 @@
+.sr_star {
+    color: red;
+}
+
+.sr_stars > p{
+    font-size: x-small;
+}
+
+
+.sr_stars {
+    display: flex;
+    align-items: center;
+    float: left;
+}
