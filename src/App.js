@@ -9,6 +9,7 @@ import AddProperty from "./components/admin/AddProperty";
 import AdminHome from "./components/admin/AdminHome";
 import EditProperty from "./components/admin/EditProperty";
 import ProductVisibility from "./components/product-visibility";
+import ProfileComponent from "./components/profile/profile-component";
 
 function App() {
     return (
@@ -16,14 +17,15 @@ function App() {
             <div className={"container-fluid"}>
                 <Route path = "/SignIn" component = {SignIn}/>
                 <Route path = "/SignUp" component = {SignUp}/>
-                <Route path = "/AdminSignIn" component = {AdminSignIn}/>  
-                <Route path = "/admin/home" component = {AdminHome}/>  
-                <Route path = "/admin/AddProperty" component = {AddProperty}/> 
-                <Route path = "/admin/EditProperty" component = {EditProperty}/>  
-                <Route path = "/searchresults" component = {ProductVisibility}/>  
+                <Route path = "/AdminSignIn" component = {AdminSignIn}/>
+                <Route path = "/admin/home" component = {AdminHome}/>
+                <Route path = "/admin/AddProperty" component = {AddProperty}/>
+                <Route path = "/admin/EditProperty" component = {EditProperty}/>
+                <Route path = "/searchresults" component = {ProductVisibility}/>
                 <Route path="/" exact={true}>
                       <Home/>
                 </Route>
+                <Route path={"/profile"} component={ProfileComponent}/>
             </div>
         </BrowserRouter>
     );
