@@ -10,6 +10,7 @@ import AdminHome from "./components/admin/AdminHome";
 import EditProperty from "./components/admin/EditProperty";
 import ProductVisibility from "./components/product-visibility";
 import ProfileComponent from "./components/profile/profile-component";
+import PropertyPage from "./components/PropertyPage.component"
 
 function App() {
     return (
@@ -22,6 +23,7 @@ function App() {
                 <Route path = "/admin/AddProperty" component = {AddProperty}/>
                 <Route path = "/admin/EditProperty" component = {EditProperty}/>
                 <Route path = "/searchresults" component = {ProductVisibility}/>
+                <Route path = "/propertypage" component = {PropertyPage}/>
                 <Route path="/" exact={true}>
                       <Home/>
                 </Route>
