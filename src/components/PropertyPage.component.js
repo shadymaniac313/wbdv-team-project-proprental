@@ -91,7 +91,7 @@ export default function PropertyPage() {
             {/* Grid Start For Property Page  */}
             <Grid container spacing={2}>
                 <Grid item xs={12} >
-                    <Typography variant="h3" component="h3" gutterBottom>
+                    <Typography variant="h3" gutterBottom>
                         Property Name
                     </Typography>
                 </Grid>
@@ -103,57 +103,102 @@ export default function PropertyPage() {
                     </Carousel>
                 </Grid>
             
-                <Grid item xs={12} md={6}>
-                    <Typography variant="h6" component="h6" gutterBottom>
-                        Address One
+                <Grid item xs={12} md={6} style={{ display: "flex", alignItems: "center" }}>
+                    <Typography variant="h6" gutterBottom>
+                        Address One :&nbsp;
+                    </Typography>
+                    <Typography variant="body1"  gutterBottom>
+                        1185 Boylston Street
                     </Typography>
                 </Grid>
-                <Grid item xs={12} md={6}>
-                    <Typography variant="h6" component="h6" gutterBottom>
-                    Address Two
+                <Grid item xs={12} md={6} style={{ display: "flex", alignItems: "center"}}>
+                    <Typography variant="h6"  gutterBottom>
+                         Address Two :&nbsp;
+                    </Typography>
+                    <Typography variant="body1"  gutterBottom>
+                         Apt 30
                     </Typography>
                 </Grid>
-                <Grid item xs={12} md={3}>
-                    <Typography variant="h6" component="h6" gutterBottom>
-                        City
+                <Grid item xs={12} md={3} style={{ display: "flex", alignItems: "center"}}>
+                    <Typography variant="h6" gutterBottom>
+                        City :&nbsp;
+                    </Typography>
+                    <Typography variant="body1"  gutterBottom>
+                         Boston
                     </Typography>
                 </Grid>
-                <Grid item xs={12} md={3}>
-                    <Typography variant="h6" component="h6" gutterBottom>
-                        State
+                <Grid item xs={12} md={3} style={{ display: "flex", alignItems: "center"}}>
+                    <Typography variant="h6"  gutterBottom>
+                        State :&nbsp;
+                    </Typography>
+                    <Typography variant="body1"  gutterBottom>
+                         MA
                     </Typography>
                 </Grid>
-                <Grid item xs={12} md={3}>
-                    <Typography variant="h6" component="h6" gutterBottom>
-                        Country
+                <Grid item xs={12} md={3} style={{ display: "flex", alignItems: "center"}}>
+                    <Typography variant="h6"  gutterBottom>
+                        Country :&nbsp;
+                    </Typography>
+                    <Typography variant="body1"  gutterBottom>
+                         USA
                     </Typography>
                 </Grid>
-                <Grid item xs={12} md={3}>
-                    <Typography variant="h6" component="h6" gutterBottom>
-                        Zip
+                <Grid item xs={12} md={3} style={{ display: "flex", alignItems: "center"}}>
+                    <Typography variant="h6"  gutterBottom>
+                        Zip :&nbsp;
+                    </Typography>
+                    <Typography variant="body1"  gutterBottom>
+                         02215
                     </Typography>
                 </Grid>
-                <Grid item xs={12} md={3}>
-                    <Typography variant="h6" component="h6" gutterBottom>
-                        No. of Beds
+                <Grid item xs={12} md={3} style={{ display: "flex", alignItems: "center"}}>
+                    <Typography variant="h6"  gutterBottom>
+                        No. of Beds :&nbsp;
+                    </Typography>
+                    <Typography variant="body1"  gutterBottom>
+                         4
                     </Typography>
                 </Grid>
-                <Grid item xs={12} md={3}>
-                    <Typography variant="h6" component="h6" gutterBottom>
-                        No. of Baths
+                <Grid item xs={12} md={3} style={{ display: "flex", alignItems: "center"}}>
+                    <Typography variant="h6"  gutterBottom>
+                        No. of Baths :&nbsp;
+                    </Typography>
+                    <Typography variant="body1"  gutterBottom>
+                         5
                     </Typography>
                 </Grid>
-                <Grid item xs={12} md={3}>
-                    <Typography variant="h6" component="h6" gutterBottom>
-                        Available Date
+                <Grid item xs={12} md={3} style={{ display: "flex", alignItems: "center"}}>
+                    <Typography variant="h6"  gutterBottom>
+                        Available Date :&nbsp;
+                    </Typography>
+                    <Typography variant="body1"  gutterBottom>
+                        1st Sept
                     </Typography>
                 </Grid>
-                <Grid item xs={12} md={3}>
-                    <Typography variant="h6" component="h6" gutterBottom>
-                        Rate
+                <Grid item xs={12} md={3} style={{ display: "flex", alignItems: "center"}}>
+                    <Typography variant="h6"  gutterBottom>
+                        Rate :&nbsp;
+                    </Typography>
+                    <Typography variant="body1"  gutterBottom>
+                         2000
                     </Typography>
                 </Grid>
-
+                <Grid item xs={12} >
+                    <Typography variant="body1"  gutterBottom align="justify">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ac vestibulum lacus. Fusce et luctus lectus. Aliquam sollicitudin erat a lectus ultrices, 
+                        vitae consectetur ante varius. Duis condimentum massa a diam consectetur elementum. Pellentesque velit lorem, aliquam in aliquet nec, viverra a nisl. Fusce 
+                        sagittis augue purus, in semper mauris tristique ac. Donec rutrum porta tortor, egestas accumsan est mattis quis. Morbi faucibus pellentesque tortor et imperdiet.
+                        In ac dolor vitae elit elementum aliquam vel sed nulla. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed pharetra nisi 
+                        vel pellentesque commodo. Nullam eleifend nulla et pretium ultricies.
+                        Integer tincidunt justo sed aliquet cursus. Fusce efficitur elit massa, eu placerat dui lacinia et. Fusce maximus ante eget faucibus blandit. Vestibulum dignissim 
+                        eleifend orci, volutpat hendrerit eros. Nullam eleifend sagittis feugiat. Nullam at nulla sed nibh vehicula mattis. Nullam id commodo mi. Curabitur aliquam lorem 
+                        erat, ut ultricies lorem semper at. Integer luctus lorem sed massa aliquam eleifend.
+                        Nullam vehicula, arcu dictum eleifend tempor, mauris dolor ultrices massa, laoreet efficitur odio ante ut felis. Duis viverra arcu vel sapien dictum pulvinar. Cras 
+                        ac tortor ut leo accumsan sagittis. Sed nibh libero, dignissim laoreet ornare quis, malesuada nec purus. Class aptent taciti sociosqu ad litora torquent per conubia
+                        nostra, per inceptos himenaeos. Morbi rhoncus turpis mi, nec iaculis ante tempor et. Nullam interdum lacus in arcu feugiat sagittis. Nulla facilisi. Donec lobortis,
+                        quam eget facilisis imperdiet, dui risus porta ante, nec semper eros felis vitae risus. Vestibulum malesuada ut lectus in maximus.
+                    </Typography>
+                </Grid>
 
 
             </Grid>
