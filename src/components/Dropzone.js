@@ -19,7 +19,7 @@ class Dropzone extends Component{
         onChange={this.handleChange.bind(this)}
         acceptedFiles={['image/*']}
         maxFileSize={5000000}
-        filesLimit="5"
+        number="5"
         dropzoneText="Upload Property Images Here"
         />
     )
