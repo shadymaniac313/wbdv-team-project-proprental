@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -8,8 +8,6 @@ import SearchIcon from "@material-ui/icons/Search";
 import ApartmentRoundedIcon from "@material-ui/icons/ApartmentRounded";
 import { Link, useHistory } from "react-router-dom";
 import Button from "@material-ui/core/Button";
-import searchService from "../services/search-service";
-import ProductVisibility from "./product-visibility";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -70,9 +68,6 @@ export default function SearchAppBar() {
   const classes = useStyles();
   const [cityName, setCityName] = useState("");
   const history = useHistory();
-  // useEffect(() => {
-  //   <ProductVisibility cityName={cityName} />;
-  // }, []);
 
   return (
     <div className={classes.root}>
