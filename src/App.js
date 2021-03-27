@@ -10,8 +10,10 @@ import AdminHome from "./components/admin/AdminHome";
 import EditProperty from "./components/admin/EditProperty";
 import ProductVisibility from "./components/product-visibility";
 import ProfileComponent from "./components/profile/profile-component";
+import PropertyPage from "./components/PropertyPage.component"
 
 function App() {
+
   return (
     <BrowserRouter>
       <div className={"container-fluid"}>
@@ -33,6 +35,7 @@ function App() {
       </div>
     </BrowserRouter>
   );
+
 }
 
 export default App;

@@ -13,6 +13,7 @@ import SearchAppBar from './search-bar.component';
 import FooterComponent from "./footer.component";
 
 
+
 const useStyles = makeStyles((theme) => ({
     paper: {
         marginTop: theme.spacing(10),
@@ -42,6 +43,7 @@ export default function SignIn() {
         <div>
                      <Container component="main" maxWidth="xs">
          <SearchAppBar />
+        
             <CssBaseline />
             <div className={classes.paper}>
                 <Avatar className={classes.avatar}>
@@ -50,6 +52,7 @@ export default function SignIn() {
                 <Typography component="h1" variant="h5">
                     Sign in
                 </Typography>
+              
                 <form className={classes.form} noValidate>
                     <TextField
                         variant="outlined"

@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -21,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
     display: "none",
     [theme.breakpoints.up("sm")]: {
       display: "block",
+
     },
   },
   search: {
@@ -65,6 +67,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SearchAppBar() {
+
   const classes = useStyles();
   const [cityName, setCityName] = useState("");
   const history = useHistory();
@@ -112,4 +115,5 @@ export default function SearchAppBar() {
       </AppBar>
     </div>
   );
+
 }
