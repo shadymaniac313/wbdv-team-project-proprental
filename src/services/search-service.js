@@ -3,3 +3,6 @@ const API_URL = `https://api.bridgedataoutput.com/api/v2/test/listings?access_to
 
 export const findPropertyByCity = (cityName) =>
   fetch(API_URL + `&City.in=${cityName}`).then((response) => response.json());
+
+
+export default {findPropertyByCity}

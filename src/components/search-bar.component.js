@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -8,6 +8,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import ApartmentRoundedIcon from '@material-ui/icons/ApartmentRounded';
 import {Link} from "react-router-dom";
 import Button from '@material-ui/core/Button';
+import findPropertyByCity from "../services/search-service"
 
 
 const useStyles = makeStyles((theme) => ({
@@ -67,7 +68,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SearchAppBar() {
     const classes = useStyles();
+    const  [searchInput, setSearchInput] = useState("");
 
+    
     return (
         <div className={classes.root}>
             <AppBar>
@@ -95,10 +98,13 @@ export default function SearchAppBar() {
                                 input: classes.inputInput,
                             }}
                             inputProps={{ 'aria-label': 'search' }}
+                            id="searchBar"
+                            input={(e)=>setSearchInput(e.target.value)}
+                            
                         />
                     </div>
                     <Link to="/searchresults">
-                        <Button variant="contained" color="primary">
+                        <Button variant="contained" color="primary" onClick={()=>findPropertyByCity(searchInput)}>
                             Search
                         </Button>
                      </Link>   
