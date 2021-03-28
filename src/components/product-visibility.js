@@ -48,19 +48,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const names = [
-  "James",
-  "Paul",
-  "John",
-  "George",
-  "Ringo",
-  "James",
-  "Paul",
-  "John",
-  "George",
-  "Ringo",
-];
-
 
 export default function ProductVisibility() {
  
@@ -73,7 +60,6 @@ export default function ProductVisibility() {
       searchService.findPropertyByCity(city).then((results) => {
         setResults(results);
         console.log(results.bundle,'Results');
-        
       });
     }
   }, [city]);

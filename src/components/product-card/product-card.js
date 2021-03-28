@@ -54,7 +54,6 @@ export default function ProductCard({
 })  
 {
     const classes = useStyles();
-    const history = useHistory();
 
     return (
         <Card className={classes.mcard}>
@@ -71,8 +70,7 @@ export default function ProductCard({
                         <Grid item xs>
                             <Typography gutterBottom variant="h6">
                                 <Link  to={{
-                                    pathname:`/propertypage/${title}`,
-                                    propertyID: {ListingId}              
+                                    pathname:`/propertypage/${ListingId}`           
                                  }}
                                 >
                                    {title}
