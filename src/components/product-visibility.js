@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '@fortawesome/fontawesome-free/css/all.min.css'
 import '../index.css';
@@ -60,6 +60,11 @@ const names = ['James', 'Paul', 'John', 'George', 'Ringo', 'James', 'Paul', 'Joh
 
 export default function ProductVisibility(){
     const classes = useStyles();
+    var [spopup, setshowPopup] = useState(0);
+
+    const togglePopup= () => {
+        setshowPopup(!spopup);
+    }
 
     return (
         <div>
@@ -78,6 +83,7 @@ export default function ProductVisibility(){
                                 star={4.73}
                                 price="£30 / night"
                                 total="£117 total"
+                                onClick={spopup}
                             />
                         ))}
                     </Grid>

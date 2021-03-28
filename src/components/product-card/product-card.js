@@ -16,6 +16,7 @@ import ButtonBase from '@material-ui/core/ButtonBase';
 // import Button from '@material-ui/core/Button';
 
 import './product-card.css';
+import {Link} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     mcard: {
@@ -61,6 +62,7 @@ export default function ProductCard({
         star,
         price,
         total,
+        onClick,
 })  
 {
     const classes = useStyles();
@@ -79,9 +81,11 @@ export default function ProductCard({
                             <Typography gutterBottom variant="caption">
                                 {location}
                             </Typography>
-                            <Typography variant="subtitle1">
+                            <Link to = {`/searchresults/${title}`} >
+                            <Typography variant="subtitle1" >
                                 {title}
                             </Typography>
+                            </Link>
                             <Typography variant="body2" color="textSecondary">
                                 ___
                             </Typography>
