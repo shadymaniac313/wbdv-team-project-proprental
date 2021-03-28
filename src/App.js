@@ -9,6 +9,7 @@ import AddProperty from "./components/admin/AddProperty";
 import AdminHome from "./components/admin/AdminHome";
 import EditProperty from "./components/admin/EditProperty";
 import ProductVisibility from "./components/product-visibility";
+import ProductDetails from "./components/product-details/product-details";
 import ProfileComponent from "./components/profile/profile-component";
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
                 <Route path = "/admin/AddProperty" component = {AddProperty}/>
                 <Route path = "/admin/EditProperty" component = {EditProperty}/>
                 <Route path = "/searchresults" component = {ProductVisibility}/>
+                <Route path = "/searchresults/:title" component = {ProductDetails}/>
                 <Route path="/" exact={true}>
                       <Home/>
                 </Route>
