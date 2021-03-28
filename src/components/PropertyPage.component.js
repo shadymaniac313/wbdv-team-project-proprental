@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
-import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import {Link} from "react-router-dom";
 import Grid from '@material-ui/core/Grid';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -15,7 +13,6 @@ import {
     Carousel,
     CarouselItem,
     CarouselControl,
-    CarouselIndicators,
     CarouselCaption
   } from 'reactstrap';
 
@@ -40,25 +37,28 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const items = [
-    {
-      src: 'https://m.media-amazon.com/images/M/MV5BMDdmZGU3NDQtY2E5My00ZTliLWIzOTUtMTY4ZGI1YjdiNjk3XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_.jpg',
-      caption: 'Titanic'
-    },
-    {
-      src: 'https://www.prescottpark.org/uploads/2019/06/f00bf346385235.58520f9022451-1020x1020.jpg',
-      caption: 'Jurassic Park'
-    },
-    {
-      src: 'https://m.media-amazon.com/images/I/41kTVLeW1CL._AC_.jpg',
-      caption: 'Avatar'
-    }
-];
-  
+
 
 export default function PropertyPage() {
 
     const [activeIndex, setActiveIndex] = useState(0);
+    
+
+
+    const items = [
+        {
+          src: 'https://m.media-amazon.com/images/M/MV5BMDdmZGU3NDQtY2E5My00ZTliLWIzOTUtMTY4ZGI1YjdiNjk3XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_.jpg',
+          caption: 'Titanic'
+        },
+        {
+          src: 'https://www.prescottpark.org/uploads/2019/06/f00bf346385235.58520f9022451-1020x1020.jpg',
+          caption: 'Jurassic Park'
+        },
+        {
+          src: 'https://m.media-amazon.com/images/I/41kTVLeW1CL._AC_.jpg',
+          caption: 'Avatar'
+        }
+    ];
 
     const next = () => {
       const nextIndex = activeIndex === items.length - 1 ? 0 : activeIndex + 1;

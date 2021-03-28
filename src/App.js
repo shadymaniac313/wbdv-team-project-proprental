@@ -24,7 +24,7 @@ function App() {
         <Route path="/admin/AddProperty" component={AddProperty} />
         <Route path="/admin/EditProperty" component={EditProperty} />
         <Route 
-          path="/propertypage/:ListingId"
+          path="/propertypage/:BuildingName"
           exact={true}
           component={PropertyPage}
           />

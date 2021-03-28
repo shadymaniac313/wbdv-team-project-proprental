@@ -70,9 +70,11 @@ export default function ProductCard({
                     <Grid item xs container direction="column" spacing={2}>
                         <Grid item xs>
                             <Typography gutterBottom variant="h6">
-                                <Link  onClick={() => {
-                                        history.push(`/propertypage/${ListingId}`);
-                                }} >
+                                <Link  to={{
+                                    pathname:`/propertypage/${title}`,
+                                    propertyID: {ListingId}              
+                                 }}
+                                >
                                    {title}
                                 </Link>
                             </Typography>
