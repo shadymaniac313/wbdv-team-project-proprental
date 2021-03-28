@@ -49,7 +49,8 @@ export default function PropertyPage() {
             BathroomsFull: '',
             AvailabilityDate: '',
             PreviousListPrice: '',
-            PublicRemarks: ''
+            PublicRemarks: '',
+            BuildingName: ''
         }]
     });
 
@@ -97,7 +98,7 @@ export default function PropertyPage() {
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <Typography variant="h3" gutterBottom>
-                                Property Name
+                            {singleresults.bundle[0].BuildingName}
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
