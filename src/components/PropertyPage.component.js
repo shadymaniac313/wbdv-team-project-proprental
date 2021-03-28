@@ -39,7 +39,6 @@ export default function PropertyPage() {
     const listingID = useParams()
     const [singleresults, setsingleresults] = useState({
         bundle: [{
-            BuildingName: '',
             Media: '',
             UnparsedAddress: '',
             UnitNumber: '',
@@ -50,7 +49,8 @@ export default function PropertyPage() {
             BathroomsFull: '',
             AvailabilityDate: '',
             PreviousListPrice: '',
-            PublicRemarks: ''
+            PublicRemarks: '',
+            BuildingName: ''
         }]
     });
 
@@ -65,6 +65,8 @@ export default function PropertyPage() {
             });
         }
     }, [listingID]);
+
+    console.log(items, "itemsupdated")
 
     const next = () => {
         const nextIndex = activeIndex === items.length - 1 ? 0 : activeIndex + 1;
@@ -96,7 +98,7 @@ export default function PropertyPage() {
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <Typography variant="h3" gutterBottom>
-                                {singleresults.bundle[0].BuildingName}
+                            {singleresults.bundle[0].BuildingName}
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
