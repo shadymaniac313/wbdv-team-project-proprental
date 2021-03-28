@@ -58,9 +58,11 @@ export default function ProductCard({
         location,
         title,
         description,
-        star,
         price,
-        total,
+        bedroom,
+        bathroom,
+        PropertyType
+
 })  
 {
     const classes = useStyles();
@@ -76,33 +78,46 @@ export default function ProductCard({
                 <Grid item sm container>
                     <Grid item xs container direction="column" spacing={2}>
                         <Grid item xs>
-                            <Typography gutterBottom variant="caption">
-                                {location}
-                            </Typography>
-                            <Typography variant="subtitle1">
+                            <Typography gutterBottom variant="h6">
                                 {title}
                             </Typography>
-                            <Typography variant="body2" color="textSecondary">
-                                ___
-                            </Typography>
-                            <Typography gutterBottom variant="caption">
-                                {description}
+                            <Typography variant="body1">
+                                {location}
                             </Typography>
                         </Grid>
                         <Grid item xs={12} sm container>
-                            <Grid item xs={6}>
-                                <Typography variant="body2">
-                                    <StarIcon className="sr_star" />
-                                        <strong>{star}</strong>
+                           <Grid item xs={6}>
+                                <Typography variant="subtitle1">
+                                   Bedroom :  {bedroom}  
                                 </Typography>
                             </Grid>
                             <Grid item xs={6}>
-                                <Typography variant="body2" style={{float: "right"}}>
-                                <b>{price}</b>
-                                <p>{total}</p>
+                                <Typography variant="subtitle1">
+                                   Bathroom :  {bathroom}  
                                 </Typography>
                             </Grid>
                         </Grid>
+                        <Grid item xs={12} sm container>
+                           <Grid item xs={6}>
+                                <Typography variant="subtitle1">
+                                   PropertyType :  {PropertyType}  
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <Typography variant="subtitle1">
+                                  Price :  $ {price}  
+                                </Typography>
+                            </Grid>
+                        </Grid>
+                        <Grid item xs>
+                            <Typography     
+                                variant="body2"
+                                align="justify"
+                            >
+                                {description}
+                            </Typography>
+                        </Grid>
+                      
                     </Grid>
                 </Grid>
             </Grid>

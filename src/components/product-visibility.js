@@ -68,7 +68,8 @@ export default function ProductVisibility() {
     if (city) {
       searchService.findPropertyByCity(city).then((results) => {
         setResults(results);
-        console.log(results.bundle);
+        console.log(results.bundle,'Results');
+        
       });
     }
   }, [city]);
@@ -82,12 +83,13 @@ export default function ProductVisibility() {
           {results.bundle.map((City, index) => (
               <ProductCard
                 img="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ_wbPYTxQPMcBh7SPzLFActXnP3uhifeVT_g&usqp=CAU"
-                City={City}
-                title="Stay at this spacious Edwardian House"
-                description="1 guest · 1 bedroom · 1 bed · 1.5 shared bthrooms · Wifi · Kitchen · Free parking · Washing Machine"
-                star={4.73}
-                price="£30 / night"
-                total={results.bundle.length}
+                title={City.BuildingName}
+                location={City.UnparsedAddress}
+                bedroom={City.BedroomsTotal}
+                bathroom={City.BathroomsFull}
+                description={City.PublicRemarks}
+                price={City.ListPrice}
+                PropertyType={City.PropertyType}
               />
             ))}
             {/* {names.map((name, index) => (
