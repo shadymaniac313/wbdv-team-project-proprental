@@ -79,10 +79,9 @@ export default function ProductVisibility() {
       <SearchAppBar />
       <main className={classes.paper2}>
         <Grid container spacing={1}>
-          <Grid item md={6}>
+          <Grid item md={7} xs={12}>
           {results.bundle.map((City, index) => (
               <ProductCard
-                img="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ_wbPYTxQPMcBh7SPzLFActXnP3uhifeVT_g&usqp=CAU"
                 title={City.BuildingName}
                 location={City.UnparsedAddress}
                 bedroom={City.BedroomsTotal}
@@ -90,21 +89,12 @@ export default function ProductVisibility() {
                 description={City.PublicRemarks}
                 price={City.ListPrice}
                 PropertyType={City.PropertyType}
+                img={City.Media[0].MediaURL}
               />
             ))}
-            {/* {names.map((name, index) => (
-              <ProductCard
-                img="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ_wbPYTxQPMcBh7SPzLFActXnP3uhifeVT_g&usqp=CAU"
-                location="Private room in center of London"
-                title="Stay at this spacious Edwardian House"
-                description="1 guest · 1 bedroom · 1 bed · 1.5 shared bthrooms · Wifi · Kitchen · Free parking · Washing Machine"
-                star={4.73}
-                price="£30 / night"
-                total={results.bundle.length}
-              />
-            ))} */}
+
           </Grid>
-          <Grid item md={6}>
+          <Grid item md={5}>
             {/* <SRmap /> */}
           </Grid>
         </Grid>

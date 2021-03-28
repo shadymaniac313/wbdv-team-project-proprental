@@ -69,13 +69,15 @@ export default function ProductCard({
     
     return (
         <Card className={classes.mcard}>
-            <Grid container spacing={2}>
-                <Grid item>
-                    <ButtonBase className={classes.image}>
-                        <img className={classes.img} alt="complex" src={img} />
-                    </ButtonBase>
-                </Grid>
-                <Grid item sm container>
+            <Grid container spacing={3}>
+              <Grid item lg={4} md={6} xs={12} sm={6}>
+                    <img 
+                        className={classes.img} 
+                        alt="complex" 
+                        src={img} 
+                    />
+              </Grid>
+                <Grid item lg={8} md={6} sm={6}>
                     <Grid item xs container direction="column" spacing={2}>
                         <Grid item xs>
                             <Typography gutterBottom variant="h6">
@@ -117,7 +119,6 @@ export default function ProductCard({
                                 {description}
                             </Typography>
                         </Grid>
-                      
                     </Grid>
                 </Grid>
             </Grid>
