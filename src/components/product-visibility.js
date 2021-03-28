@@ -13,9 +13,7 @@ import { Link, useParams, useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    // marginTop: theme.spacing(8),
-    // display: 'flex',
-    // flexDirection: 'column',
+
     alignItems: "center",
     height: "100%",
   },

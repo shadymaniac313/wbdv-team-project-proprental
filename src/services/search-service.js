@@ -5,9 +5,9 @@ export const findPropertyByCity = async (cityObject) => {
     `https://api.bridgedataoutput.com/api/v2/test/listings?access_token=${ACCESS_TOKEN}&City.in=${cityObject.city}`
   ).then((response) => response.json());
 };
-export const findPropertyDetailsByListingID = async (listingID) => {
+export const findPropertyDetailsByListingID = async (listingObject) => {
   return fetch(
-    `https://api.bridgedataoutput.com/api/v2/test/listings?access_token=${ACCESS_TOKEN}&ListingId.in=${listingID}`
+    `https://api.bridgedataoutput.com/api/v2/test/listings?access_token=${ACCESS_TOKEN}&ListingId.in=${listingObject.ListingId}`
   ).then((response) => response.json());
 };
 const searchService = {

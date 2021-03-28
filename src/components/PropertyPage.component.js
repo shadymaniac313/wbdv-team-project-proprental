@@ -42,17 +42,18 @@ const useStyles = makeStyles((theme) => ({
 export default function PropertyPage() {
 
     const [activeIndex, setActiveIndex] = useState(0);
-    const id = useParams()
-    const [singleresults, setsingleresults] = useState({ bundle: [] });
+    const listingID = useParams()
+    const [singleresults, setsingleresults] = useState({bundle: []});
 
     useEffect(() => {
-      if (id) {
-          searchService.findPropertyDetailsByListingID(id).then((singleresults) => {
-          setsingleresults(singleresults);
-          console.log(singleresults.bundle,'single Results'); 
+      if (listingID) {
+          searchService.findPropertyDetailsByListingID(listingID).then((singleresults) => {
+            setsingleresults(singleresults);
+            console.log(singleresults.bundle,'single Results'); 
         });
       }
-    }, [id]);
+    }, [listingID]);
+
 
     const items = [
         {
