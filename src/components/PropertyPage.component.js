@@ -1,8 +1,6 @@
-import React, {useState, useEffect} from 'react';
-import Button from '@material-ui/core/Button';
+import React, {useEffect, useState} from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import {Link, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
@@ -10,12 +8,7 @@ import Container from '@material-ui/core/Container';
 import SearchAppBar from './search-bar.component';
 import FooterComponent from "./footer.component";
 import searchService from "../services/search-service";
-import {
-    Carousel,
-    CarouselItem,
-    CarouselControl,
-    CarouselCaption
-} from 'reactstrap';
+import {Carousel, CarouselCaption, CarouselControl, CarouselItem} from 'reactstrap';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -42,33 +35,37 @@ const useStyles = makeStyles((theme) => ({
 export default function PropertyPage() {
 
     const [activeIndex, setActiveIndex] = useState(0);
+    const [items, setItems] = useState([])
     const listingID = useParams()
-    const [singleresults, setsingleresults] = useState({bundle: []});
+    const [singleresults, setsingleresults] = useState({
+        bundle: [{
+            Media: '',
+            UnparsedAddress: '',
+            UnitNumber: '',
+            CityRegion: '',
+            PostalCode: '',
+            StateOrProvince: '',
+            BedroomsTotal: '',
+            BathroomsFull: '',
+            AvailabilityDate: '',
+            PreviousListPrice: '',
+            PublicRemarks: ''
+        }]
+    });
 
     useEffect(() => {
         if (listingID) {
             searchService.findPropertyDetailsByListingID(listingID).then((singleresults) => {
                 setsingleresults(singleresults);
-                console.log(singleresults.bundle[0].Media, 'single Results');
+                setItems(singleresults.bundle[0].Media.map((el) => ({
+                    src: el.MediaURL,
+                    caption: el.ShortDescription
+                })))
             });
         }
     }, [listingID]);
 
-
-    const items = [
-        {
-            src: 'https://m.media-amazon.com/images/M/MV5BMDdmZGU3NDQtY2E5My00ZTliLWIzOTUtMTY4ZGI1YjdiNjk3XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_.jpg',
-            caption: 'Titanic'
-        },
-        {
-            src: 'https://www.prescottpark.org/uploads/2019/06/f00bf346385235.58520f9022451-1020x1020.jpg',
-            caption: 'Jurassic Park'
-        },
-        {
-            src: 'https://m.media-amazon.com/images/I/41kTVLeW1CL._AC_.jpg',
-            caption: 'Avatar'
-        }
-    ];
+    console.log(items, "itemsupdated")
 
     const next = () => {
         const nextIndex = activeIndex === items.length - 1 ? 0 : activeIndex + 1;
@@ -97,8 +94,6 @@ export default function PropertyPage() {
                 <SearchAppBar/>
                 <CssBaseline/>
                 <div className={classes.propertypage}>
-
-                    {/* Grid Start For Property Page  */}
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <Typography variant="h3" gutterBottom>
@@ -115,114 +110,90 @@ export default function PropertyPage() {
 
                         <Grid item xs={12} md={6} style={{display: "flex", alignItems: "center"}}>
                             <Typography variant="h6" gutterBottom>
-                                Address One :&nbsp;
+                                Address One:&nbsp;
                             </Typography>
                             <Typography variant="body1" gutterBottom>
-                                1185 Boylston Street
+                                {singleresults.bundle[0].UnparsedAddress}
                             </Typography>
                         </Grid>
                         <Grid item xs={12} md={6} style={{display: "flex", alignItems: "center"}}>
                             <Typography variant="h6" gutterBottom>
-                                Address Two :&nbsp;
+                                Address Two:&nbsp;
                             </Typography>
                             <Typography variant="body1" gutterBottom>
-                                Apt 30
+                                {singleresults.bundle[0].UnitNumber}
                             </Typography>
                         </Grid>
                         <Grid item xs={12} md={3} style={{display: "flex", alignItems: "center"}}>
                             <Typography variant="h6" gutterBottom>
-                                City :&nbsp;
+                                City:&nbsp;
                             </Typography>
                             <Typography variant="body1" gutterBottom>
-                                Boston
+                                {singleresults.bundle[0].CityRegion}, {singleresults.bundle[0].City}
                             </Typography>
                         </Grid>
                         <Grid item xs={12} md={3} style={{display: "flex", alignItems: "center"}}>
                             <Typography variant="h6" gutterBottom>
-                                State :&nbsp;
+                                State:&nbsp;
                             </Typography>
                             <Typography variant="body1" gutterBottom>
-                                MA
+                                {singleresults.bundle[0].StateOrProvince}
                             </Typography>
                         </Grid>
                         <Grid item xs={12} md={3} style={{display: "flex", alignItems: "center"}}>
                             <Typography variant="h6" gutterBottom>
-                                Country :&nbsp;
+                                Country:&nbsp;
                             </Typography>
                             <Typography variant="body1" gutterBottom>
-                                USA
+                                {singleresults.bundle[0].Country}
                             </Typography>
                         </Grid>
                         <Grid item xs={12} md={3} style={{display: "flex", alignItems: "center"}}>
                             <Typography variant="h6" gutterBottom>
-                                Zip :&nbsp;
+                                Zip:&nbsp;
                             </Typography>
                             <Typography variant="body1" gutterBottom>
-                                02215
+                                {singleresults.bundle[0].PostalCode}
                             </Typography>
                         </Grid>
                         <Grid item xs={12} md={3} style={{display: "flex", alignItems: "center"}}>
                             <Typography variant="h6" gutterBottom>
-                                No. of Beds :&nbsp;
+                                No. of Beds:&nbsp;
                             </Typography>
                             <Typography variant="body1" gutterBottom>
-                                4
+                                {singleresults.bundle[0].BedroomsTotal}
                             </Typography>
                         </Grid>
                         <Grid item xs={12} md={3} style={{display: "flex", alignItems: "center"}}>
                             <Typography variant="h6" gutterBottom>
-                                No. of Baths :&nbsp;
+                                No. of Baths:&nbsp;
                             </Typography>
                             <Typography variant="body1" gutterBottom>
-                                5
+                                {singleresults.bundle[0].BathroomsFull}
                             </Typography>
                         </Grid>
                         <Grid item xs={12} md={3} style={{display: "flex", alignItems: "center"}}>
                             <Typography variant="h6" gutterBottom>
-                                Available Date :&nbsp;
+                                Available Date:&nbsp;
                             </Typography>
                             <Typography variant="body1" gutterBottom>
-                                1st Sept
+                                {singleresults.bundle[0].AvailabilityDate}
                             </Typography>
                         </Grid>
                         <Grid item xs={12} md={3} style={{display: "flex", alignItems: "center"}}>
                             <Typography variant="h6" gutterBottom>
-                                Rate :&nbsp;
+                                Previous List Price:&nbsp;
                             </Typography>
                             <Typography variant="body1" gutterBottom>
-                                2000
+                                {singleresults.bundle[0].PreviousListPrice}
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
                             <Typography variant="body1" gutterBottom align="justify">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ac vestibulum
-                                lacus. Fusce et luctus lectus. Aliquam sollicitudin erat a lectus ultrices,
-                                vitae consectetur ante varius. Duis condimentum massa a diam consectetur elementum.
-                                Pellentesque velit lorem, aliquam in aliquet nec, viverra a nisl. Fusce
-                                sagittis augue purus, in semper mauris tristique ac. Donec rutrum porta tortor, egestas
-                                accumsan est mattis quis. Morbi faucibus pellentesque tortor et imperdiet.
-                                In ac dolor vitae elit elementum aliquam vel sed nulla. Orci varius natoque penatibus et
-                                magnis dis parturient montes, nascetur ridiculus mus. Sed pharetra nisi
-                                vel pellentesque commodo. Nullam eleifend nulla et pretium ultricies.
-                                Integer tincidunt justo sed aliquet cursus. Fusce efficitur elit massa, eu placerat dui
-                                lacinia et. Fusce maximus ante eget faucibus blandit. Vestibulum dignissim
-                                eleifend orci, volutpat hendrerit eros. Nullam eleifend sagittis feugiat. Nullam at
-                                nulla sed nibh vehicula mattis. Nullam id commodo mi. Curabitur aliquam lorem
-                                erat, ut ultricies lorem semper at. Integer luctus lorem sed massa aliquam eleifend.
-                                Nullam vehicula, arcu dictum eleifend tempor, mauris dolor ultrices massa, laoreet
-                                efficitur odio ante ut felis. Duis viverra arcu vel sapien dictum pulvinar. Cras
-                                ac tortor ut leo accumsan sagittis. Sed nibh libero, dignissim laoreet ornare quis,
-                                malesuada nec purus. Class aptent taciti sociosqu ad litora torquent per conubia
-                                nostra, per inceptos himenaeos. Morbi rhoncus turpis mi, nec iaculis ante tempor et.
-                                Nullam interdum lacus in arcu feugiat sagittis. Nulla facilisi. Donec lobortis,
-                                quam eget facilisis imperdiet, dui risus porta ante, nec semper eros felis vitae risus.
-                                Vestibulum malesuada ut lectus in maximus.
+                                {singleresults.bundle[0].PublicRemarks}
                             </Typography>
                         </Grid>
-
-
                     </Grid>
-
                 </div>
             </Container>
             <FooterComponent/>
