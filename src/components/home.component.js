@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
    
 }));
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+const cards = [1, 2,3];
 
 export default function Home() {
     const classes = useStyles();
@@ -66,7 +66,7 @@ export default function Home() {
                             opportunity.
                         </Typography>
                         <div className={classes.heroButtons}>
-                            <Grid container spacing={2} justify="center">
+                            <Grid container spacing={2} style={{justifyContent:"center"}} >
                                 <Grid item>
                                     <Link to="/SignUp">
                                         <Button variant="contained" color="primary">
@@ -85,7 +85,7 @@ export default function Home() {
                         </div>
                     </Container>
                 </div>
-                <Container className={classes.cardGrid} maxWidth="md">
+                <Container className={classes.cardGrid} >
                     {/* End hero unit */}
                     <Grid container spacing={4}>
                         {cards.map((card) => (
