@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
    
 }));
 
-const cards = [1, 2,3];
+const cards = [1, 2,3,4,5,6];
 
 export default function Home() {
     const classes = useStyles();
