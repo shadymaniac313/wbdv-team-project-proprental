@@ -97,6 +97,7 @@ export default function ProductVisibility() {
                 price={City.ListPrice}
                 PropertyType={City.PropertyType}
                 img={City.Media[0].MediaURL}
+                ListingId={City.ListingId}
               />
             ))}
           </Grid>

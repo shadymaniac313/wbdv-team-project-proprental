@@ -23,6 +23,11 @@ function App() {
         <Route path="/admin/home" component={AdminHome} />
         <Route path="/admin/AddProperty" component={AddProperty} />
         <Route path="/admin/EditProperty" component={EditProperty} />
+        <Route 
+          path="/propertypage/:ListingId"
+          exact={true}
+          component={PropertyPage}
+          />
         <Route
           path="/search/:city"
           exact={true}
