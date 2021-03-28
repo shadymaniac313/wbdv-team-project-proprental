@@ -10,6 +10,7 @@ import ApartmentRoundedIcon from "@material-ui/icons/ApartmentRounded";
 import { Link, useHistory } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -83,30 +84,26 @@ export default function SearchAppBar() {
               Property Listing
             </Link>
           </Typography>
-          <Link to="/AdminSignIn">
-            <Button variant="contained" color="primary">
-              Admin Login
-            </Button>
-          </Link>
           <div className={classes.search}>
-            <div className={classes.searchIcon}>
+            {/* <div className={classes.searchIcon}>
               <SearchIcon />
-            </div>
+            </div> */}
             <InputBase
-              placeholder="Search…"
+              placeholder=" Enter City…"
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,
               }}
               inputProps={{ "aria-label": "search" }}
               onChange={(event) => setCityName(event.target.value)}
-            />
+            />      
             <Button
+              startIcon={<SearchIcon />}
               variant="contained"
               color="primary"
               onClick={() => {
                 history.push(`/search/${cityName}`);
-              }}
+              }}  
             >
               Search
             </Button>
