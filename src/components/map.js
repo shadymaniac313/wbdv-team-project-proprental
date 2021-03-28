@@ -1,27 +1,28 @@
-import {Component} from 'react';
+import React, { Component } from 'react';
+import GoogleMapReact from 'google-map-react';
 
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-
-const position = [51.501, -0.09]
-
-export class SRmap extends Component {
+class SRmap extends Component {
+  static defaultProps = {
+    center: {
+      lat: 19.07,
+      lng: 72.87
+    },
+    zoom: 11
+  };
+ 
   render() {
     return (
-      <div id="mapid" style={{ height: '100%' }}>
-        <MapContainer center={position} zoom={13} scrollWheelZoom={false} style={{ height: '100%', margin: "3px" }}>
-          <TileLayer
-            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-          <Marker position={position}>
-            <Popup>
-              A pretty CSS3 popup. <br /> Easily customizable.
-                </Popup>
-          </Marker>
-        </MapContainer>
+
+      <div style={{ height: '100vh', width: '100%' }}>
+        <GoogleMapReact
+          bootstrapURLKeys={{ key:"AIzaSyBRXtcENtFZq1UuHYwMdD7-UbGQEPvFLrw" }}
+          defaultCenter={this.props.center}
+          defaultZoom={this.props.zoom}
+        >
+        </GoogleMapReact>
       </div>
     );
   }
 }
-
+ 
 export default SRmap;

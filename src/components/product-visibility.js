@@ -10,7 +10,7 @@ import ProductCard from "./product-card/product-card";
 import "leaflet/dist/leaflet.css";
 import searchService from "../services/search-service";
 import { Link, useParams, useHistory } from "react-router-dom";
-import Box from '@material-ui/core/Box';
+import GoogleMapReact from 'google-map-react';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -61,7 +61,10 @@ const names = [
   "Ringo",
 ];
 
+
 export default function ProductVisibility() {
+ 
+
   const classes = useStyles();
   const city = useParams();
   const [results, setResults] = useState({ bundle: [] });
@@ -74,6 +77,8 @@ export default function ProductVisibility() {
       });
     }
   }, [city]);
+
+
 
   return (
     <div>
@@ -96,7 +101,16 @@ export default function ProductVisibility() {
             ))}
           </Grid>
           <Grid item md={5} style={{height: '100vh'}}>
-               <SRmap /> 
+              {
+                results.bundle.map((City,index) => (
+                <GoogleMapReact
+                         bootstrapURLKeys={{ key:"AIzaSyBRXtcENtFZq1UuHYwMdD7-UbGQEPvFLrw" }}
+                         defaultCenter={{lat:City.Latitude,lng:City.Longitude}}
+                         defaultZoom={11}
+                >
+              </GoogleMapReact>
+                ))
+              }
           </Grid>
         </Grid>
     </main> 
