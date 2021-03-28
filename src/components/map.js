@@ -1,4 +1,3 @@
-//AIzaSyBD5r_xfTw8Je2yKNruxW-1RSvMPfZzG0g
 import {Component} from 'react';
 
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
@@ -17,7 +16,7 @@ export class SRmap extends Component {
           <Marker position={position}>
             <Popup>
               A pretty CSS3 popup. <br /> Easily customizable.
-                                </Popup>
+                </Popup>
           </Marker>
         </MapContainer>
       </div>

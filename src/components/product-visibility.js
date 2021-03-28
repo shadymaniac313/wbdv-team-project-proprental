@@ -10,6 +10,7 @@ import ProductCard from "./product-card/product-card";
 import "leaflet/dist/leaflet.css";
 import searchService from "../services/search-service";
 import { Link, useParams, useHistory } from "react-router-dom";
+import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -76,10 +77,11 @@ export default function ProductVisibility() {
 
   return (
     <div>
-      <SearchAppBar />
-      <main className={classes.paper2}>
-        <Grid container spacing={1}>
-          <Grid item md={7} xs={12}>
+    
+    <SearchAppBar />
+    <main className={classes.paper2}>
+        <Grid container spacing={1} direction="row">
+          <Grid item md={7} xs={12} >  
           {results.bundle.map((City, index) => (
               <ProductCard
                 title={City.BuildingName}
@@ -92,13 +94,12 @@ export default function ProductVisibility() {
                 img={City.Media[0].MediaURL}
               />
             ))}
-
           </Grid>
-          <Grid item md={5}>
-            {/* <SRmap /> */}
+          <Grid item md={5} style={{height: '100vh'}}>
+               <SRmap /> 
           </Grid>
         </Grid>
-      </main>
+    </main> 
     </div>
   );
 }
