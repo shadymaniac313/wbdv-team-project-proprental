@@ -4,7 +4,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import "../index.css";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import SRmap from "./map";
+import Gmap from "./map";
 import SearchAppBar from "./search-bar.component";
 import ProductCard from "./product-card/product-card";
 import "leaflet/dist/leaflet.css";
@@ -103,12 +103,10 @@ export default function ProductVisibility() {
           <Grid item md={5} style={{height: '100vh'}}>
               {
                 results.bundle.map((City,index) => (
-                <GoogleMapReact
-                         bootstrapURLKeys={{ key:"AIzaSyBRXtcENtFZq1UuHYwMdD7-UbGQEPvFLrw" }}
-                         defaultCenter={{lat:City.Latitude,lng:City.Longitude}}
-                         defaultZoom={11}
-                >
-              </GoogleMapReact>
+                <Gmap
+                    lat={City.Latitude}
+                    lng={City.Longitude}
+                />
                 ))
               }
           </Grid>
