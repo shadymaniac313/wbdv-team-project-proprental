@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect  } from 'react';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -9,6 +9,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import SearchAppBar from './search-bar.component';
 import FooterComponent from "./footer.component";
+import searchService from "../services/search-service";
 import {
     Carousel,
     CarouselItem,
@@ -38,12 +39,20 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-
 export default function PropertyPage() {
 
     const [activeIndex, setActiveIndex] = useState(0);
     const id = useParams()
+    const [singleresults, setsingleresults] = useState({ bundle: [] });
 
+    useEffect(() => {
+      if (id) {
+          searchService.findPropertyDetailsByListingID(id).then((singleresults) => {
+          setsingleresults(singleresults);
+          console.log(singleresults.bundle,'single Results'); 
+        });
+      }
+    }, [id]);
 
     const items = [
         {

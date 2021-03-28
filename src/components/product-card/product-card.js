@@ -54,6 +54,7 @@ export default function ProductCard({
 })  
 {
     const classes = useStyles();
+    const history = useHistory();
 
     return (
         <Card className={classes.mcard}>
@@ -69,9 +70,10 @@ export default function ProductCard({
                     <Grid item xs container direction="column" spacing={2}>
                         <Grid item xs>
                             <Typography gutterBottom variant="h6">
-                                <Link  to={{
-                                    pathname:`/propertypage/${ListingId}`           
-                                 }}
+                                <Link   onClick={() => {
+                                        history.push(`/propertypage/${ListingId}`);
+                                    }}            
+                                                        
                                 >
                                    {title}
                                 </Link>

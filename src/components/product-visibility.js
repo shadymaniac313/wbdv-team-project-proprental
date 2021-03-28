@@ -10,7 +10,6 @@ import ProductCard from "./product-card/product-card";
 import "leaflet/dist/leaflet.css";
 import searchService from "../services/search-service";
 import { Link, useParams, useHistory } from "react-router-dom";
-import GoogleMapReact from 'google-map-react';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -59,7 +58,7 @@ export default function ProductVisibility() {
     if (city) {
       searchService.findPropertyByCity(city).then((results) => {
         setResults(results);
-        console.log(results.bundle,'Results');
+      
       });
     }
   }, [city]);
