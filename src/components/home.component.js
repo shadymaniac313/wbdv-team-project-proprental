@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -12,6 +12,8 @@ import Container from '@material-ui/core/Container';
 import {Link} from "react-router-dom";
 import SearchAppBar from "./search-bar.component";
 import FooterComponent from "./footer.component";
+import searchService from "../services/search-service";
+import homepageService from '../services/homepage-service';
 
 const useStyles = makeStyles((theme) => ({
     icon: {
@@ -46,6 +48,16 @@ const cards = [1, 2,3,4,5,6];
 
 export default function Home() {
     const classes = useStyles();
+
+    const [results, setResults] = useState({ bundle: [] });
+    useEffect(() => {
+        // if () {
+            homepageService.fetchSix().then((results) => {
+                setResults(results);
+            });
+        // }
+        }, []);
+
 
     return (
         <div>
@@ -88,34 +100,39 @@ export default function Home() {
                 <Container className={classes.cardGrid} >
                     {/* End hero unit */}
                     <Grid container spacing={4}>
-                        {cards.map((card) => (
-                            <Grid item key={card} xs={12} sm={6} md={4}>
-                                <Card className={classes.card}>
-                                    <CardMedia
-                                        className={classes.cardMedia}
-                                        image="https://www.veteransunited.com/assets/craft/images/blog/_blogHero/va-loan-home.jpg"
-                                        title="Image title"
-                                    />
-                                    <CardContent className={classes.cardContent}>
-                                        <Typography gutterBottom variant="h5" component="h2">
-                                            Listing
-                                        </Typography>
-                                        <Typography>
-                                            This is a media card. You can use this section to
-                                            describe the content.
-                                        </Typography>
-                                    </CardContent>
-                                    <CardActions>
-                                        <Button size="small" color="primary">
-                                            View
-                                        </Button>
-                                    </CardActions>
-                                </Card>
-                            </Grid>
-                        ))}
+                        {
+                            results.bundle.map((City, i) =>
+                                {
+                                    if (i<6){
+                                    return (<Grid item key={City.ListingId} xs={12} sm={6} md={4}>
+                                    <Card className={classes.card}>
+                                        <CardMedia
+                                            className={classes.cardMedia}
+                                            image={City.Media[1]["MediaURL"]}
+                                            title={City.BuildingName}
+                                        />
+                                        <CardContent className={classes.cardContent}>
+                                            <Typography gutterBottom variant="h5" component="h2">
+                                                {City.BuildingName}
+                                            </Typography>
+                                            <Typography>
+                                                {City.PublicRemarks}
+                                            </Typography>
+                                        </CardContent>
+                                        <CardActions>
+                                            <Button size="small" color="primary">
+                                                View
+                                            </Button>
+                                        </CardActions>
+                                    </Card>
+                                </Grid>)
+                                 }
+                        })
+                       }
                     </Grid>
                 </Container>
-            </main>     
+            </main>
+            {/*<h1>{JSON.stringify(results)}</h1>*/}
             <FooterComponent />
         </div>
     );
