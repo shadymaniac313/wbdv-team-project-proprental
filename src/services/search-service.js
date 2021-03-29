@@ -1,4 +1,4 @@
-const ACCESS_TOKEN = "6baca547742c6f96a6ff71b138424f21";
+const ACCESS_TOKEN = "4e6582796dec50bbfda69f32fc04a818";
 
 export const findPropertyByCity = async (cityObject) => {
   return fetch(

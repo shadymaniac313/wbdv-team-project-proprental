@@ -58,6 +58,7 @@ export default function PropertyPage() {
         if (listingID) {
             searchService.findPropertyDetailsByListingID(listingID).then((singleresults) => {
                 setsingleresults(singleresults);
+                console.log(singleresults.bundle[0].UnparsedAddress, "unparsedaddress")
                 setItems(singleresults.bundle[0].Media.map((el) => ({
                     src: el.MediaURL,
                     caption: el.ShortDescription
@@ -65,8 +66,6 @@ export default function PropertyPage() {
             });
         }
     }, [listingID]);
-
-    console.log(items, "itemsupdated")
 
     const next = () => {
         const nextIndex = activeIndex === items.length - 1 ? 0 : activeIndex + 1;
