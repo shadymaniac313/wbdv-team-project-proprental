@@ -7,6 +7,7 @@ import Container from '@material-ui/core/Container';
 import SearchAppBar from './search-bar.component';
 import FooterComponent from "./footer.component";
 
+
 const useStyles = makeStyles((theme) => ({
     privacypage: {
         marginTop: theme.spacing(10),
@@ -32,6 +33,9 @@ export default function PrivacyPolicy() {
             <Container component="main">
                 <SearchAppBar/>
                 <CssBaseline/>
+
+         
+
                 <div className={classes.privacypage}>
                           
                 <Typography variant="h5" gutterBottom>
