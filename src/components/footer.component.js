@@ -25,6 +25,10 @@ export default function FooterComponent() {
                 Made with love at Northeastern
             </Typography>
             <Typography variant="body2" color="textSecondary" align="center">
+                <Link color="inherit" to="/privacypolicy">
+                    Privacy Policy
+                </Link>
+                &nbsp; &nbsp; | &nbsp; &nbsp;
                 {'Copyright © '}
                 <Link color="inherit" to="/">
                     Property Listing

@@ -11,32 +11,38 @@ import EditProperty from "./components/admin/EditProperty";
 import ProductVisibility from "./components/product-visibility";
 import ProfileComponent from "./components/profile/profile-component";
 import PropertyPage from "./components/PropertyPage.component"
+import PrivacyPolicy from "./components/PrivacyPolicy"
 
 function App() {
 
   return (
     <BrowserRouter>
       <div className={"container-fluid"}>
+        
+        {/* User & Basic Routes here */}
+        <Route path="/" component={Home} exact={true} />
+        <Route path={"/profile"} component={ProfileComponent} />
         <Route path="/SignIn" component={SignIn} />
         <Route path="/SignUp" component={SignUp} />
+        <Route path="/privacypolicy" component={PrivacyPolicy} />
+         
+        {/* Admin route begins here */}
         <Route path="/AdminSignIn" component={AdminSignIn} />
         <Route path="/admin/home" component={AdminHome} />
         <Route path="/admin/AddProperty" component={AddProperty} />
         <Route path="/admin/EditProperty" component={EditProperty} />
+
+        {/* API and Website Functioning Routes here */}
         <Route 
           path="/propertypage/:ListingId"
           exact={true}
-          component={PropertyPage}
-          />
+          component={PropertyPage}  />
         <Route
           path="/search/:city"
           exact={true}
-          component={ProductVisibility}
-        />
-        <Route path="/" exact={true}>
-          <Home />
-        </Route>
-        <Route path={"/profile"} component={ProfileComponent} />
+          component={ProductVisibility} />
+        
+       
       </div>
     </BrowserRouter>
   );
