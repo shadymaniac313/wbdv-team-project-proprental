@@ -1,0 +1,1 @@
+export default  () => {const ACCESS_TOKEN = "6baca547742c6f96a6ff71b138424f21"};
