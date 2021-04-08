@@ -38,7 +38,7 @@ export default function PropertyPage() {
     const [items, setItems] = useState([])
     const listingID = useParams()
     const [singleresults, setsingleresults] = useState({
-        bundle: [{
+        bundle: {
             Media: '',
             UnparsedAddress: '',
             UnitNumber: '',
@@ -50,22 +50,44 @@ export default function PropertyPage() {
             AvailabilityDate: '',
             PreviousListPrice: '',
             PublicRemarks: '',
-            BuildingName: ''
-        }]
+            BuildingName: '',
+            address: {
+                full: '',
+                city: '',
+                state: '',
+                country: 'US',
+                zip: ''
+            },
+            building: [
+                {
+                    bedrooms: ''
+                }
+            ],
+            areas: [
+                {
+                    areaSquareFeet: ''
+                }
+            ]
+        }
     });
 
     useEffect(() => {
         if (listingID) {
-            searchService.findPropertyDetailsByListingID(listingID).then((singleresults) => {
+            searchService.findParcelById(listingID).then((singleresults) => {
                 setsingleresults(singleresults);
-                console.log(singleresults.bundle[0].UnparsedAddress, "unparsedaddress")
-                setItems(singleresults.bundle[0].Media.map((el) => ({
-                    src: el.MediaURL,
-                    caption: el.ShortDescription
-                })))
+                console.log(singleresults)
             });
         }
     }, [listingID]);
+
+    useEffect(() => {
+        fetch(`https://picsum.photos/v2/list`)
+            .then(response => response.json())
+            .then(images => setItems(images.map((image) => ({
+                src: image.download_url,
+                caption: image.author
+            }))))
+    }, [singleresults])
 
     const next = () => {
         const nextIndex = activeIndex === items.length - 1 ? 0 : activeIndex + 1;
@@ -97,7 +119,7 @@ export default function PropertyPage() {
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <Typography variant="h3" gutterBottom>
-                            {singleresults.bundle[0].BuildingName}
+                                {singleresults.bundle.address.full}
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
@@ -113,7 +135,7 @@ export default function PropertyPage() {
                                 Address One:&nbsp;
                             </Typography>
                             <Typography variant="body1" gutterBottom>
-                                {singleresults.bundle[0].UnparsedAddress}
+                                {singleresults.bundle.address.full}
                             </Typography>
                         </Grid>
                         <Grid item xs={12} md={6} style={{display: "flex", alignItems: "center"}}>
@@ -121,7 +143,7 @@ export default function PropertyPage() {
                                 Address Two:&nbsp;
                             </Typography>
                             <Typography variant="body1" gutterBottom>
-                                {singleresults.bundle[0].UnitNumber}
+                                {singleresults.bundle.UnitNumber}
                             </Typography>
                         </Grid>
                         <Grid item xs={12} md={3} style={{display: "flex", alignItems: "center"}}>
@@ -129,7 +151,7 @@ export default function PropertyPage() {
                                 City:&nbsp;
                             </Typography>
                             <Typography variant="body1" gutterBottom>
-                                {singleresults.bundle[0].CityRegion}, {singleresults.bundle[0].City}
+                                {singleresults.bundle.address.city}
                             </Typography>
                         </Grid>
                         <Grid item xs={12} md={3} style={{display: "flex", alignItems: "center"}}>
@@ -137,7 +159,7 @@ export default function PropertyPage() {
                                 State:&nbsp;
                             </Typography>
                             <Typography variant="body1" gutterBottom>
-                                {singleresults.bundle[0].StateOrProvince}
+                                {singleresults.bundle.address.state}
                             </Typography>
                         </Grid>
                         <Grid item xs={12} md={3} style={{display: "flex", alignItems: "center"}}>
@@ -145,7 +167,7 @@ export default function PropertyPage() {
                                 Country:&nbsp;
                             </Typography>
                             <Typography variant="body1" gutterBottom>
-                                {singleresults.bundle[0].Country}
+                                US
                             </Typography>
                         </Grid>
                         <Grid item xs={12} md={3} style={{display: "flex", alignItems: "center"}}>
@@ -153,7 +175,7 @@ export default function PropertyPage() {
                                 Zip:&nbsp;
                             </Typography>
                             <Typography variant="body1" gutterBottom>
-                                {singleresults.bundle[0].PostalCode}
+                                {singleresults.bundle.address.zip}
                             </Typography>
                         </Grid>
                         <Grid item xs={12} md={3} style={{display: "flex", alignItems: "center"}}>
@@ -161,7 +183,7 @@ export default function PropertyPage() {
                                 No. of Beds:&nbsp;
                             </Typography>
                             <Typography variant="body1" gutterBottom>
-                                {singleresults.bundle[0].BedroomsTotal}
+                                {singleresults.bundle.building[0].bedrooms}
                             </Typography>
                         </Grid>
                         <Grid item xs={12} md={3} style={{display: "flex", alignItems: "center"}}>
@@ -169,15 +191,15 @@ export default function PropertyPage() {
                                 No. of Baths:&nbsp;
                             </Typography>
                             <Typography variant="body1" gutterBottom>
-                                {singleresults.bundle[0].BathroomsFull}
+                                {singleresults.bundle.building[0].fullBaths ? singleresults.bundle.building[0].fullBaths : "NA"}
                             </Typography>
                         </Grid>
                         <Grid item xs={12} md={3} style={{display: "flex", alignItems: "center"}}>
                             <Typography variant="h6" gutterBottom>
-                                Available Date:&nbsp;
+                                Area:&nbsp;
                             </Typography>
                             <Typography variant="body1" gutterBottom>
-                                {singleresults.bundle[0].AvailabilityDate}
+                                {singleresults.bundle.areas[0] ? singleresults.bundle.areas[0].areaSquareFeet + " sq.ft." : "NA"}
                             </Typography>
                         </Grid>
                         <Grid item xs={12} md={3} style={{display: "flex", alignItems: "center"}}>
@@ -185,12 +207,12 @@ export default function PropertyPage() {
                                 Previous List Price:&nbsp;
                             </Typography>
                             <Typography variant="body1" gutterBottom>
-                                {singleresults.bundle[0].PreviousListPrice}
+                                {singleresults.bundle.PreviousListPrice}
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
                             <Typography variant="body1" gutterBottom align="justify">
-                                {singleresults.bundle[0].PublicRemarks}
+                                {singleresults.bundle.PublicRemarks}
                             </Typography>
                         </Grid>
                     </Grid>
