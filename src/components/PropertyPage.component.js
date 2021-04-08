@@ -81,7 +81,7 @@ export default function PropertyPage() {
     }, [listingID]);
 
     useEffect(() => {
-        fetch(`https://picsum.photos/v2/list`)
+        fetch(`https://picsum.photos/v2/list?page=${Math.ceil((Math.random() * 100) % 10)}&limit=5`)
             .then(response => response.json())
             .then(images => setItems(images.map((image) => ({
                 src: image.download_url,
