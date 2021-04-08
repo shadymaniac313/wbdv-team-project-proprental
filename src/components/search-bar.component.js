@@ -85,7 +85,7 @@ export default function SearchAppBar() {
           </Typography>
           <div className={classes.search}>
             <InputBase
-              placeholder=" Enter City…"
+              placeholder=" Enter State…"
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,
