@@ -56,7 +56,6 @@ export default function ProductVisibility() {
             searchService.findParcelByState(city)
                 .then(response => {
                     setResults(response)
-                    // console.log(results, "results")
                 })
         }
     }, [city]);
