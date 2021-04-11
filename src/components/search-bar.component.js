@@ -5,7 +5,7 @@ import Typography from "@material-ui/core/Typography";
 import InputBase from "@material-ui/core/InputBase";
 import { alpha , makeStyles } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
-import ApartmentRoundedIcon from "@material-ui/icons/ApartmentRounded";
+
 import { Link, useHistory } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 
@@ -76,7 +76,7 @@ export default function SearchAppBar() {
     <div className={classes.root}>
       <AppBar>
         <Toolbar>
-          <ApartmentRoundedIcon className={classes.icon} />
+    
           &nbsp; &nbsp;
           <Typography className={classes.title} variant="h6" noWrap>
             <Link style={{ textDecoration: "none", color: "white" }} to="/">
