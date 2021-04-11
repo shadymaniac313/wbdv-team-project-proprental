@@ -62,7 +62,7 @@ export default function ProductCard({
               <Grid item lg={4} md={6} xs={12} sm={6}>
                     <img 
                         className={classes.img} 
-                        alt="complex" 
+                        alt="could not load image"
                         src={img} 
                     />
               </Grid>
