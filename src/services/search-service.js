@@ -1,5 +1,7 @@
 const ACCESS_TOKEN = "648679b5d364e730a3d1d50afc2c21fc";
 
+// https://api.bridgedataoutput.com/api/v2/pub/parcels?access_token=648679b5d364e730a3d1d50afc2c21fc&address.state=Destineyhaven&building.bedrooms.gt=0
+
 export const findPropertyByCity = async (cityObject) => {
     return fetch(
         `https://api.bridgedataoutput.com/api/v2/test/listings?access_token=${ACCESS_TOKEN}&City.in=${cityObject.city}`

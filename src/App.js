@@ -27,7 +27,7 @@ function App() {
         <Route path="/privacypolicy" component={PrivacyPolicy} />
          
         {/* Admin route begins here */}
-        <Route path="/AdminSignIn" component={AdminSignIn} />
+        <Route path="/AdminSignIn" component={AdminSignIn} />2
         <Route path="/admin/home" component={AdminHome} />
         <Route path="/admin/AddProperty" component={AddProperty} />
         <Route path="/admin/EditProperty" component={EditProperty} />
