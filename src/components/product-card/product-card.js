@@ -57,7 +57,7 @@ export default function ProductCard({
     const history = useHistory();
 
     return (
-        <Card className={classes.mcard}>
+        <Card className={`shadow-md p-2 mb-5 bg-white rounded ${classes.mcard}`} >
             <Grid container spacing={3}>
               <Grid item lg={4} md={6} xs={12} sm={6}>
                     <img 
@@ -69,6 +69,7 @@ export default function ProductCard({
                 <Grid item lg={8} md={6} sm={6}>
                     <Grid item xs container direction="column" spacing={2}>
                         <Grid item xs>
+                            <div className={"row ml-auto"} style={{"float":"left"}}>
                             <Typography gutterBottom variant="h6">
                                 <Link   onClick={() => {
                                         history.push(`/propertypage/${ListingId}`);
@@ -78,6 +79,13 @@ export default function ProductCard({
                                    {title}
                                 </Link>
                             </Typography>
+                            </div>
+                            <div style={{float:"right"}}>
+                                <i className="btn shadow-sm p-2 mb-5 bg-white rounded far fa-heart"></i>
+                            </div>
+
+                        </Grid>
+                        <Grid item xs>
                             <Typography variant="body1">
                                 {location}
                             </Typography>
