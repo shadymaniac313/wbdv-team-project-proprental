@@ -39,6 +39,8 @@ const useStyles = makeStyles((theme) => ({
         maxHeight: '100%',
         borderRadius: '5px',
       },
+
+    
 }));
 
 export default function ProductCard({
@@ -80,7 +82,7 @@ export default function ProductCard({
                                 </Link>
                             </Typography>
                             </div>
-                            <div style={{float:"right"}}>
+                            <div style={{float:"right",marginBottom:"-35px"}}>
                                 <i className="btn shadow-sm p-2 mb-5 bg-white rounded far fa-heart"></i>
                             </div>
 
@@ -113,14 +115,6 @@ export default function ProductCard({
                                   Price :  $ {price}  
                                 </Typography>
                             </Grid>
-                        </Grid>
-                        <Grid item xs>
-                            <Typography     
-                                variant="body2"
-                                align="justify"
-                            >
-                                {description}
-                            </Typography>
                         </Grid>
                     </Grid>
                 </Grid>

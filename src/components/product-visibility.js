@@ -23,7 +23,19 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    "&::-webkit-scrollbar": {
+      width: 7,
+    },
+    "&::-webkit-scrollbar-track": {
+      boxShadow: `inset 0 0 6px rgba(0, 0, 0, 0.3)`,
+    },
+    "&::-webkit-scrollbar-thumb": {
+      backgroundColor: "darkgrey",
+      outline: `1px solid slategrey`,
+    },
   },
+
+ 
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
