@@ -87,7 +87,7 @@ export default function ProductCard({
                         </Grid>
                         <Grid item xs>
                             <Typography variant="body1">
-                                {location}
+                               Locality :  {location}
                             </Typography>
                         </Grid>
                         <Grid item xs={12} sm container>

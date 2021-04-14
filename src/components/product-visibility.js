@@ -10,6 +10,8 @@ import ProductCard from "./product-card/product-card";
 import "leaflet/dist/leaflet.css";
 import searchService from "../services/search-service";
 import { Link, useParams, useHistory } from "react-router-dom";
+import Typography from '@material-ui/core/Typography'
+import { gridColumnsTotalWidthSelector } from "@material-ui/data-grid";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -48,48 +50,48 @@ export default function ProductVisibility() {
   const classes = useStyles();
   const city = useParams();
   const [results, setResults] = useState({ bundle: [] });
-  const [prices, setPrices] = useState([]);
+  const [prices, setPrices] = useState( []);
   useEffect(() => {
     if (city) {
       searchService.findParcelByState(city).then((response) => {
         setResults(response);
+        const idArray = [];
+        for (let i = 0; i < response.bundle.length; i += 1) {
+          idArray.push(response.bundle[i].id);
+        }
+        const priceArray = [];
+        for (let i = 0; i < idArray.length; i += 1) {
+          searchService.findZestimateByParcel(idArray[i]).then((response) => {
+            for (let i = 0; i < response.bundle.length; i += 1) {
+              priceArray.push(response.bundle[i].rental.zestimate);
+            }
+          });
+        }
+        setPrices(priceArray);
       });
     }
   }, [city]);
 
-  useEffect(() => {
-    const idArray = [];
-    for (let i = 0; i < results.bundle.length; i += 1) {
-      idArray.push(results.bundle[i].id);
-    }
+  
 
-    const priceArray = [];
-    for (let i = 0; i < idArray.length; i += 1) {
-      searchService.findZestimateByParcel(idArray[i]).then((response) => {
-        for (let i = 0; i < response.bundle.length; i += 1) {
-          priceArray.push(response.bundle[i].rental.zestimate);
-        }
-      });
-    }
-    setPrices(priceArray);
-  }, [results]);
-
+  
   return (
     <div>
-      {console.log(prices[0])}
       <SearchAppBar />
+ 
+    
       <main className={classes.paper2}>
         <Grid container spacing={1} direction="row">
           <Grid item md={7} xs={12}>
+       
             {results.bundle.map((City, index) => (
               <ProductCard
                 title={City.address.full}
-                location={City.address.full}
+                location={City.county}
                 bedroom={City.building[0].bedrooms}
-                bathroom={City.building[0].fullBaths}
-                description={City.landUseDescription}
-                price={prices[index]}
-                PropertyType={City.PropertyType}
+                bathroom={City.building[0].fullBaths}      
+                price={100}
+                PropertyType={City.landUseDescription}
                 img="https://picsum.photos/200"
                 ListingId={City.id}
               />
@@ -97,7 +99,7 @@ export default function ProductVisibility() {
           </Grid>
           <Grid item md={5} style={{ height: "100vh" }}>
             {results.bundle.map((City, index) => (
-              <Gmap lat={City.Latitude} lng={City.Longitude} />
+              <Gmap lat={City.coordinates[1]} lng={City.coordinates[0]} />
             ))}
           </Grid>
         </Grid>
