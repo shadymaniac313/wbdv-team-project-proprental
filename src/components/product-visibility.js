@@ -98,7 +98,7 @@ export default function ProductVisibility() {
             ))}
           </Grid>
           <Grid item md={5} style={{ height: "100vh" }}>
-            {results.bundle.map((City, index) => (
+            {results.bundle.slice(0,1).map((City, index) => (
               <Gmap lat={City.coordinates[1]} lng={City.coordinates[0]} />
             ))}
           </Grid>
