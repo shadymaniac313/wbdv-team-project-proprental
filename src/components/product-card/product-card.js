@@ -62,42 +62,43 @@ export default function ProductCard({
         bathroom,
         PropertyType,
         ListingId,
-        setFav,
-        fav
+        // setFav,
+        // fav
 })  
 {
-    function handleFavoriteClick(e,ListingId) {
-        console.log(ListingId,'ID received')
-        const copyfav= [...fav]
-        if(copyfav.includes(ListingId)){
-          return alert('Already on the list ')
-        }
-         copyfav.push(ListingId)
-         setFav(copyfav)
-         console.log(fav,'Fav')
-    }
+    // function handleFavoriteClick(e,ListingId) {
+    //     console.log(ListingId,'ID received')
+    //     const copyfav= [...fav]
+    //     if(copyfav.includes(ListingId)){
+    //       return alert('Already on the list ')
+    //     }
+    //      copyfav.push(ListingId)
+    //      setFav(copyfav)
+    //      console.log(fav,'Fav')
+    // }
     
-    function handleUnFavoriteClick(e,ListingId) {
-        const copyfav= [...fav]
-        if(!copyfav.includes(ListingId)){
-          return alert('You have not favorite it yet  ')
-        }
-      const getIndex = copyfav.indexOf(ListingId)
-      copyfav.splice(getIndex,1)
+    // function handleUnFavoriteClick(e,ListingId) {
+    //     const copyfav= [...fav]
+    //     if(!copyfav.includes(ListingId)){
+    //       return alert('You have not favorite it yet  ')
+    //     }
+    //   const getIndex = copyfav.indexOf(ListingId)
+    //   copyfav.splice(getIndex,1)
       
-      setFav(copyfav)
-      console.log(copyfav,'copyfav');
-    }
+    //   setFav(copyfav)
+    //   console.log(copyfav,'copyfav');
+    // }
     
-    function isFavorite () {
-      return fav.includes(ListingId)
-    }
+    // function isFavorite () {
+    //   return fav.includes(ListingId)
+    // }
 
     const classes = useStyles();
     const history = useHistory();
 
     return (
-        <Card className={ isFavorite() ? classes.cardcontainerfav : classes.cardcontainer } >
+        // <Card className={ isFavorite() ? classes.cardcontainerfav : classes.cardcontainer } >
+        <Card className={ classes.cardcontainer } >
             <Grid container spacing={3}>
               <Grid item lg={4} md={6} xs={12} sm={6}>
                     <img 
@@ -155,8 +156,8 @@ export default function ProductCard({
                             </Grid>
                         </Grid>
                         <Grid item xs={12} sm container>
-                        <button onClick={(e)=>handleFavoriteClick(e,ListingId)}>Favorite</button>
-                        <button onClick={(e)=>handleUnFavoriteClick(e,ListingId)}>Unfavorite</button>
+                        {/* <button onClick={(e)=>handleFavoriteClick(e,ListingId)}>Favorite</button>
+                        <button onClick={(e)=>handleUnFavoriteClick(e,ListingId)}>Unfavorite</button> */}
                         </Grid>
                     </Grid>
                 </Grid>

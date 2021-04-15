@@ -9,6 +9,7 @@ import SearchAppBar from "./search-bar.component";
 import ProductCard from "./product-card/product-card";
 import "leaflet/dist/leaflet.css";
 import searchService from "../services/search-service";
+import localSearchService from "../services/local-search-service";
 import { Link, useParams, useHistory } from "react-router-dom";
 import Typography from '@material-ui/core/Typography'
 import { gridColumnsTotalWidthSelector } from "@material-ui/data-grid";
@@ -51,6 +52,7 @@ export default function ProductVisibility() {
   const classes = useStyles();
   const city = useParams();
   const [results, setResults] = useState({ bundle: [] });
+  const [localResults, setLocalResults] = useState({});
   const [prices, setPrices] = useState( []);
   const [fav, setFav] =useState([])
 
@@ -75,6 +77,17 @@ export default function ProductVisibility() {
     }
   }, [city]);
 
+  useEffect(() => {
+    if (city) {
+      localSearchService.findParcelByState(city)
+      .then(response => {
+          console.log("hello world")
+          console.log(response)
+          setLocalResults(response)
+      })
+    }
+  }, [])
+
   
   return (
     <div>
@@ -87,6 +100,38 @@ export default function ProductVisibility() {
         </Typography>
         &nbsp;
         <Grid container spacing={1} direction="row">
+
+        <Grid item md={7} xs={12}>
+                        {
+                          (localResults !== undefined )&&
+                          <div>
+                            {
+                            [localResults].map((property, index) => (
+                              (Object.keys(property).length !== 0)&&
+                                <div>
+                                  {console.log("hereee")}
+                                  {console.log(property)}
+                                    {/* <h2>{JSON.stringify(property)}</h2> */}
+                                    <ProductCard
+                                        title={property[0]["propertyDetails"]["city"]}
+                                        location={property[0]["propertyDetails"]["city"]}
+                                        bedroom={property[0]["propertyDetails"]["bedCount"]}
+                                        bathroom={property[0]["propertyDetails"]["bathCount"]}
+
+
+                                        description={property[0]["amenities"].map((item, index) => (<>{item.description}</>))}
+                                        price={0}
+                                        PropertyType={property[0]["propertySource"]}
+                                        img="https://picsum.photos/200"
+                                        ListingId={property[0]["propertyDetails"]["propertyId"]}
+                                    />
+                            
+                                </div>))
+}
+                            </div>
+                          }
+                        
+          </Grid>
       
           <Grid item md={7} xs={12}  style={{ height: "90vh", overflowX :"hidden" }}>
        
@@ -100,8 +145,8 @@ export default function ProductVisibility() {
                 PropertyType={City.landUseDescription}
                 img="https://picsum.photos/200"
                 ListingId={City.id}
-                setFav={setFav}
-                fav={fav}
+                // setFav={setFav}
+                // fav={fav}
               />
             ))}
           </Grid>
