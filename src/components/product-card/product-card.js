@@ -39,7 +39,16 @@ const useStyles = makeStyles((theme) => ({
         maxHeight: '100%',
         borderRadius: '5px',
       },
-
+      cardcontainer: {
+        margin:'10px',
+        padding:'10px',
+        backgroundColor: 'lightblue !important', 
+      },
+    cardcontainerfav: {
+        margin:'10px',
+        padding:'10px',
+        backgroundColor: 'lightgreen !important',
+    }
     
 }));
 
@@ -52,14 +61,43 @@ export default function ProductCard({
         bedroom,
         bathroom,
         PropertyType,
-        ListingId
+        ListingId,
+        setFav,
+        fav
 })  
 {
+    function handleFavoriteClick(e,ListingId) {
+        console.log(ListingId,'ID received')
+        const copyfav= [...fav]
+        if(copyfav.includes(ListingId)){
+          return alert('Already on the list ')
+        }
+         copyfav.push(ListingId)
+         setFav(copyfav)
+         console.log(fav,'Fav')
+    }
+    
+    function handleUnFavoriteClick(e,ListingId) {
+        const copyfav= [...fav]
+        if(!copyfav.includes(ListingId)){
+          return alert('You have not favorite it yet  ')
+        }
+      const getIndex = copyfav.indexOf(ListingId)
+      copyfav.splice(getIndex,1)
+      
+      setFav(copyfav)
+      console.log(copyfav,'copyfav');
+    }
+    
+    function isFavorite () {
+      return fav.includes(ListingId)
+    }
+
     const classes = useStyles();
     const history = useHistory();
 
     return (
-        <Card className={`shadow-md p-2 mb-5 bg-white rounded ${classes.mcard}`} >
+        <Card className={ isFavorite() ? classes.cardcontainerfav : classes.cardcontainer } >
             <Grid container spacing={3}>
               <Grid item lg={4} md={6} xs={12} sm={6}>
                     <img 
@@ -82,9 +120,9 @@ export default function ProductCard({
                                 </Link>
                             </Typography>
                             </div>
-                            <div style={{float:"right",marginBottom:"-35px"}}>
+                            {/* <div style={{float:"right",marginBottom:"-35px"}}>
                                 <i className="btn shadow-sm p-2 mb-5 bg-white rounded far fa-heart"></i>
-                            </div>
+                            </div> */}
 
                         </Grid>
                         <Grid item xs>
@@ -115,6 +153,10 @@ export default function ProductCard({
                                   Price :  $ {price}  
                                 </Typography>
                             </Grid>
+                        </Grid>
+                        <Grid item xs={12} sm container>
+                        <button onClick={(e)=>handleFavoriteClick(e,ListingId)}>Favorite</button>
+                        <button onClick={(e)=>handleUnFavoriteClick(e,ListingId)}>Unfavorite</button>
                         </Grid>
                     </Grid>
                 </Grid>
