@@ -51,6 +51,8 @@ export default function ProductVisibility() {
   const city = useParams();
   const [results, setResults] = useState({ bundle: [] });
   const [prices, setPrices] = useState( []);
+  const [fav, setFav] =useState([])
+
   useEffect(() => {
     if (city) {
       searchService.findParcelByState(city).then((response) => {
@@ -99,6 +101,8 @@ export default function ProductVisibility() {
                 PropertyType={City.landUseDescription}
                 img="https://picsum.photos/200"
                 ListingId={City.id}
+                setFav={setFav}
+                 fav={fav}
               />
             ))}
           </Grid>

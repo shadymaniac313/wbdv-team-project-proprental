@@ -52,9 +52,37 @@ export default function ProductCard({
         bedroom,
         bathroom,
         PropertyType,
-        ListingId
+        ListingId,
+        setFav,
+        fav
 })  
 {
+    function handleFavoriteClick(e,Id) {
+        const copyfav= [...fav]
+        if(copyfav.includes(Id)){
+          return alert('Already on the list ')
+        }
+        copyfav.push(ListingId)
+         setFav(copyfav)
+         console.log(fav,'Fav List')
+    }
+    
+    function handleUnFavoriteClick(e,Id) {
+        const copyfav= [...fav]
+        if(!copyfav.includes(ListingId)){
+          return alert('You have not favorite it yet  ')
+        }
+      const getIndex = copyfav.indexOf(ListingId)
+      copyfav.splice(getIndex,1)
+      console.log(copyfav,'copyfav');
+      setFav(copyfav)
+    }
+    
+    function isFavorite () {
+      return fav.includes(ListingId)
+    
+    }
+
     const classes = useStyles();
     const history = useHistory();
 
@@ -115,6 +143,10 @@ export default function ProductCard({
                                   Price :  $ {price}  
                                 </Typography>
                             </Grid>
+                        </Grid>
+                        <Grid item xs={12} sm container>
+                        <button onClick={(e)=>handleFavoriteClick(e,ListingId)}>Favorite</button>
+                        <button onClick={(e)=>handleUnFavoriteClick(e,ListingId)}>Unfavorite</button>
                         </Grid>
                     </Grid>
                 </Grid>
