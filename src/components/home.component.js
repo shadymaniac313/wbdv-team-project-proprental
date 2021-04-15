@@ -94,7 +94,7 @@ export default function Home() {
                         </Typography>
                         <div className={classes.searchElement}>
                                 <InputBase
-                                    placeholder=" Enter State…"
+                                    placeholder=" Enter State like CA, MA ....."
                                     className={classes.searchBar}
                                     color="secondary"
                                     inputProps={{ "aria-label": "search" }}
