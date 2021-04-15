@@ -102,7 +102,8 @@ export default function SignIn() {
           </form>
         </div>
       </Container>
-      <FooterComponent />
+
+      <FooterComponent styles={{position:'absolute'}} />
     </div>
   );
 }

@@ -55,7 +55,8 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor:'white',
         width:'25vw',
         padding:'2px'
-    }
+    },
+    
    
 }));
 

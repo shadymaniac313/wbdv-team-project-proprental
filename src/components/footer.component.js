@@ -6,9 +6,13 @@ import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
     footerContainer: {
-        backgroundColor: theme.palette.background.paper,
-        padding: theme.spacing(6),
-        
+        backgroundColor: theme.palette.background.paper,  
+        position: 'absolute',
+        left: 0,
+        bottom: 0,
+        height: '130px',
+        width: '100%',
+        overflow: 'hidden',
     },
 }));
 
@@ -37,7 +41,6 @@ export default function FooterComponent() {
                 {new Date().getFullYear()}
                 {'.'}
             </Typography>
-            <br />
             <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
                 If you are Admin click &nbsp;
                 <Link to="/AdminSignIn">   
