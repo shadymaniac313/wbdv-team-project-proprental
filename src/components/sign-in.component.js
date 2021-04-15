@@ -12,6 +12,8 @@ import Container from "@material-ui/core/Container";
 import SearchAppBar from "./search-bar.component";
 import FooterComponent from "./footer.component";
 import userService from "../services/user-service";
+import Alert from "@material-ui/lab/Alert";
+import AlertTitle from "@material-ui/lab/AlertTitle";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -45,7 +47,12 @@ export default function SignIn() {
     if (response === true) {
       localStorage.setItem("token", "valid");
       history.replace("/");
+
       alert("Success");
+      // <Alert severity="success">
+      //   <AlertTitle>Success</AlertTitle>
+      //   This is a success alert — <strong>check it out!</strong>
+      // </Alert>;
     } else {
       alert("Failed");
     }
