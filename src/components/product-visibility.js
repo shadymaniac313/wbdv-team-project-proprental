@@ -23,19 +23,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    "&::-webkit-scrollbar": {
-      width: 7,
-    },
-    "&::-webkit-scrollbar-track": {
-      boxShadow: `inset 0 0 6px rgba(0, 0, 0, 0.3)`,
-    },
-    "&::-webkit-scrollbar-thumb": {
-      backgroundColor: "darkgrey",
-      outline: `1px solid slategrey`,
-    },
   },
-
- 
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
@@ -93,7 +81,12 @@ export default function ProductVisibility() {
  
     
       <main className={classes.paper2}>
+       <Typography variant="h6" align="left">
+             Let's have a look at properties in {city.city} :
+        </Typography>
+        &nbsp;
         <Grid container spacing={1} direction="row">
+      
           <Grid item md={7} xs={12}  style={{ height: "88vh", overflowX :"hidden" }}>
        
             {results.bundle.map((City, index) => (

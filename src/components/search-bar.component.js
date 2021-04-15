@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import InputBase from "@material-ui/core/InputBase";
+
 import { alpha , makeStyles } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
 
@@ -83,26 +83,20 @@ export default function SearchAppBar() {
               Property Listing
             </Link>
           </Typography>
+
+           <Link to="/SignUp">
+                <Button variant="contained" color="primary">
+                    Sign Up
+                </Button>
+            </Link> 
+            <Link to="/SignIn">
+                <Button variant="contained" color="primary">
+                    Sign In
+                </Button>
+            </Link>
+
           <div className={classes.search}>
-            <InputBase
-              placeholder=" Enter State…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ "aria-label": "search" }}
-              onChange={(event) => setCityName(event.target.value)}
-            />      
-            <Button
-              startIcon={<SearchIcon />}
-              variant="contained"
-              color="primary"
-              onClick={() => {
-                history.push(`/search/${cityName}`);
-              }}  
-            >
-              Search
-            </Button>
+            
           </div>
         </Toolbar>
       </AppBar>
