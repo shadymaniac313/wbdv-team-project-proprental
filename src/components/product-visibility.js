@@ -11,7 +11,7 @@ import "leaflet/dist/leaflet.css";
 import searchService from "../services/search-service";
 import localSearchService from "../services/local-search-service";
 import { Link, useParams, useHistory } from "react-router-dom";
-import Typography from '@material-ui/core/Typography'
+import Typography from "@material-ui/core/Typography";
 import { gridColumnsTotalWidthSelector } from "@material-ui/data-grid";
 import FooterComponent from "./footer.component";
 
@@ -53,8 +53,8 @@ export default function ProductVisibility() {
   const city = useParams();
   const [results, setResults] = useState({ bundle: [] });
   const [localResults, setLocalResults] = useState({});
-  const [prices, setPrices] = useState( []);
-  const [fav, setFav] =useState([])
+  const [prices, setPrices] = useState([]);
+  const [fav, setFav] = useState([]);
 
   useEffect(() => {
     if (city) {
@@ -79,68 +79,70 @@ export default function ProductVisibility() {
 
   useEffect(() => {
     if (city) {
-      localSearchService.findParcelByState(city)
-      .then(response => {
-          console.log("hello world")
-          console.log(response)
-          setLocalResults(response)
-      })
+      localSearchService.findParcelByState(city).then((response) => {
+        console.log("hello world");
+        console.log(response);
+        setLocalResults(response);
+      });
     }
-  }, [])
+  }, []);
 
-  
   return (
     <div>
       <SearchAppBar />
- 
-    
+
       <main className={classes.paper2}>
-       <Typography variant="h6" align="left">
-             Let's have a look at properties in {city.city} :
+        <Typography variant="h6" align="left">
+          Let's have a look at properties in {city.city} :
         </Typography>
         &nbsp;
         <Grid container spacing={1} direction="row">
-
-        <Grid item md={7} xs={12}>
-                        {
-                          (localResults !== undefined )&&
-                          <div>
-                            {
-                            [localResults].map((property, index) => (
-                              (Object.keys(property).length !== 0)&&
-                                <div>
-                                  {console.log("hereee")}
-                                  {console.log(property)}
-                                    {/* <h2>{JSON.stringify(property)}</h2> */}
-                                    <ProductCard
-                                        title={property[0]["propertyDetails"]["city"]}
-                                        location={property[0]["propertyDetails"]["city"]}
-                                        bedroom={property[0]["propertyDetails"]["bedCount"]}
-                                        bathroom={property[0]["propertyDetails"]["bathCount"]}
-
-
-                                        description={property[0]["amenities"].map((item, index) => (<>{item.description}</>))}
-                                        price={0}
-                                        PropertyType={property[0]["propertySource"]}
-                                        img="https://picsum.photos/200"
-                                        ListingId={property[0]["propertyDetails"]["propertyId"]}
-                                    />
-                            
-                                </div>))
-}
-                            </div>
+          <Grid item md={7} xs={12}>
+            {localResults !== undefined && (
+              <div>
+                {[localResults].map(
+                  (property, index) =>
+                    Object.keys(property).length !== 0 && (
+                      <div>
+                        {console.log("hereee")}
+                        {console.log(property)}
+                        {/* <h2>{JSON.stringify(property)}</h2> */}
+                        <ProductCard
+                          title={property[0]["propertyDetails"]["city"]}
+                          location={property[0]["propertyDetails"]["city"]}
+                          bedroom={property[0]["propertyDetails"]["bedCount"]}
+                          bathroom={property[0]["propertyDetails"]["bathCount"]}
+                          description={property[0]["amenities"].map(
+                            (item, index) => (
+                              <>{item.description}</>
+                            )
+                          )}
+                          price={0}
+                          PropertyType={property[0]["propertySource"]}
+                          img="https://picsum.photos/200"
+                          ListingId={
+                            property[0]["propertyDetails"]["propertyId"]
                           }
-                        
+                        />
+                      </div>
+                    )
+                )}
+              </div>
+            )}
           </Grid>
-      
-          <Grid item md={7} xs={12}  style={{ height: "90vh", overflowX :"hidden" }}>
-       
+
+          <Grid
+            item
+            md={7}
+            xs={12}
+            style={{ height: "90vh", overflowX: "hidden" }}
+          >
             {results.bundle.map((City, index) => (
               <ProductCard
                 title={City.address.full}
                 location={City.county}
                 bedroom={City.building[0].bedrooms}
-                bathroom={City.building[0].fullBaths}      
+                bathroom={City.building[0].fullBaths}
                 price={100}
                 PropertyType={City.landUseDescription}
                 img="https://picsum.photos/200"
@@ -150,18 +152,16 @@ export default function ProductVisibility() {
               />
             ))}
           </Grid>
-          <Grid item md={5} style={{ height: "90vh", overflow:"hidden" }}>
-            {results.bundle.slice(0,1).map((City, index) => (
+          <Grid item md={5} style={{ height: "90vh", overflow: "hidden" }}>
+            {results.bundle.slice(0, 1).map((City, index) => (
               <Gmap lat={City.coordinates[1]} lng={City.coordinates[0]} />
             ))}
           </Grid>
         </Grid>
       </main>
-  
+
       <br />
       <FooterComponent />
-     
-  
     </div>
   );
 }
