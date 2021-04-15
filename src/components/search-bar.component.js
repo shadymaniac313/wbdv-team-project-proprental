@@ -1,14 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 
-import { alpha , makeStyles } from "@material-ui/core/styles";
+import { alpha, makeStyles } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
 
 import { Link, useHistory } from "react-router-dom";
 import Button from "@material-ui/core/Button";
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,7 +21,6 @@ const useStyles = makeStyles((theme) => ({
     display: "none",
     [theme.breakpoints.up("sm")]: {
       display: "block",
-
     },
   },
   search: {
@@ -67,40 +65,62 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SearchAppBar() {
-
   const classes = useStyles();
   const [cityName, setCityName] = useState("");
   const history = useHistory();
+  const [isSignedIn, setIsSignedIn] = useState(false);
+
+  useEffect(() => {
+    if (localStorage.getItem("token") === "valid") {
+      setIsSignedIn(true);
+    } else {
+      setIsSignedIn(false);
+    }
+  }, []);
 
   return (
     <div className={classes.root}>
       <AppBar>
         <Toolbar>
-    
           &nbsp; &nbsp;
           <Typography className={classes.title} variant="h6" noWrap>
             <Link style={{ textDecoration: "none", color: "white" }} to="/">
               Property Listing
             </Link>
           </Typography>
-
-           <Link to="/SignUp">
+          {!isSignedIn && (
+            <>
+              <Link to="/SignUp">
                 <Button variant="contained" color="primary">
-                    Sign Up
+                  Sign Up
                 </Button>
-            </Link> 
-            <Link to="/SignIn">
+              </Link>
+              <Link to="/SignIn">
                 <Button variant="contained" color="primary">
-                    Sign In
+                  Sign In
                 </Button>
-            </Link>
-
-          <div className={classes.search}>
-            
-          </div>
+              </Link>
+            </>
+          )}
+          {isSignedIn && (
+            <>
+              <Link to="/">
+                <Button
+                  onClick={() => {
+                    localStorage.clear();
+                    setIsSignedIn(false);
+                  }}
+                  variant="contained"
+                  color="primary"
+                >
+                  Log Out
+                </Button>
+              </Link>
+            </>
+          )}
+          <div className={classes.search}></div>
         </Toolbar>
       </AppBar>
     </div>
   );
-
 }
