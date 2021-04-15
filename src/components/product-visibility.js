@@ -75,8 +75,6 @@ export default function ProductVisibility() {
   }, [city]);
 
   
-
-  
   return (
     <div>
       <SearchAppBar />
@@ -102,7 +100,7 @@ export default function ProductVisibility() {
                 img="https://picsum.photos/200"
                 ListingId={City.id}
                 setFav={setFav}
-                 fav={fav}
+                fav={fav}
               />
             ))}
           </Grid>
