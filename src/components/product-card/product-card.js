@@ -66,16 +66,18 @@ export default function ProductCard({
         fav
 })  
 {
-    function handleFavoriteClick(e,Id) {
+    function handleFavoriteClick(e,ListingId) {
+        console.log(ListingId,'ID received')
         const copyfav= [...fav]
-        if(copyfav.includes(Id)){
+        if(copyfav.includes(ListingId)){
           return alert('Already on the list ')
         }
          copyfav.push(ListingId)
          setFav(copyfav)
+         console.log(fav,'Fav')
     }
     
-    function handleUnFavoriteClick(e,Id) {
+    function handleUnFavoriteClick(e,ListingId) {
         const copyfav= [...fav]
         if(!copyfav.includes(ListingId)){
           return alert('You have not favorite it yet  ')
