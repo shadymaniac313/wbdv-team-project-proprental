@@ -3,7 +3,7 @@ import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
@@ -11,6 +11,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import SearchAppBar from "./search-bar.component";
 import FooterComponent from "./footer.component";
+import userService from "../services/user-service";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -34,14 +35,20 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignIn() {
   const classes = useStyles();
+  const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSignIn = async () => {
-    // const response = await apiClient.handleLoginSubmit({ email, password });
-    // if (response.isSuccess === true) {
-        
-    // }
+    const response = await userService.signInService(email, password);
+    console.log(response);
+    if (response === true) {
+      localStorage.setItem("token", "valid");
+      history.replace("/");
+      alert("Success");
+    } else {
+      alert("Failed");
+    }
   };
 
   return (
@@ -89,7 +96,10 @@ export default function SignIn() {
               variant="contained"
               color="primary"
               className={classes.submit}
-              onClick={handleSignIn}
+              onClick={(event) => {
+                event.preventDefault();
+                handleSignIn();
+              }}
             >
               Sign In
             </Button>
@@ -103,7 +113,7 @@ export default function SignIn() {
         </div>
       </Container>
 
-      <FooterComponent styles={{position:'absolute'}} />
+      <FooterComponent styles={{ position: "absolute" }} />
     </div>
   );
 }
