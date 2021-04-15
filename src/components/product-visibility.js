@@ -87,7 +87,7 @@ export default function ProductVisibility() {
         &nbsp;
         <Grid container spacing={1} direction="row">
       
-          <Grid item md={7} xs={12}  style={{ height: "88vh", overflowX :"hidden" }}>
+          <Grid item md={7} xs={12}  style={{ height: "83vh", overflowX :"hidden" }}>
        
             {results.bundle.map((City, index) => (
               <ProductCard
@@ -102,7 +102,7 @@ export default function ProductVisibility() {
               />
             ))}
           </Grid>
-          <Grid item md={5} style={{ height: "88vh", overflow:"hidden" }}>
+          <Grid item md={5} style={{ height: "83vh", overflow:"hidden" }}>
             {results.bundle.slice(0,1).map((City, index) => (
               <Gmap lat={City.coordinates[1]} lng={City.coordinates[0]} />
             ))}
