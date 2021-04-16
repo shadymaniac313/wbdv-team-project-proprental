@@ -112,6 +112,7 @@ export default function ProductVisibility() {
                           location={property[0]["propertyDetails"]["city"]}
                           bedroom={property[0]["propertyDetails"]["bedCount"]}
                           bathroom={property[0]["propertyDetails"]["bathCount"]}
+                          local={true}
                           description={property[0]["amenities"].map(
                             (item, index) => (
                               <>{item.description}</>
@@ -147,6 +148,7 @@ export default function ProductVisibility() {
                 PropertyType={City.landUseDescription}
                 img="https://picsum.photos/200"
                 ListingId={City.id}
+                local={false}
                 // setFav={setFav}
                 // fav={fav}
               />
