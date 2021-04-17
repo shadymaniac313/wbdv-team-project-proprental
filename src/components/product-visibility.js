@@ -97,7 +97,7 @@ export default function ProductVisibility() {
         &nbsp;
         <Grid container spacing={1} direction="row">
 
-            {/* Left Side -- Data */}
+        {/* Left Side -- Data */}
           <Grid item md={7} xs={12}  
             md={7}
             xs={12}

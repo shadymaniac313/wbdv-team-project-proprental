@@ -64,8 +64,6 @@ export default function ProductCard({
         PropertyType,
         ListingId,
         type
-        // setFav,
-        // fav
 })  
 {
 
