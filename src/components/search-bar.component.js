@@ -96,6 +96,7 @@ export default function SearchAppBar() {
                 </Button>
               </Link>
               <Link to="/Login">
+
                 <Button variant="contained" color="primary">
                   Sign In
                 </Button>
