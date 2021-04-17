@@ -32,13 +32,19 @@ export const signUpService = async (
 };
 
 const fetchListingsFromUserid = async (id) => {
-  return fetch(`${LOCAL_HOST}listings/users/${id}/`)
+  return fetch(`${LOCAL_HOST}listings/user/${id}/`)
+      .then((response) => response.json());
+}
+
+const fetchPropertiesFromListingId = async (id) => {
+  return fetch(`${LOCAL_HOST}properties/listing/${id}/`)
       .then((response) => response.json());
 }
 
 const userService = {
   signInService,
   signUpService,
-  fetchListingsFromUserid
+  fetchListingsFromUserid,
+  fetchPropertiesFromListingId
 };
 export default userService;

@@ -27,6 +27,8 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+var proplist=[]
+
 export default class ProfileComponent extends React.Component {
 
     constructor(props) {
@@ -40,15 +42,33 @@ export default class ProfileComponent extends React.Component {
                 LastName: 'Lovelace',
                 Phone: '+15456362198'
             },
-            us:{'listings':[]}
+            us:{'listings':[]},
+            listingsforid:[],
         }
 
     }
 
     componentDidMount() {
-
+//console.log(response);
         // console.log(this.state.us)
-       userService.fetchListingsFromUserid(2).then(response => {console.log(response);  this.setState({us :  response}); return response})
+        let mlist =[]
+       userService.fetchListingsFromUserid(2).then(response => {
+           this.setState({listingsforid :  response});
+           console.log(response)
+           return
+       }).then(response => {
+           this.state.listingsforid.map((listings) =>    {
+               userService.fetchPropertiesFromListingId(listings.listingId).then(response => {
+                   mlist.push(response)
+                   this.setState({us:mlist})
+
+                   return
+               })
+           })
+       })
+
+
+
     }
 
     parseProfileToDataRows = (profile) => {
@@ -89,26 +109,9 @@ export default class ProfileComponent extends React.Component {
         //     <p>{item}</p>
         // })
 
-        const listings = this.state.us["listings"].map((listitem) =>    {
-            return <div>
-                {/*<ProductCard*/}
-                {/*    title={listitem["propertyDetails"]["city"]}*/}
-                {/*    location={property[0]["propertyDetails"]["city"]}*/}
-                {/*    bedroom={property[0]["propertyDetails"]["bedCount"]}*/}
-                {/*    bathroom={property[0]["propertyDetails"]["bathCount"]}*/}
 
 
-                {/*    description={property[0]["amenities"].map((item, index) => (<>{item.description}</>))}*/}
-                {/*    price={0}*/}
-                {/*    PropertyType={property[0]["propertySource"]}*/}
-                {/*    img="https://picsum.photos/200"*/}
-                {/*    ListingId={property[0]["propertyDetails"]["propertyId"]}*/}
-                {/*/>*/}
-
-            </div>
-        }  );
-
-        console.log({listings})
+        // console.log({listings})
 
 
         return (
@@ -149,10 +152,30 @@ export default class ProfileComponent extends React.Component {
 
                 <h1>
                     {/*<p>{localStorage.getItem("userid")}</p>*/}
-                    <p>{JSON.stringify(this.state.us["listings"])}</p>
+                    {/*<p>{JSON.stringify(this.state.us["listings"])}</p>*/}
                     <p>
+                        {console.log(JSON.stringify(this.state.us))}
                         {
-listings
+                            Array.from(this.state.us).map((property) =>    {
+                                console.log("listing id in profile component is")
+                                console.log(property[0]["propertyDetails"])
+
+                                return <ProductCard
+                                            title={property[0]["propertyDetails"]["city"]}
+                                            location={property[0]["propertyDetails"]["city"]}
+                                            bedroom={property[0]["propertyDetails"]["bedCount"]}
+                                            bathroom={property[0]["propertyDetails"]["bathCount"]}
+
+
+                                            description={property[0]["amenities"].map((item, index) => (<>{item.description}</>))}
+                                            price={0}
+                                            PropertyType={property[0]["propertySource"]}
+                                            img="https://picsum.photos/200"
+                                            ListingId={property[0]["propertyDetails"]["propertyId"]}
+                                            local={true}
+                                        />
+                            })
+
                         }
                     </p>
                 </h1>
