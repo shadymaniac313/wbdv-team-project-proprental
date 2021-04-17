@@ -23,25 +23,21 @@ function App() {
         {/* User & Basic Routes here */}
         <Route path="/" component={Home} exact={true} />
         <Route path={"/profile"} component={ProfileComponent} />
-        <Route path="/SignIn" component={SignIn} />
+        <Route path="/Login" component={SignIn} />
         <Route path="/SignUp" component={SignUp} />
         <Route path="/privacypolicy" component={PrivacyPolicy} />
          
         {/* Admin route begins here */}
-        <Route path="/AdminSignIn" component={AdminSignIn} />2
+        <Route path="/AdminSignIn" component={AdminSignIn} />
         <Route path="/admin/home" component={AdminHome} />
         <Route path="/admin/AddProperty" component={AddProperty} />
         <Route path="/admin/EditProperty" component={EditProperty} />
 
         {/* API and Website Functioning Routes here */}
         <Route 
-          path="/propertypage/:ListingId"
+          path="/propertypage/:type/:ListingId"
           exact={true}
           component={PropertyPage}  />
-        <Route
-            path="/lpropertypage/:ListingId"
-            exact={true}
-            component={LocalPropertyPage}  />
         <Route
           path="/search/:city"
           exact={true}
