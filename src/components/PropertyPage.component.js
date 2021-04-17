@@ -8,6 +8,7 @@ import Container from '@material-ui/core/Container';
 import SearchAppBar from './search-bar.component';
 import FooterComponent from "./footer.component";
 import searchService from "../services/search-service";
+import localSearchService from "../services/local-search-service";
 import {Carousel, CarouselCaption, CarouselControl, CarouselItem} from 'reactstrap';
 
 
@@ -36,7 +37,9 @@ export default function PropertyPage() {
 
     const [activeIndex, setActiveIndex] = useState(0);
     const [items, setItems] = useState([])
-    const listingID = useParams()
+    const paramObject = useParams()
+    const propertyType = paramObject.type;
+    
     const [singleresults, setsingleresults] = useState({
         bundle: {
             Media: '',
@@ -72,13 +75,17 @@ export default function PropertyPage() {
     });
 
     useEffect(() => {
-        if (listingID) {
-            searchService.findParcelById(listingID).then((singleresults) => {
-                setsingleresults(singleresults);
-                console.log(singleresults)
+        if (paramObject.type=="zillow") {
+            searchService.findParcelById(paramObject).then((singleresults) => {
+                setsingleresults(singleresults); 
             });
         }
-    }, [listingID]);
+        else  {
+            localSearchService.findParcelById(paramObject.ListingId).then((singleresults) => {
+                setsingleresults(singleresults);
+            });
+        }
+    }, [paramObject]);
 
     useEffect(() => {
         fetch(`https://picsum.photos/v2/list?page=${Math.ceil((Math.random() * 100) % 10)}&limit=5`)
@@ -109,6 +116,7 @@ export default function PropertyPage() {
     });
 
     const classes = useStyles();
+  
 
     return (
         <div>
@@ -116,7 +124,19 @@ export default function PropertyPage() {
                 <SearchAppBar/>
                 <CssBaseline/>
                 <div className={classes.propertypage}>
-                    <Grid container spacing={2}>
+                    
+                    {
+                        (propertyType=="local")
+                        ?
+                        <Grid container spacing={2}>
+                            <Grid item xs={12}>
+                            <Typography variant="h3" gutterBottom>
+                                Local
+                            </Typography>
+                        </Grid>
+                        </Grid>
+                        :
+                        <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <Typography variant="h3" gutterBottom>
                                 {singleresults.bundle.address.full}
@@ -216,6 +236,12 @@ export default function PropertyPage() {
                             </Typography>
                         </Grid>
                     </Grid>
+                
+                    }
+
+
+                    
+                    
                 </div>
             </Container>
             <FooterComponent/>

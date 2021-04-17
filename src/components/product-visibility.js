@@ -129,6 +129,7 @@ export default function ProductVisibility() {
                               ListingId={
                                 property[0]["propertyDetails"]["propertyId"]
                               }
+                              type={"local"}
                             />
                           </div>
                         )
@@ -147,7 +148,7 @@ export default function ProductVisibility() {
                     PropertyType={City.landUseDescription}
                     img="https://picsum.photos/200"
                     ListingId={City.id}
-                    local={false}
+                    type={"zillow"}
                   />
                 ))}
           </Grid>

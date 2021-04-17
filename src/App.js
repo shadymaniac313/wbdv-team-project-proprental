@@ -35,13 +35,9 @@ function App() {
 
         {/* API and Website Functioning Routes here */}
         <Route 
-          path="/propertypage/:ListingId"
+          path="/propertypage/:type/:ListingId"
           exact={true}
           component={PropertyPage}  />
-        <Route
-            path="/lpropertypage/:ListingId"
-            exact={true}
-            component={LocalPropertyPage}  />
         <Route
           path="/search/:city"
           exact={true}
