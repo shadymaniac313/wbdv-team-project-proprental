@@ -54,7 +54,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ProductCard({
-
         img,
         location,
         title,
@@ -69,48 +68,25 @@ export default function ProductCard({
         // fav
 })  
 {
-    // function handleFavoriteClick(e,ListingId) {
-    //     console.log(ListingId,'ID received')
-    //     const copyfav= [...fav]
-    //     if(copyfav.includes(ListingId)){
-    //       return alert('Already on the list ')
-    //     }
-    //      copyfav.push(ListingId)
-    //      setFav(copyfav)
-    //      console.log(fav,'Fav')
-    // }
+
+    function handleFavoriteClick(e,ListingId) {
+       
+    }
     
-    // function handleUnFavoriteClick(e,ListingId) {
-    //     const copyfav= [...fav]
-    //     if(!copyfav.includes(ListingId)){
-    //       return alert('You have not favorite it yet  ')
-    //     }
-    //   const getIndex = copyfav.indexOf(ListingId)
-    //   copyfav.splice(getIndex,1)
+    function handleUnFavoriteClick(e,ListingId) {
       
-    //   setFav(copyfav)
-    //   console.log(copyfav,'copyfav');
-    // }
+    }
     
-    // function isFavorite () {
-    //   return fav.includes(ListingId)
-    // }
-
-  // function handleUnFavoriteClick(e,ListingId) {
-  //     const copyfav= [...fav]
-  //     if(!copyfav.includes(ListingId)){
-  //       return alert('You have not favorite it yet  ')
-  //     }
-  //   const getIndex = copyfav.indexOf(ListingId)
-  //   copyfav.splice(getIndex,1)
-
+    function isFavorite () {
+       
+    }
 
   const classes = useStyles();
   const history = useHistory();
   const [userId, setUserId] = useState(0);
 
-  useEffect(() => {
-    setUserId(localStorage.getItem("userId"));
+    useEffect(() => {
+      setUserId(localStorage.getItem("userId"));
     }, []);
 
  
@@ -140,6 +116,7 @@ export default function ProductCard({
                                     </Typography>
                                 
                             </div>
+                            
                             {/* <div style={{float:"right",marginBottom:"-35px"}}>
                                 <i className="btn shadow-sm p-2 mb-5 bg-white rounded far fa-heart"></i>
                             </div> */}
@@ -175,8 +152,21 @@ export default function ProductCard({
                             </Grid>
                         </Grid>
                         <Grid item xs={12} sm container>
-                        {/*<button onClick={(e)=>handleFavoriteClick(e,ListingId)}>Favorite</button>*/}
-                        {/*<button onClick={(e)=>handleUnFavoriteClick(e,ListingId)}>Unfavorite</button>*/}
+           
+                          {
+                              (userId!=null)
+                              ?
+                              <div>
+                              <button onClick={(e)=>handleFavoriteClick(e,ListingId)}>Favorite</button>
+                              
+                              <button onClick={(e)=>handleUnFavoriteClick(e,ListingId)}>Unfavorite</button>
+                              </div>
+                              
+                              :
+                              <br />  
+                            }
+                      
+
                         </Grid>
                     </Grid>
                 </Grid>

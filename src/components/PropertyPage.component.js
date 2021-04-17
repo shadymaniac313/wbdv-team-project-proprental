@@ -60,6 +60,7 @@ export default function PropertyPage() {
             PreviousListPrice: '',
             PublicRemarks: '',
             BuildingName: '',
+            parcelID:'',
             address: {
                 full: '',
                 city: '',
@@ -151,6 +152,17 @@ export default function PropertyPage() {
 
     const classes = useStyles();
   
+    function handleFavoriteClick(e,ListingId) {
+        console.log(ListingId,'Listing ID')
+    }
+    
+    function handleUnFavoriteClick(e,ListingId) {
+     
+    }
+    
+    function isFavorite () {
+      
+    }
 
     return (
         <div>
@@ -177,6 +189,21 @@ export default function PropertyPage() {
                                 <CarouselControl direction="prev" directionText="Previous" onClickHandler={previous}/>
                                 <CarouselControl direction="next" directionText="Next" onClickHandler={next}/>
                             </Carousel>
+                        </Grid>
+                        <Grid item xs={12}>
+                            
+                          {
+                              (userId!=null)
+                              ?
+                              <div>
+                                 <button onClick={(e)=>handleFavoriteClick(e,localResults.id)}>Favorite</button>
+                              
+                                 <button onClick={(e)=>handleUnFavoriteClick(e,localResults.id)}>Unfavorite</button>
+                              </div>
+                              
+                              :
+                              <br />  
+                            }
                         </Grid>
                         <Grid item xs={12} md={4} style={{display: "flex", alignItems: "center"}}>
                             <Typography variant="h6" gutterBottom>
@@ -252,7 +279,21 @@ export default function PropertyPage() {
                                 <CarouselControl direction="next" directionText="Next" onClickHandler={next}/>
                             </Carousel>
                         </Grid>
-
+                        <Grid item xs={12}>
+                            
+                            {
+                                (userId!=null)
+                                ?
+                                <div>
+                                   <button onClick={(e)=>handleFavoriteClick(e,singleresults.bundle.parcelID)}>Favorite</button>
+                                
+                                   <button onClick={(e)=>handleUnFavoriteClick(e,singleresults.bundle.parcelID)}>Unfavorite</button>
+                                </div>
+                                
+                                :
+                                <br />  
+                              }
+                          </Grid>
                         <Grid item xs={12} md={6} style={{display: "flex", alignItems: "center"}}>
                             <Typography variant="h6" gutterBottom>
                                 Address One:&nbsp;
