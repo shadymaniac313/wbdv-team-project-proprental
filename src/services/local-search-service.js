@@ -5,6 +5,7 @@ export const findParcelByState = (cityObject) => {
     ).then((response) => response.json())
 }
 
+
 export const findParcelById = (id) => {
     return fetch(`http://localhost:8080/api/properties/${id}`)
         .then((response) => response.json())

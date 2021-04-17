@@ -62,7 +62,7 @@ export default function ProductCard({
         bathroom,
         PropertyType,
         ListingId,
-        local
+        type
         // setFav,
         // fav
 })  
@@ -112,30 +112,16 @@ export default function ProductCard({
                     <Grid item xs container direction="column" spacing={2}>
                         <Grid item xs>
                             <div className={"row ml-auto"} style={{"float":"left"}}>
-                                {
-                                    local === false &&
+                                      
                                     <Typography gutterBottom variant="h6">
-                                        {local} &&
                                         <Link   onClick={() => {
-                                        history.push(`/propertypage/${ListingId}`);
-                                        }}
-                                    >
-                                            {title}
-                                        </Link>
-                                    </Typography>
-                                }
-                                {
-                                    local === true &&
-                                    <Typography gutterBottom variant="h6">
-                                        {local} &&
-                                        <Link   onClick={() => {
-                                            history.push(`/lpropertypage/${ListingId}`);
+                                            history.push(`/propertypage/${type}/${ListingId}/`);
                                         }}
                                         >
-                                            {title}
+                                        {title}
                                         </Link>
                                     </Typography>
-                                }
+                                
                             </div>
                             {/* <div style={{float:"right",marginBottom:"-35px"}}>
                                 <i className="btn shadow-sm p-2 mb-5 bg-white rounded far fa-heart"></i>
