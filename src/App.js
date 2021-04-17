@@ -12,6 +12,7 @@ import ProductVisibility from "./components/product-visibility";
 import ProfileComponent from "./components/profile/profile-component";
 import PropertyPage from "./components/PropertyPage.component"
 import PrivacyPolicy from "./components/PrivacyPolicy"
+import LocalPropertyPage from "./components/LocalPropertyPage.component";
 
 function App() {
 
@@ -37,6 +38,10 @@ function App() {
           path="/propertypage/:ListingId"
           exact={true}
           component={PropertyPage}  />
+        <Route
+            path="/lpropertypage/:ListingId"
+            exact={true}
+            component={LocalPropertyPage}  />
         <Route
           path="/search/:city"
           exact={true}
