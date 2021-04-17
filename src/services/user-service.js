@@ -6,15 +6,6 @@ export const signInService = async (username, password) => {
   ).then((response) => response.json());
 };
 
-// export const signUpService = async (
-//   firstName,
-//   lastName,
-//   username,
-//   password
-// ) => {
-//   return true;
-// };
-
 export const signUpService = async (
   firstName,
   lastName,

@@ -1,10 +1,3 @@
-import {
-    findParcelById,
-    findPropertyByCity,
-    findPropertyDetailsByListingID,
-    findZestimateByParcel
-} from "./search-service";
-
 
 export const findParcelByState = (cityObject) => {
     return fetch(
@@ -12,7 +5,13 @@ export const findParcelByState = (cityObject) => {
     ).then((response) => response.json())
 }
 
+export const findParcelById = (cityObject) => {
+    return fetch(`http://localhost:8080/api/properties/${cityObject.id}`)
+        .then((response) => response.json())
+}
+
 const localSearchService = {
     findParcelByState,
+    findParcelById
 };
 export default localSearchService;
