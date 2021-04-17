@@ -15,7 +15,7 @@ import {
   CarouselItem,
 } from "reactstrap";
 import localSearchService from "../services/local-search-service";
-import {Carousel, CarouselCaption, CarouselControl, CarouselItem} from 'reactstrap';
+
 
 const useStyles = makeStyles((theme) => ({
   propertypage: {
@@ -38,71 +38,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function PropertyPage() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [items, setItems] = useState([]);
-  const listingID = useParams();
-  const [userId, setUserId] = useState();
-  const [singleresults, setsingleresults] = useState({
-    bundle: {
-      Media: "",
-      UnparsedAddress: "",
-      UnitNumber: "",
-      CityRegion: "",
-      PostalCode: "",
-      StateOrProvince: "",
-      BedroomsTotal: "",
-      BathroomsFull: "",
-      AvailabilityDate: "",
-      PreviousListPrice: "",
-      PublicRemarks: "",
-      BuildingName: "",
-      address: {
-        full: "",
-        city: "",
-        state: "",
-        country: "US",
-        zip: "",
-      },
-      building: [
-        {
-          bedrooms: "",
-        },
-      ],
-      areas: [
-        {
-          areaSquareFeet: "",
-        },
-      ],
-    },
-  });
-
-
-  useEffect(() => {
-    if (listingID) {
-      searchService.findParcelById(listingID).then((singleresults) => {
-        setsingleresults(singleresults);
-        console.log(singleresults);
-      });
-    }
-  }, [listingID]);
-
-  useEffect(() => {
-    fetch(
-      `https://picsum.photos/v2/list?page=${Math.ceil(
-        (Math.random() * 100) % 10
-      )}&limit=5`
-    )
-      .then((response) => response.json())
-      .then((images) =>
-        setItems(
-          images.map((image) => ({
-            src: image.download_url,
-            caption: image.author,
-          }))
-        )
-      );
-  }, [singleresults]);
-
+ 
     const [activeIndex, setActiveIndex] = useState(0);
     const [items, setItems] = useState([])
     const paramObject = useParams()
@@ -180,9 +116,9 @@ export default function PropertyPage() {
     }, [paramObject]);
 
 
-  useEffect(() => {
-    setUserId(localStorage.get("userId"));
-  }, []);
+    useEffect(() => {
+        setUserId(localStorage.get("userId"));
+      }, []);
 
   const next = () => {
     const nextIndex = activeIndex === items.length - 1 ? 0 : activeIndex + 1;
@@ -404,8 +340,6 @@ export default function PropertyPage() {
             </Container>
             <FooterComponent/>
         </div>
-      </Container>
-      <FooterComponent />
-    </div>
+     
   );
 }

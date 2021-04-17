@@ -181,9 +181,8 @@ export default function ProductCard({
                     </Grid>
                 </Grid>
             </Grid>
-          </Grid>
-        </Grid>
-      </Grid>
+        
+    
     </Card>
   );
 }
