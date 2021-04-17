@@ -156,8 +156,8 @@ export default function ProductCard({
                             </Grid>
                         </Grid>
                         <Grid item xs={12} sm container>
-                        {/* <button onClick={(e)=>handleFavoriteClick(e,ListingId)}>Favorite</button>
-                        <button onClick={(e)=>handleUnFavoriteClick(e,ListingId)}>Unfavorite</button> */}
+                        {/*<button onClick={(e)=>handleFavoriteClick(e,ListingId)}>Favorite</button>*/}
+                        {/*<button onClick={(e)=>handleUnFavoriteClick(e,ListingId)}>Unfavorite</button>*/}
                         </Grid>
                     </Grid>
                 </Grid>

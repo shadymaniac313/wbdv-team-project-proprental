@@ -40,8 +40,14 @@ export const signUpService = async (
   return response.ok;
 };
 
+const fetchUserFromId = async (id) => {
+  return fetch(`${LOCAL_HOST}users/${id}/`)
+      .then((response) => response.json());
+}
+
 const userService = {
   signInService,
   signUpService,
+  fetchUserFromId
 };
 export default userService;
