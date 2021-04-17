@@ -115,7 +115,7 @@ export default function ProductCard({
                                 {
                                     local === false &&
                                     <Typography gutterBottom variant="h6">
-                                        {local} &&
+                                        {local} 
                                         <Link   onClick={() => {
                                         history.push(`/propertypage/${ListingId}`);
                                         }}
@@ -127,7 +127,7 @@ export default function ProductCard({
                                 {
                                     local === true &&
                                     <Typography gutterBottom variant="h6">
-                                        {local} &&
+                                        {local} 
                                         <Link   onClick={() => {
                                             history.push(`/lpropertypage/${ListingId}`);
                                         }}
