@@ -59,9 +59,12 @@ export default function LocalPropertyPage() {
 
     useEffect(() => {
         if (listingID) {
-            localSearchService.findParcelById(listingID).then((singleresults) => {
-                setsingleresults(singleresults);
+            let lId = listingID["ListingId"]
+            localSearchService.findParcelById(lId).then((singleresults) => {
+                console.log("fsdsad")
+                console.log(lId)
                 console.log(singleresults)
+                setsingleresults(singleresults);
             });
         }
     }, [listingID]);
@@ -137,7 +140,7 @@ export default function LocalPropertyPage() {
                                 City:&nbsp;
                             </Typography>
                             <Typography variant="body1" gutterBottom>
-                                {singleresults.propertyDetails.city}
+                                {singleresults["propertyDetails"].city}
                             </Typography>
                         </Grid>
                         <Grid item xs={12} md={3} style={{display: "flex", alignItems: "center"}}>

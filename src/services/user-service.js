@@ -31,14 +31,14 @@ export const signUpService = async (
   return response.ok;
 };
 
-const fetchUserFromId = async (id) => {
-  return fetch(`${LOCAL_HOST}users/${id}/`)
+const fetchListingsFromUserid = async (id) => {
+  return fetch(`${LOCAL_HOST}listings/users/${id}/`)
       .then((response) => response.json());
 }
 
 const userService = {
   signInService,
   signUpService,
-  fetchUserFromId
+  fetchListingsFromUserid
 };
 export default userService;

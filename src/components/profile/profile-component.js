@@ -40,7 +40,7 @@ export default class ProfileComponent extends React.Component {
                 LastName: 'Lovelace',
                 Phone: '+15456362198'
             },
-            us:{'listings':[{"listingId":3,"propertyId":3,"saleType":"Outright","rate":700000,"agentId":3}]}
+            us:{'listings':[]}
         }
 
     }
@@ -48,7 +48,7 @@ export default class ProfileComponent extends React.Component {
     componentDidMount() {
 
         // console.log(this.state.us)
-       userService.fetchUserFromId(2).then(response => {console.log(response);  this.setState({us :  response}); return response})
+       userService.fetchListingsFromUserid(2).then(response => {console.log(response);  this.setState({us :  response}); return response})
     }
 
     parseProfileToDataRows = (profile) => {
