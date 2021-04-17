@@ -81,9 +81,11 @@ export default function PropertyPage() {
             });
         }
         else  {
-            localSearchService.findParcelById(paramObject.ListingId).then((singleresults) => {
+            localSearchService.findParcelById(paramObject).then((singleresults) => {
                 setsingleresults(singleresults);
+                console.log(singleresults, 'Local Results')
             });
+            
         }
     }, [paramObject]);
 
