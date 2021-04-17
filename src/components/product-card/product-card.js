@@ -110,7 +110,7 @@ export default function ProductCard({
   const [userId, setUserId] = useState(0);
 
   useEffect(() => {
-    setUserId(localStorage.get("userId"));
+    setUserId(localStorage.getItem("userId"));
     }, []);
 
  

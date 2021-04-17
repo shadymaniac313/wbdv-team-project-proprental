@@ -40,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
 export default function PropertyPage() {
  
     const [activeIndex, setActiveIndex] = useState(0);
+    const [userId, setUserId] = useState();
     const [items, setItems] = useState([])
     const paramObject = useParams()
     const propertyType = paramObject.type;
@@ -117,7 +118,7 @@ export default function PropertyPage() {
 
 
     useEffect(() => {
-        setUserId(localStorage.get("userId"));
+        setUserId(localStorage.getItem("userId"));
       }, []);
 
   const next = () => {
