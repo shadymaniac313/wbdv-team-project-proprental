@@ -46,14 +46,9 @@ export default function SignIn() {
     console.log(response);
     if (response !== 0) {
       localStorage.setItem("token", "valid");
-      localStorage.setItem("userid", response);
+      localStorage.setItem("userId", response);
       history.replace("/");
-
       alert("Success");
-      // <Alert severity="success">
-      //   <AlertTitle>Success</AlertTitle>
-      //   This is a success alert — <strong>check it out!</strong>
-      // </Alert>;
     } else {
       alert("Failed");
     }

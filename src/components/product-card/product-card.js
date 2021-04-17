@@ -1,58 +1,60 @@
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import './product-card.css';
+import React, { useEffect } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Card from "@material-ui/core/Card";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
+import "./product-card.css";
 import { Link, useHistory } from "react-router-dom";
+import { useState } from "react";
 
 const useStyles = makeStyles((theme) => ({
-    mcard: {
-        width:'100%',
-        margin: '6px',
-    },
-    paper: {
-        marginTop: theme.spacing(8),
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        // width:"100%"
-    },
-    avatar: {
-        margin: theme.spacing(1),
-        backgroundColor: theme.palette.secondary.main,
-    },
-    form: {
-        width: '100%', // Fix IE 11 issue.
-        marginTop: theme.spacing(3),
-    },
-    submit: {
-        margin: theme.spacing(3, 0, 2),
-    },
-    image: {
-        width: '100%',
-        height: '100%',
-      },
-    img: {
-        margin: 'auto',
-        display: 'block',
-        maxWidth: '100%',
-        maxHeight: '100%',
-        borderRadius: '5px',
-      },
-      cardcontainer: {
-        margin:'10px',
-        padding:'10px',
-        backgroundColor: 'lightblue !important', 
-      },
-    cardcontainerfav: {
-        margin:'10px',
-        padding:'10px',
-        backgroundColor: 'lightgreen !important',
-    }
-    
+  mcard: {
+    width: "100%",
+    margin: "6px",
+  },
+  paper: {
+    marginTop: theme.spacing(8),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    // width:"100%"
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: "100%", // Fix IE 11 issue.
+    marginTop: theme.spacing(3),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+  image: {
+    width: "100%",
+    height: "100%",
+  },
+  img: {
+    margin: "auto",
+    display: "block",
+    maxWidth: "100%",
+    maxHeight: "100%",
+    borderRadius: "5px",
+  },
+  cardcontainer: {
+    margin: "10px",
+    padding: "10px",
+    backgroundColor: "lightblue !important",
+  },
+  cardcontainerfav: {
+    margin: "10px",
+    padding: "10px",
+    backgroundColor: "lightgreen !important",
+  },
 }));
 
 export default function ProductCard({
+
         img,
         location,
         title,
@@ -94,9 +96,24 @@ export default function ProductCard({
     //   return fav.includes(ListingId)
     // }
 
-    const classes = useStyles();
-    const history = useHistory();
+  // function handleUnFavoriteClick(e,ListingId) {
+  //     const copyfav= [...fav]
+  //     if(!copyfav.includes(ListingId)){
+  //       return alert('You have not favorite it yet  ')
+  //     }
+  //   const getIndex = copyfav.indexOf(ListingId)
+  //   copyfav.splice(getIndex,1)
 
+
+  const classes = useStyles();
+  const history = useHistory();
+  const [userId, setUserId] = useState(0);
+
+  useEffect(() => {
+    setUserId(localStorage.get("userId"));
+    }, []);
+
+ 
     return (
         // <Card className={ isFavorite() ? classes.cardcontainerfav : classes.cardcontainer } >
         <Card className={ classes.cardcontainer } >
@@ -164,10 +181,9 @@ export default function ProductCard({
                     </Grid>
                 </Grid>
             </Grid>
-        </Card>
-        
-
-    );
+          </Grid>
+        </Grid>
+      </Grid>
+    </Card>
+  );
 }
-
-
