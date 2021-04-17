@@ -116,30 +116,38 @@ export default function PropertyPage() {
         }
     }, [paramObject]);
 
+    useEffect(() => {
+        fetch(`https://picsum.photos/v2/list?page=${Math.ceil((Math.random() * 100) % 10)}&limit=5`)
+            .then(response => response.json())
+            .then(images => setItems(images.map((image) => ({
+                src: image.download_url,
+                caption: image.author
+            }))))
+    }, [singleresults])
+
 
     useEffect(() => {
         setUserId(localStorage.getItem("userId"));
       }, []);
 
-  const next = () => {
-    const nextIndex = activeIndex === items.length - 1 ? 0 : activeIndex + 1;
-    setActiveIndex(nextIndex);
-  };
+    const next = () => {
+        const nextIndex = activeIndex === items.length - 1 ? 0 : activeIndex + 1;
+        setActiveIndex(nextIndex);
+    };
 
-  const previous = () => {
-    const nextIndex = activeIndex === 0 ? items.length - 1 : activeIndex - 1;
-    setActiveIndex(nextIndex);
-  };
+    const previous = () => {
+        const nextIndex = activeIndex === 0 ? items.length - 1 : activeIndex - 1;
+        setActiveIndex(nextIndex);
+    };
 
-  const slides = items.map((item) => {
-    return (
-      <CarouselItem key={item.src}>
-        <img src={item.src} style={{ width: "100%", height: "50vh" }} />
-        <CarouselCaption captionHeader={item.caption} />
-      </CarouselItem>
-    );
-  });
-
+    const slides = items.map((item) => {
+        return (
+        <CarouselItem key={item.src}>
+            <img src={item.src} style={{ width: "100%", height: "50vh" }} />
+            <CarouselCaption captionHeader={item.caption} />
+        </CarouselItem>
+        );
+    });
 
     const classes = useStyles();
   
