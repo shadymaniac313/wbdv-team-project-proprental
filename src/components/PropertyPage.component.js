@@ -161,7 +161,7 @@ export default function PropertyPage() {
         if (userId) {
           favService.getFavListing(userId).then((fav) => {
             setFav(fav);
-            console.log(fav, "Fav Results");
+           
           });
         }
       }, [userId]);
@@ -169,13 +169,13 @@ export default function PropertyPage() {
 
     function handleFavoriteClick(e, ListingId) {
         favService.postFavListing(userId, ListingId).then((res) => {
-          console.log(res, "FAV");
+            window.location.reload();
         });
       }
     
       function handleUnFavoriteClick(e, ListingId) {
         favService.postUnFavListing(userId, ListingId).then((res) => {
-          console.log(res, "FAV");
+            window.location.reload();
         });
       }
 
