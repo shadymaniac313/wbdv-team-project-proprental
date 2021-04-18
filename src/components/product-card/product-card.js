@@ -120,7 +120,7 @@ export default function ProductCard({
                   </Link>
                 </Typography>
               </div>
-               {userId != null
+               {userId != null && type=='local'
                 ? 
                 (
                 <div style={{float:"right",marginBottom:"-35px"} }>

@@ -306,35 +306,7 @@ export default function PropertyPage() {
                                 <CarouselControl direction="next" directionText="Next" onClickHandler={next}/>
                             </Carousel>
                         </Grid>
-                        <Grid item xs={12}>
-                            
-                        {userId != null
-                            ? 
-                            (
-                            <div style={{float:"right",marginBottom:"-35px"} }>
-                            <Button 
-                            startIcon={<FavoriteIcon />}
-                            variant="contained"
-                                color="secondary"
-                                onClick={(e) => handleFavoriteClick(e, singleresults.bundle.id)}>
-                                Favorite
-                            </Button>
-
-                            <Button 
-                                startIcon={<FavoriteIcon />}
-                                variant="contained"
-                                color="secondary"
-                                onClick={(e) => handleUnFavoriteClick(e, singleresults.bundle.id)}>
-                                Unfavorite
-                            </Button>
-                            </div>
-                            ) 
-                            : 
-                            (
-                            <br />
-                            )}
-                          </Grid>
-                        <Grid item xs={12} md={6} style={{display: "flex", alignItems: "center"}}>
+                         <Grid item xs={12} md={6} style={{display: "flex", alignItems: "center"}}>
                             <Typography variant="h6" gutterBottom>
                                 Address One:&nbsp;
                             </Typography>
