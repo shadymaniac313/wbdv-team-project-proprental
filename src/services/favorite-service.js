@@ -41,7 +41,7 @@ export const postUnFavListing = async (userId, listingId) => {
 };
 
 export const checkIfFav = async(userId,listingId) => {
-  return fetch(`${LOCAL_HOST}listings/user/${userId}/listing/${listingId.ListingId}`).then((response) =>
+  return fetch(`${LOCAL_HOST}listings/user/${userId}/listing/${listingId}`).then((response) =>
     response.json()
   );
 }

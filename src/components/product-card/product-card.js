@@ -98,7 +98,7 @@ export default function ProductCard({
   }
 
   function isFavorite(flistId){
-    favService.checkIfFav(userId,flistId).then((res) =>{
+    favService.checkIfFav(userId,flistId.ListingId).then((res) =>{
        setIsFav(res);
     })
    if(isFav==true){
@@ -133,13 +133,6 @@ export default function ProductCard({
                 ? 
                 (
                 <div style={{float:"right",marginBottom:"-35px"} }>  
-                    {/* <Button 
-                        startIcon={<FavoriteIcon />}
-                        variant="contained"
-                        color="secondary"
-                        onClick={(e) => handleFavoriteClick(e, ListingId)}>
-                        Favorite
-                    </Button> */}
                    
                    {
                      isFavorite({ListingId})

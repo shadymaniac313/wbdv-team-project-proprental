@@ -46,6 +46,7 @@ export default function PropertyPage() {
     const [userId, setUserId] = useState();
     const [items, setItems] = useState([])
     const [fav, setFav] = useState();
+    const[isFav, setIsFav] = useState();
     const paramObject = useParams()
     const propertyType = paramObject.type;
     
@@ -178,6 +179,18 @@ export default function PropertyPage() {
         });
       }
 
+      function isFavorite(flistId){
+        favService.checkIfFav(userId,flistId).then((res) =>{
+           setIsFav(res);
+        })
+       if(isFav==true){
+         return true;
+       }
+       return false;
+        
+      }
+    
+
     return (
         <div>
             <Container component="main">
@@ -210,21 +223,30 @@ export default function PropertyPage() {
                             ? 
                             (
                             <div style={{float:"right",marginBottom:"-35px"} }>
-                            <Button 
-                            startIcon={<FavoriteIcon />}
-                            variant="contained"
-                                color="secondary"
-                                onClick={(e) => handleFavoriteClick(e, localResults.id)}>
-                                Favorite
-                            </Button>
-
-                            <Button 
-                                startIcon={<FavoriteIcon />}
-                                variant="contained"
-                                color="secondary"
-                                onClick={(e) => handleUnFavoriteClick(e, localResults.id)}>
-                                Unfavorite
-                            </Button>
+                                    {
+                                        isFavorite(localResults.id)
+                                        ?
+                                        <div>
+                                            <Button 
+                                                startIcon={<FavoriteIcon />}
+                                                variant="contained"
+                                                color="secondary"
+                                                onClick={(e) => handleUnFavoriteClick(e, localResults.id)}>
+                                                Unfavorite
+                                            </Button>
+                                        </div>
+                                        :
+                                        <div>
+                                            <Button 
+                                            startIcon={<FavoriteIcon />}
+                                            variant="contained"
+                                            color="secondary"
+                                            onClick={(e) => handleFavoriteClick(e, localResults.id)}>
+                                            Favorite
+                                        </Button>
+                                        </div>
+                                    }
+                  
                             </div>
                             ) 
                             : 
