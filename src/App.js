@@ -25,6 +25,7 @@ function App() {
         <Route path="/Login" component={SignIn} />
         <Route path="/SignUp" component={SignUp} />
         <Route path="/privacypolicy" component={PrivacyPolicy} />
+        
          
         {/* Admin route begins here */}
         <Route path="/AdminSignIn" component={AdminSignIn} />
