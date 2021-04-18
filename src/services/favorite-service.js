@@ -26,8 +26,8 @@ export const postFavListing = async (userId, listingId) => {
 
 export const postUnFavListing = async (userId, listingId) => {
   const newListing = {
-    userId: userId,
-    listingId: listingId,
+    userId: parseInt(userId),
+    listingId: parseInt(listingId),
   };
 
   const response = await fetch(`${LOCAL_HOST}users/unlike`, {

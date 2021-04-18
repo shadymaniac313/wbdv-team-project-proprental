@@ -89,7 +89,11 @@ export default function ProductCard({
     });
   }
 
-  function handleUnFavoriteClick(e, ListingId) {}
+  function handleUnFavoriteClick(e, ListingId) {
+    favService.postUnFavListing(userId, ListingId).then((res) => {
+      console.log(res, "FAV");
+    });
+  }
 
   return (
     // <Card className={ isFavorite() ? classes.cardcontainerfav : classes.cardcontainer } >

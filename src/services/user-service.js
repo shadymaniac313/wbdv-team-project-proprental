@@ -32,22 +32,22 @@ export const signUpService = async (
 };
 
 const fetchListingsFromUserid = async (id) => {
-  return fetch(`${LOCAL_HOST}listings/user/${id}/`).then((response) =>
-    response.json()
-  );
-};
+  return fetch(`${LOCAL_HOST}listings/user/${id}/`)
+      .then((response) => response.json());
+}
 
 const fetchPropertiesFromListingId = async (id) => {
-  return fetch(`${LOCAL_HOST}properties/listing/${id}/`).then((response) =>
-    response.json()
-  );
-};
+  return fetch(`${LOCAL_HOST}properties/listing/${id}/`)
+      .then((response) => response.json());
+}
+
 
 const userService = {
   signInService,
   signUpService,
   fetchListingsFromUserid,
-  fetchPropertiesFromListingId,
+  fetchPropertiesFromListingId
 };
+
 
 export default userService;
