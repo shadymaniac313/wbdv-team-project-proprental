@@ -22,10 +22,12 @@ function App() {
         
         {/* User & Basic Routes here */}
         <Route path="/" component={Home} exact={true} />
+        <Route path="/home" component={Home} exact={true} />
         <Route path={"/profile"} component={ProfileComponent} />
         <Route path="/Login" component={SignIn} />
         <Route path="/SignUp" component={SignUp} />
         <Route path="/privacypolicy" component={PrivacyPolicy} />
+        
          
         {/* Admin route begins here */}
         <Route path="/AdminSignIn" component={AdminSignIn} />
