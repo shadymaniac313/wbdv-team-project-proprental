@@ -9,6 +9,9 @@ import ProductCard from "../product-card/product-card";
 import { Redirect } from "react-router";
 import { useHistory } from "react-router";
 import SearchAppBar from "../search-bar.component";
+import favService from "../../services/favorite-service";
+import FavoriteIcon from '@material-ui/icons/Favorite';
+
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -181,8 +184,10 @@ export default class ProfileComponent extends React.Component {
                     PropertyType={property[0]["propertySource"]}
                     img="https://picsum.photos/200"
                     ListingId={property[0]["propertyDetails"]["propertyId"]}
-                    local={true}
+                    type="local"
+                    
                   />
+                  
                 );
               })}
             </p>
