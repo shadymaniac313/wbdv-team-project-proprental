@@ -12,7 +12,6 @@ import ProductVisibility from "./components/product-visibility";
 import ProfileComponent from "./components/profile/profile-component";
 import PropertyPage from "./components/PropertyPage.component"
 import PrivacyPolicy from "./components/PrivacyPolicy"
-import LocalPropertyPage from "./components/LocalPropertyPage.component";
 
 function App() {
 
@@ -22,8 +21,7 @@ function App() {
         
         {/* User & Basic Routes here */}
         <Route path="/" component={Home} exact={true} />
-        <Route path="/home" component={Home} exact={true} />
-        <Route path={"/profile"} component={ProfileComponent} />
+        <Route path={"/profile/:userId"} component={ProfileComponent} />
         <Route path="/Login" component={SignIn} />
         <Route path="/SignUp" component={SignUp} />
         <Route path="/privacypolicy" component={PrivacyPolicy} />
