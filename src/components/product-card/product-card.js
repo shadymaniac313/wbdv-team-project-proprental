@@ -86,11 +86,13 @@ export default function ProductCard({
 
   function handleFavoriteClick(e, ListingId) {
     favService.postFavListing(userId, ListingId).then((res) => {
+      window.location.reload();
     });
   }
 
   function handleUnFavoriteClick(e, ListingId) {
     favService.postUnFavListing(userId, ListingId).then((res) => {
+      window.location.reload();
     });
   }
 
