@@ -51,9 +51,9 @@ export default class ProfileComponent extends React.Component {
     }
 
     componentDidMount() {
-        if(localStorage.getItem("userid") !==null){
-            console.log("user logged in is")
-            console.log(localStorage.getItem("userid") )
+        console.log("user logged in is")
+        console.log(localStorage.getItem("userId") )
+        if(localStorage.getItem("userId") !==null){
             let mlist =[]
             userService.fetchListingsFromUserid(2).then(response => {
                this.setState({listingsforid :  response});
@@ -71,7 +71,7 @@ export default class ProfileComponent extends React.Component {
            })
         }
         else{
-                alert("Please logged in to continue")
+                alert("Please LogIn to continue")
             this.props.history.push("/");
         }
     }
@@ -120,7 +120,7 @@ export default class ProfileComponent extends React.Component {
 
 
         return (
-            localStorage.getItem("userid") !==null && <div className={"container"}>
+            localStorage.getItem("userId") !==null && <div className={"container"}>
                 <h1>Profile</h1>
                 <div style={{height: '100%'}}>
                     {
