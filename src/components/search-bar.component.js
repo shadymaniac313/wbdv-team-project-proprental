@@ -4,7 +4,6 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 
 import { alpha, makeStyles } from "@material-ui/core/styles";
-import SearchIcon from "@material-ui/icons/Search";
 
 import { Link, useHistory } from "react-router-dom";
 import Button from "@material-ui/core/Button";
@@ -69,13 +68,14 @@ export default function SearchAppBar() {
   const [cityName, setCityName] = useState("");
   const history = useHistory();
   const [isSignedIn, setIsSignedIn] = useState(false);
-
+  const [userId, setUserId] = useState(0);
   useEffect(() => {
     if (localStorage.getItem("token") === "valid") {
       setIsSignedIn(true);
     } else {
       setIsSignedIn(false);
     }
+    setUserId(localStorage.getItem("userId"));
   }, []);
 
   return (
@@ -95,8 +95,8 @@ export default function SearchAppBar() {
                   Sign Up
                 </Button>
               </Link>
+              &nbsp;&nbsp;
               <Link to="/Login">
-
                 <Button variant="contained" color="primary">
                   Sign In
                 </Button>
@@ -105,6 +105,16 @@ export default function SearchAppBar() {
           )}
           {isSignedIn && (
             <>
+              <Button
+                onClick={() => {
+                  history.push(`/profile/${userId}`);
+                }}
+                variant="contained"
+                color="primary"
+              >
+                Profile
+              </Button>
+              &nbsp;&nbsp;
               <Link to="/">
                 <Button
                   onClick={() => {
