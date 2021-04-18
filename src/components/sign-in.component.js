@@ -43,11 +43,10 @@ export default function SignIn() {
 
   const handleSignIn = async () => {
     const response = await userService.signInService(email, password);
-    console.log(response);
     if (response !== 0) {
       localStorage.setItem("token", "valid");
       localStorage.setItem("userId", response);
-      history.replace("/");
+      history.replace("/profile");
       alert("Success");
     } else {
       alert("Failed");
