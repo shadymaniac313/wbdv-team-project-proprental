@@ -40,12 +40,18 @@ export const postUnFavListing = async (userId, listingId) => {
   return response.ok;
 };
 
+export const checkIfFav = async(userId,listingId) => {
+  return fetch(`${LOCAL_HOST}listings/user/${userId}/listing/${listingId.ListingId}`).then((response) =>
+    response.json()
+  );
+}
 
 
 const favService = {
   getFavListing,
   postFavListing,
   postUnFavListing,
+  checkIfFav
 };
 
 export default favService;

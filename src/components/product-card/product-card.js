@@ -71,6 +71,7 @@ export default function ProductCard({
   const history = useHistory();
   const [userId, setUserId] = useState(0);
   const [fav, setFav] = useState();
+  const[isFav, setIsFav] = useState();
 
   useEffect(() => {
     if (userId) {
@@ -96,14 +97,20 @@ export default function ProductCard({
     });
   }
 
-  console.log(fav,'FAV LIST')
   function isFavorite(flistId){
+    favService.checkIfFav(userId,flistId).then((res) =>{
+       setIsFav(res);
+    })
+   if(isFav==true){
+     return true;
+   }
+   return false;
     
   }
 
   return (
-   <Card className={ isFavorite({ListingId}) ? classes.cardcontainerfav : classes.cardcontainer } >
-   {/* <Card className={classes.cardcontainer}> */}
+   <Card className={  classes.cardcontainer } >
+ 
       <Grid container spacing={3}>
         <Grid item lg={4} md={6} xs={12} sm={6}>
           <img className={classes.img} alt="could not load image" src={img} />
@@ -125,22 +132,40 @@ export default function ProductCard({
                {userId != null && type=='local'
                 ? 
                 (
-                <div style={{float:"right",marginBottom:"-35px"} }>
-                  <Button 
-                   startIcon={<FavoriteIcon />}
-                   variant="contained"
-                    color="secondary"
-                    onClick={(e) => handleFavoriteClick(e, ListingId)}>
-                    Favorite
-                  </Button>
-
-                  <Button 
-                    startIcon={<FavoriteIcon />}
-                    variant="contained"
-                    color="secondary"
-                    onClick={(e) => handleUnFavoriteClick(e, ListingId)}>
-                    Unfavorite
-                  </Button>
+                <div style={{float:"right",marginBottom:"-35px"} }>  
+                    {/* <Button 
+                        startIcon={<FavoriteIcon />}
+                        variant="contained"
+                        color="secondary"
+                        onClick={(e) => handleFavoriteClick(e, ListingId)}>
+                        Favorite
+                    </Button> */}
+                   
+                   {
+                     isFavorite({ListingId})
+                     ?
+                     <div>
+                        <Button 
+                            startIcon={<FavoriteIcon />}
+                            variant="contained"
+                            color="secondary"
+                            onClick={(e) => handleUnFavoriteClick(e, ListingId)}>
+                            Unfavorite
+                        </Button>
+                    </div>
+                     :
+                     <div>
+                         <Button 
+                        startIcon={<FavoriteIcon />}
+                        variant="contained"
+                        color="secondary"
+                        onClick={(e) => handleFavoriteClick(e, ListingId)}>
+                        Favorite
+                       </Button>
+                    </div>
+                   }
+                  
+                
                 </div>
                 ) 
                 : 

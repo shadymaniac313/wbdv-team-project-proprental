@@ -53,8 +53,7 @@ export default class ProfileComponent extends React.Component {
   }
 
   componentDidMount() {
-    console.log("user logged in is");
-    console.log(localStorage.getItem("userId"));
+
     if (localStorage.getItem("userId") !== null) {
       let mlist = [];
       userService
@@ -115,11 +114,7 @@ export default class ProfileComponent extends React.Component {
 
   render() {
     this.parseProfileToDataRows(this.state.profileData);
-    // const listings= this.state.us["listings"].map((item) => {
-    //     <p>{item}</p>
-    // })
 
-    // console.log({listings})
 
     return (
       localStorage.getItem("userId") !== null && (
@@ -152,25 +147,13 @@ export default class ProfileComponent extends React.Component {
               Edit
             </Button>
           )}
-          {/*{*/}
-          {/*    this.state.editing &&*/}
-          {/*    <Button*/}
-          {/*        onClick={this.handleSave}*/}
-          {/*        fullWidth*/}
-          {/*        variant="contained"*/}
-          {/*        color="primary"*/}
-          {/*    >Save</Button>*/}
-          {/*}*/}
+
 
           <h1>
-            {/*<p>{localStorage.getItem("userid")}</p>*/}
-            {/*<p>{JSON.stringify(this.state.us["listings"])}</p>*/}
+ 
             <p>
-              {console.log(JSON.stringify(this.state.us))}
-              {Array.from(this.state.us).map((property) => {
-                console.log("listing id in profile component is");
-                console.log(property[0]["propertyDetails"]);
 
+              {Array.from(this.state.us).map((property) => {
                 return (
                   <ProductCard
                     title={property[0]["propertyDetails"]["city"]}
