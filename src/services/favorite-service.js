@@ -8,8 +8,8 @@ export const getFavListing = async (userId) => {
 
 export const postFavListing = async (userId, listingId) => {
   const newListing = {
-    userId: userId,
-    listingId: listingId,
+    userId: parseInt(userId),
+    listingId: parseInt(listingId),
   };
 
   console.log(newListing, "NEW LISTING");
