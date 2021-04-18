@@ -8,6 +8,7 @@ import Container from "@material-ui/core/Container";
 import SearchAppBar from "./search-bar.component";
 import FooterComponent from "./footer.component";
 import searchService from "../services/search-service";
+import favService from "../services/favorite-service";
 import {
   Carousel,
   CarouselCaption,
@@ -15,6 +16,8 @@ import {
   CarouselItem,
 } from "reactstrap";
 import localSearchService from "../services/local-search-service";
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import Button from "@material-ui/core/Button";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -42,6 +45,7 @@ export default function PropertyPage() {
     const [activeIndex, setActiveIndex] = useState(0);
     const [userId, setUserId] = useState();
     const [items, setItems] = useState([])
+    const [fav, setFav] = useState();
     const paramObject = useParams()
     const propertyType = paramObject.type;
     
@@ -152,17 +156,27 @@ export default function PropertyPage() {
 
     const classes = useStyles();
   
-    function handleFavoriteClick(e,ListingId) {
-        console.log(ListingId,'Listing ID')
-    }
+    useEffect(() => {
+        if (userId) {
+          favService.getFavListing(userId).then((fav) => {
+            setFav(fav);
+            console.log(fav, "Fav Results");
+          });
+        }
+      }, [userId]);
+
+
+    function handleFavoriteClick(e, ListingId) {
+        favService.postFavListing(userId, ListingId).then((res) => {
+          console.log(res, "FAV");
+        });
+      }
     
-    function handleUnFavoriteClick(e,ListingId) {
-     
-    }
-    
-    function isFavorite () {
-      
-    }
+      function handleUnFavoriteClick(e, ListingId) {
+        favService.postUnFavListing(userId, ListingId).then((res) => {
+          console.log(res, "FAV");
+        });
+      }
 
     return (
         <div>
@@ -192,18 +206,31 @@ export default function PropertyPage() {
                         </Grid>
                         <Grid item xs={12}>
                             
-                          {
-                              (userId!=null)
-                              ?
-                              <div>
-                                 <button onClick={(e)=>handleFavoriteClick(e,localResults.id)}>Favorite</button>
-                              
-                                 <button onClick={(e)=>handleUnFavoriteClick(e,localResults.id)}>Unfavorite</button>
-                              </div>
-                              
-                              :
-                              <br />  
-                            }
+                        {userId != null
+                            ? 
+                            (
+                            <div style={{float:"right",marginBottom:"-35px"} }>
+                            <Button 
+                            startIcon={<FavoriteIcon />}
+                            variant="contained"
+                                color="secondary"
+                                onClick={(e) => handleFavoriteClick(e, localResults.id)}>
+                                Favorite
+                            </Button>
+
+                            <Button 
+                                startIcon={<FavoriteIcon />}
+                                variant="contained"
+                                color="secondary"
+                                onClick={(e) => handleUnFavoriteClick(e, localResults.id)}>
+                                Unfavorite
+                            </Button>
+                            </div>
+                            ) 
+                            : 
+                            (
+                            <br />
+                            )}
                         </Grid>
                         <Grid item xs={12} md={4} style={{display: "flex", alignItems: "center"}}>
                             <Typography variant="h6" gutterBottom>
@@ -281,18 +308,31 @@ export default function PropertyPage() {
                         </Grid>
                         <Grid item xs={12}>
                             
-                            {
-                                (userId!=null)
-                                ?
-                                <div>
-                                   <button onClick={(e)=>handleFavoriteClick(e,singleresults.bundle.parcelID)}>Favorite</button>
-                                
-                                   <button onClick={(e)=>handleUnFavoriteClick(e,singleresults.bundle.parcelID)}>Unfavorite</button>
-                                </div>
-                                
-                                :
-                                <br />  
-                              }
+                        {userId != null
+                            ? 
+                            (
+                            <div style={{float:"right",marginBottom:"-35px"} }>
+                            <Button 
+                            startIcon={<FavoriteIcon />}
+                            variant="contained"
+                                color="secondary"
+                                onClick={(e) => handleFavoriteClick(e, singleresults.bundle.id)}>
+                                Favorite
+                            </Button>
+
+                            <Button 
+                                startIcon={<FavoriteIcon />}
+                                variant="contained"
+                                color="secondary"
+                                onClick={(e) => handleUnFavoriteClick(e, singleresults.bundle.id)}>
+                                Unfavorite
+                            </Button>
+                            </div>
+                            ) 
+                            : 
+                            (
+                            <br />
+                            )}
                           </Grid>
                         <Grid item xs={12} md={6} style={{display: "flex", alignItems: "center"}}>
                             <Typography variant="h6" gutterBottom>

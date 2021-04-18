@@ -119,7 +119,9 @@ export default function ProductCard({
                   </Link>
                 </Typography>
               </div>
-               {userId != null ? (
+               {userId != null
+                ? 
+                (
                 <div style={{float:"right",marginBottom:"-35px"} }>
                   <Button 
                    startIcon={<FavoriteIcon />}
@@ -137,9 +139,11 @@ export default function ProductCard({
                     Unfavorite
                   </Button>
                 </div>
-              ) : (
-                <br />
-              )}
+                ) 
+                : 
+                (
+                   <br />
+                )}
               
             </Grid>
             <Grid item xs>
