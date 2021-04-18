@@ -1,7 +1,7 @@
 const LOCAL_HOST = "http://localhost:8080/api/";
 
 export const getFavListing = async (userId) => {
-  return fetch(`${LOCAL_HOST}listing/user/${userId}`).then((response) =>
+  return fetch(`${LOCAL_HOST}listings/user/${userId}`).then((response) =>
     response.json()
   );
 };
@@ -12,6 +12,7 @@ export const postFavListing = async (userId, listingId) => {
     listingId: listingId,
   };
 
+  console.log(newListing, "NEW LISTING");
   const response = await fetch(`${LOCAL_HOST}users/like`, {
     method: "POST",
     body: JSON.stringify(newListing),
@@ -19,6 +20,7 @@ export const postFavListing = async (userId, listingId) => {
       "content-type": "application/json",
     },
   });
+  
   return response.ok;
 };
 
@@ -37,3 +39,11 @@ export const postUnFavListing = async (userId, listingId) => {
   });
   return response.ok;
 };
+
+const favService = {
+  getFavListing,
+  postFavListing,
+  postUnFavListing,
+};
+
+export default favService;
