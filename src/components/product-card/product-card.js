@@ -6,6 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import "./product-card.css";
 import { Link, useHistory } from "react-router-dom";
 import { useState } from "react";
+import userService from "../../services/user-service"
 
 const useStyles = makeStyles((theme) => ({
   mcard: {
@@ -54,39 +55,46 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ProductCard({
-        img,
-        location,
-        title,
-        price,
-        bedroom,
-        bathroom,
-        PropertyType,
-        ListingId,
-        type
-})  
-{
+          img,
+          location,
+          title,
+          price,
+          bedroom,
+          bathroom,
+          PropertyType,
+          ListingId,
+          type
+  })  
+  {
+    const classes = useStyles();
+    const history = useHistory();
+    const [userId, setUserId] = useState(0);
+    const [fav,setFav] = useState();
 
-    function handleFavoriteClick(e,ListingId) {
-       
-    }
-    
-    function handleUnFavoriteClick(e,ListingId) {
-      
-    }
-    
-    function isFavorite () {
-       
-    }
-
-  const classes = useStyles();
-  const history = useHistory();
-  const [userId, setUserId] = useState(0);
-
-  
+    useEffect(() =>{
+      if (userId) {
+          userService.fetchFavouritePropertyByUserId(userId).then((fav) => {
+              setFav(fav); 
+              console.log(fav, 'Fav Results')
+          });
+      }
+    }, [userId]);
 
     useEffect(() => {
       setUserId(localStorage.getItem("userId"));
     }, []);
+
+    function handleFavoriteClick(e,ListingId) {
+      const response =  userService.addFavourite(userId, ListingId);
+      console.log(response);
+    }
+
+    function handleUnFavoriteClick(e,ListingId) {
+     
+    }
+
+
+    
 
  
     return (
@@ -158,7 +166,7 @@ export default function ProductCard({
                               ?
                               <div>
                               <button onClick={(e)=>handleFavoriteClick(e,ListingId)}>Favorite</button>
-                              
+    
                               <button onClick={(e)=>handleUnFavoriteClick(e,ListingId)}>Unfavorite</button>
                               </div>
                               

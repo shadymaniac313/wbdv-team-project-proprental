@@ -43,9 +43,31 @@ const fetchPropertiesFromListingId = async (id) => {
 
 // Favourite services Here
 const fetchFavouritePropertyByUserId = async (id) => {
-  return fetch(`${LOCAL_HOST}users/like/${id}`)
+  return fetch(`${LOCAL_HOST}listings/user/${id}`)
     .then((response) => response.json())
 }
+
+
+
+export const addFavourite = async (
+  userId,
+  ListingId
+) => {
+  const newFav = {
+    userId: userId,
+    listingId: ListingId,
+  };
+
+  const response = await fetch(`${LOCAL_HOST}users/like`, {
+    method: "POST",
+    body: JSON.stringify(newFav),
+    headers: {
+      "content-type": "application/json",
+      
+    },
+  });
+  return response.ok;
+};
 
 
 
@@ -54,6 +76,9 @@ const userService = {
   signUpService,
   fetchListingsFromUserid,
   fetchPropertiesFromListingId,
-  fetchFavouritePropertyByUserId
+  fetchFavouritePropertyByUserId,
+  addFavourite
 };
+
+
 export default userService;
