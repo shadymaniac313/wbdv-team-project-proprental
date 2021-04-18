@@ -8,7 +8,6 @@ import { Link, useHistory } from "react-router-dom";
 import { useState } from "react";
 import favService from "../../services/favorite-service";
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import Icon from '@material-ui/core/Icon';
 import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
@@ -77,7 +76,6 @@ export default function ProductCard({
     if (userId) {
       favService.getFavListing(userId).then((fav) => {
         setFav(fav);
-        console.log(fav, "Fav Results");
       });
     }
   }, [userId]);
@@ -88,19 +86,22 @@ export default function ProductCard({
 
   function handleFavoriteClick(e, ListingId) {
     favService.postFavListing(userId, ListingId).then((res) => {
-      console.log(res, "FAV");
     });
   }
 
   function handleUnFavoriteClick(e, ListingId) {
     favService.postUnFavListing(userId, ListingId).then((res) => {
-      console.log(res, "FAV");
     });
   }
 
+  console.log(fav,'FAV LIST')
+  function isFavorite(flistId){
+    
+  }
+
   return (
-    // <Card className={ isFavorite() ? classes.cardcontainerfav : classes.cardcontainer } >
-    <Card className={classes.cardcontainer}>
+   <Card className={ isFavorite({ListingId}) ? classes.cardcontainerfav : classes.cardcontainer } >
+   {/* <Card className={classes.cardcontainer}> */}
       <Grid container spacing={3}>
         <Grid item lg={4} md={6} xs={12} sm={6}>
           <img className={classes.img} alt="could not load image" src={img} />
