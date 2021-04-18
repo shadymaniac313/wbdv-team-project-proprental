@@ -57,7 +57,6 @@ export default function ProductCard({
         img,
         location,
         title,
-        description,
         price,
         bedroom,
         bathroom,
@@ -83,6 +82,8 @@ export default function ProductCard({
   const history = useHistory();
   const [userId, setUserId] = useState(0);
 
+  
+
     useEffect(() => {
       setUserId(localStorage.getItem("userId"));
     }, []);
@@ -91,6 +92,7 @@ export default function ProductCard({
     return (
         // <Card className={ isFavorite() ? classes.cardcontainerfav : classes.cardcontainer } >
         <Card className={ classes.cardcontainer } >
+            
             <Grid container spacing={3}>
               <Grid item lg={4} md={6} xs={12} sm={6}>
                     <img 

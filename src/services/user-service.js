@@ -41,10 +41,19 @@ const fetchPropertiesFromListingId = async (id) => {
       .then((response) => response.json());
 }
 
+// Favourite services Here
+const fetchFavouritePropertyByUserId = async (id) => {
+  return fetch(`${LOCAL_HOST}users/like/${id}`)
+    .then((response) => response.json())
+}
+
+
+
 const userService = {
   signInService,
   signUpService,
   fetchListingsFromUserid,
-  fetchPropertiesFromListingId
+  fetchPropertiesFromListingId,
+  fetchFavouritePropertyByUserId
 };
 export default userService;
