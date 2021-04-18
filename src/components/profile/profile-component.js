@@ -10,8 +10,7 @@ import { Redirect } from "react-router";
 import { useHistory } from "react-router";
 import SearchAppBar from "../search-bar.component";
 import favService from "../../services/favorite-service";
-import FavoriteIcon from '@material-ui/icons/Favorite';
-
+import FavoriteIcon from "@material-ui/icons/Favorite";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -53,7 +52,6 @@ export default class ProfileComponent extends React.Component {
   }
 
   componentDidMount() {
-
     if (localStorage.getItem("userId") !== null) {
       let mlist = [];
       userService
@@ -115,15 +113,14 @@ export default class ProfileComponent extends React.Component {
   render() {
     this.parseProfileToDataRows(this.state.profileData);
 
-
     return (
       localStorage.getItem("userId") !== null && (
         <div className={"container"}>
-            <SearchAppBar />;
-            <br/>
-            <br/>
-            <br/>
-            <br/>
+          <SearchAppBar />;
+          <br />
+          <br />
+          <br />
+          <br />
           <h1>Profile</h1>
           <div style={{ height: "100%" }}>
             {!this.state.editing && (
@@ -147,12 +144,8 @@ export default class ProfileComponent extends React.Component {
               Edit
             </Button>
           )}
-
-
           <h1>
- 
             <p>
-
               {Array.from(this.state.us).map((property) => {
                 return (
                   <ProductCard
@@ -168,14 +161,11 @@ export default class ProfileComponent extends React.Component {
                     img="https://picsum.photos/200"
                     ListingId={property[0]["propertyDetails"]["propertyId"]}
                     type="local"
-                    
                   />
-                  
                 );
               })}
             </p>
           </h1>
-
           <Grid container spacing={1} direction="row">
             <Grid item md={7} xs={12}>
               {<div>{}</div>}
