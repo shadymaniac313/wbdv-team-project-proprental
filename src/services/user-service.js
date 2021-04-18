@@ -66,7 +66,8 @@ export const addFavourite = async (
       
     },
   });
-  return response.ok;
+  
+  return response;
 };
 
 
