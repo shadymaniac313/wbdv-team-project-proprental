@@ -6,6 +6,8 @@ import EditableProfileData from "./profile-data-editable";
 import userService from "../../services/user-service";
 import Grid from "@material-ui/core/Grid";
 import ProductCard from "../product-card/product-card";
+import {Redirect} from "react-router";
+import { useHistory  } from 'react-router'
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -49,26 +51,29 @@ export default class ProfileComponent extends React.Component {
     }
 
     componentDidMount() {
-//console.log(response);
-        // console.log(this.state.us)
-        let mlist =[]
-       userService.fetchListingsFromUserid(2).then(response => {
-           this.setState({listingsforid :  response});
-           console.log(response)
-           return
-       }).then(response => {
-           this.state.listingsforid.map((listings) =>    {
-               userService.fetchPropertiesFromListingId(listings.listingId).then(response => {
-                   mlist.push(response)
-                   this.setState({us:mlist})
+        if(localStorage.getItem("userid") !==null){
+            console.log("user logged in is")
+            console.log(localStorage.getItem("userid") )
+            let mlist =[]
+            userService.fetchListingsFromUserid(2).then(response => {
+               this.setState({listingsforid :  response});
+               console.log(response)
+               return
+           }).then(response => {
+               this.state.listingsforid.map((listings) =>    {
+                   userService.fetchPropertiesFromListingId(listings.listingId).then(response => {
+                       mlist.push(response)
+                       this.setState({us:mlist})
 
-                   return
+                       return
+                   })
                })
            })
-       })
-
-
-
+        }
+        else{
+                alert("Please logged in to continue")
+            this.props.history.push("/");
+        }
     }
 
     parseProfileToDataRows = (profile) => {
@@ -115,7 +120,7 @@ export default class ProfileComponent extends React.Component {
 
 
         return (
-            <div className={"container"}>
+            localStorage.getItem("userid") !==null && <div className={"container"}>
                 <h1>Profile</h1>
                 <div style={{height: '100%'}}>
                     {
