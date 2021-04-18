@@ -102,6 +102,7 @@ export default function Home() {
                 className={classes.searchBar}
                 color="secondary"
                 inputProps={{ "aria-label": "search" }}
+                
                 onChange={(event) => setCityName(event.target.value)}
               />
               <Button

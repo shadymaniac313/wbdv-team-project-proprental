@@ -7,6 +7,9 @@ import "./product-card.css";
 import { Link, useHistory } from "react-router-dom";
 import { useState } from "react";
 import favService from "../../services/favorite-service";
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import Icon from '@material-ui/core/Icon';
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
   mcard: {
@@ -116,10 +119,28 @@ export default function ProductCard({
                   </Link>
                 </Typography>
               </div>
+               {userId != null ? (
+                <div style={{float:"right",marginBottom:"-35px"} }>
+                  <Button 
+                   startIcon={<FavoriteIcon />}
+                   variant="contained"
+                    color="secondary"
+                    onClick={(e) => handleFavoriteClick(e, ListingId)}>
+                    Favorite
+                  </Button>
 
-              {/* <div style={{float:"right",marginBottom:"-35px"}}>
-                                <i className="btn shadow-sm p-2 mb-5 bg-white rounded far fa-heart"></i>
-                            </div> */}
+                  <Button 
+                    startIcon={<FavoriteIcon />}
+                    variant="contained"
+                    color="secondary"
+                    onClick={(e) => handleUnFavoriteClick(e, ListingId)}>
+                    Unfavorite
+                  </Button>
+                </div>
+              ) : (
+                <br />
+              )}
+              
             </Grid>
             <Grid item xs>
               <Typography variant="body1">Locality : {location}</Typography>
@@ -143,21 +164,6 @@ export default function ProductCard({
               <Grid item xs={6}>
                 <Typography variant="subtitle1">Price : $ {price}</Typography>
               </Grid>
-            </Grid>
-            <Grid item xs={12} sm container>
-              {userId != null ? (
-                <div>
-                  <button onClick={(e) => handleFavoriteClick(e, ListingId)}>
-                    Favorite
-                  </button>
-
-                  <button onClick={(e) => handleUnFavoriteClick(e, ListingId)}>
-                    Unfavorite
-                  </button>
-                </div>
-              ) : (
-                <br />
-              )}
             </Grid>
           </Grid>
         </Grid>
