@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Button from "@material-ui/core/Button";
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -11,13 +7,12 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import SearchAppBar from "./search-bar.component";
 import FooterComponent from "./footer.component";
-import searchService from "../services/search-service";
 import homepageService from "../services/homepage-service";
 import SearchIcon from "@material-ui/icons/Search";
 import InputBase from "@material-ui/core/InputBase";
 import { Link, useHistory } from "react-router-dom";
-import { red } from "@material-ui/core/colors";
 import background from "../resources/imgs/skyscrapers-sunset.jpg";
+import ProductCard from "./product-card/product-card";
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -67,6 +62,7 @@ export default function Home() {
   useEffect(() => {
     homepageService.fetchSix().then((results) => {
       setResults(results);
+      console.log(results,'RESULTS ')
     });
   }, []);
 
@@ -119,37 +115,32 @@ export default function Home() {
           </Container>
         </div>
 
-        <Container className={classes.cardGrid}>
+        <Container style={{maxWidth:"95vw"}}>
           {/* End hero unit */}
-          <Grid container spacing={4}>
+          <Grid container spacing={6}>
             {results.bundle.map((City, i) => {
               if (i < 6) {
                 return (
                   <Grid item key={City.ListingId} xs={12} sm={6} md={4}>
-                    <Card className={classes.card}>
-                      <CardMedia
-                        className={classes.cardMedia}
-                        image={City.Media[1]["MediaURL"]}
-                        title={City.BuildingName}
-                      />
-                      <CardContent className={classes.cardContent}>
-                        <Typography gutterBottom variant="h5" component="h2">
-                          {City.BuildingName}
-                        </Typography>
-                        <Typography>{City.PublicRemarks}</Typography>
-                      </CardContent>
-                      <CardActions>
-                        <Button size="small" color="primary">
-                          View
-                        </Button>
-                      </CardActions>
-                    </Card>
+                      <ProductCard
+                          title={City.BuildingName}
+                           location={City.City}
+                           bedroom={City.BedroomsTotal}
+                           bathroom={City.BathroomsFull}
+                           price={City.ListPrice}
+                          PropertyType={"Home"}
+                          img={City.Media[1]["MediaURL"]}
+                          ListingId={City.id}
+                          type={"zillow"}
+                        />
+                    
                   </Grid>
                 );
               }
             })}
           </Grid>
         </Container>
+        <br /><br /><br /><br /><br />
       </main>
       <FooterComponent />
     </div>
