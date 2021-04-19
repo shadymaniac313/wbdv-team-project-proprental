@@ -104,22 +104,25 @@ export default function ProductVisibility() {
                   <div>
 
                     {[localResults].map(
-                      (property, index) =>
+                      (property) =>
                         Object.keys(property).length !== 0 && (
                           <div>
+                            
                             {/* <h2>{JSON.stringify(property)}</h2> */}
                             <ProductCard
+                              
                               title={property[0]["propertyDetails"]["city"]}
                               location={property[0]["propertyDetails"]["city"]}
                               bedroom={property[0]["propertyDetails"]["bedCount"]}
                               bathroom={property[0]["propertyDetails"]["bathCount"]}
                               local={true}
                               description={property[0]["amenities"].map(
-                                (item, index) => (
+                                (item) => (
                                   <>{item.description}</>
+                                 
                                 )
                               )}
-                              price={0}
+                              price={100}
                               PropertyType={property[0]["propertySource"]}
                               img="https://picsum.photos/200"
                               ListingId={
@@ -134,13 +137,13 @@ export default function ProductVisibility() {
                 )}
 
                 {/* API Results */}
-                {results.bundle.map((City, index) => (
+                {results.bundle.map((City) => (
                   <ProductCard
                     title={City.address.full}
                     location={City.county}
                     bedroom={City.building[0].bedrooms}
                     bathroom={City.building[0].fullBaths}
-                    price={100}
+                    price={155}
                     PropertyType={City.landUseDescription}
                     img="https://picsum.photos/200"
                     ListingId={City.id}

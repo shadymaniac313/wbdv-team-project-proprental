@@ -45,7 +45,6 @@ export default function PropertyPage() {
     const [activeIndex, setActiveIndex] = useState(0);
     const [userId, setUserId] = useState();
     const [items, setItems] = useState([])
-    const [fav, setFav] = useState();
     const[isFav, setIsFav] = useState();
     const paramObject = useParams()
     const propertyType = paramObject.type;
@@ -157,14 +156,7 @@ export default function PropertyPage() {
 
     const classes = useStyles();
   
-    useEffect(() => {
-        if (userId) {
-          favService.getFavListing(userId).then((fav) => {
-            setFav(fav);
-           
-          });
-        }
-      }, [userId]);
+
 
 
     function handleFavoriteClick(e, ListingId) {
