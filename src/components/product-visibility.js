@@ -12,7 +12,6 @@ import searchService from "../services/search-service";
 import localSearchService from "../services/local-search-service";
 import { Link, useParams, useHistory } from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
-import { gridColumnsTotalWidthSelector } from "@material-ui/data-grid";
 import FooterComponent from "./footer.component";
 
 const useStyles = makeStyles((theme) => ({
@@ -107,10 +106,7 @@ export default function ProductVisibility() {
                       (property) =>
                         Object.keys(property).length !== 0 && (
                           <div>
-                            
-                            {/* <h2>{JSON.stringify(property)}</h2> */}
                             <ProductCard
-                              
                               title={property[0]["propertyDetails"]["city"]}
                               location={property[0]["propertyDetails"]["city"]}
                               bedroom={property[0]["propertyDetails"]["bedCount"]}
