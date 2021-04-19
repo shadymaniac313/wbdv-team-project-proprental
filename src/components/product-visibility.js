@@ -77,13 +77,10 @@ export default function ProductVisibility() {
   }, [city]);
 
   useEffect(() => {
-    if (city) {
       localSearchService.findParcelByState(city).then((response) => {
-        console.log(response,'response of local');
         setLocalResults(response);
       });
-    }
-  }, []);
+  });
 
   return (
     <div>

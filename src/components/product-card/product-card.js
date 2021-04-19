@@ -121,9 +121,7 @@ export default function ProductCard({
               <div className={"row ml-auto"} style={{ float: "left" }}>
                 <Typography gutterBottom variant="h6">
                   <Link
-                    onClick={() => {
-                      history.push(`/propertypage/${type}/${ListingId}/`);
-                    }}
+                    to = {`/propertypage/${type}/${ListingId}/`}
                   >
                     {title}
                   </Link>
