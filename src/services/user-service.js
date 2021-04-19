@@ -43,6 +43,12 @@ const fetchPropertiesFromListingId = async (id) => {
   );
 };
 
+const fetchUserByUserId = async (id) => {
+  return fetch(`${LOCAL_HOST}users/${id}/`).then((response) =>
+      response.json()
+  );
+}
+
 export const saveUserProfile = async (
   userId,
   firstName,
@@ -75,6 +81,7 @@ const userService = {
   signUpService,
   fetchListingsFromUserid,
   fetchPropertiesFromListingId,
+  fetchUserByUserId
 };
 
 export default userService;

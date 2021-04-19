@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import { useParams } from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
@@ -18,6 +18,7 @@ import {
 import localSearchService from "../services/local-search-service";
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import Button from "@material-ui/core/Button";
+import userService from "../services/user-service";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -101,7 +102,11 @@ export default function PropertyPage() {
             propertyId: '',
             state: '',
             zipcode: '',
-        }
+        },
+        agent:{
+            userId: '',
+            firstName: '',
+            lastName: ''}
     });
 
     useEffect(() => {
@@ -113,10 +118,30 @@ export default function PropertyPage() {
         }
         else  {
             console.log('local API invoked')
-            localSearchService.findParcelById(paramObject).then((localResults) => {
-                setLocalResults(localResults);
+            localSearchService.findParcelById(paramObject).then((lresults) => {
+                // setLocalResults({
+                //     ...localResults,
+                //     lresults
+                // })
+                localSearchService.findAgentId(paramObject).then(response => {
+                    console.log("fetching agent id");
+                    console.log(response.agentId)
+                    userService.fetchUserByUserId(response.agentId).then(r => {
+                        console.log(r)
+                        setLocalResults({
+                            ...lresults,
+                            agent: {
+                                userId: r.userId,
+                                firstName: r.firstName,
+                                lastName: r.lastName
+                            }
+                        })
+                        return r
+                    })
+                })
                 console.log(localResults, 'Local Results')
             });
+
             
         }
     }, [paramObject]);
@@ -294,7 +319,7 @@ export default function PropertyPage() {
                                 {localResults.propertyDetails.bathCount}
                             </Typography>
                         </Grid>
-                        <Grid item xs={12} md={12} style={{display: "flex", alignItems: "center"}}>
+                        <Grid item xs={12} md={4} style={{display: "flex", alignItems: "center"}}>
                             <Typography variant="h6" gutterBottom>
                                 Amenities:&nbsp;
                             </Typography>
@@ -302,6 +327,17 @@ export default function PropertyPage() {
                                 {localResults.amenities[0].description}
                             </Typography>
                         </Grid>
+                            <Grid item xs={12} md={4} style={{display: "flex", alignItems: "center"}}>
+                                <Typography variant="h6" gutterBottom>
+                                    Contact:&nbsp;
+                                </Typography>
+                                <Typography variant="body1" gutterBottom>
+                                    <Link to={`/profile/${localResults["agent"].userId}`}>
+                                    {localResults["agent"].firstName} <span></span>
+                                    {localResults["agent"].lastName}
+                                    </Link>
+                                </Typography>
+                            </Grid>
                         </Grid>
                         :
                         //
@@ -408,9 +444,6 @@ export default function PropertyPage() {
                     </Grid>
                 
                     }
-
-
-                    
                     
                 </div>
             </Container>
