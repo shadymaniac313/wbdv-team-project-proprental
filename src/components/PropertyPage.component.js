@@ -106,7 +106,9 @@ export default function PropertyPage() {
         agent:{
             userId: '',
             firstName: '',
-            lastName: ''}
+            lastName: ''
+        },
+        isfav:false,
     });
 
     useEffect(() => {
@@ -134,7 +136,8 @@ export default function PropertyPage() {
                                 userId: r.userId,
                                 firstName: r.firstName,
                                 lastName: r.lastName
-                            }
+                            },
+                            isfav: isFavorite(lresults.id)
                         })
                         return r
                     })
@@ -186,18 +189,26 @@ export default function PropertyPage() {
 
     function handleFavoriteClick(e, ListingId) {
         favService.postFavListing(userId, ListingId).then((res) => {
-            window.location.reload();
+            // window.location.reload();
+            setLocalResults({
+                ...localResults,
+                isfav:true
+            })
         });
       }
     
       function handleUnFavoriteClick(e, ListingId) {
         favService.postUnFavListing(userId, ListingId).then((res) => {
-            window.location.reload();
+            // window.location.reload();
+            setLocalResults({
+                ...localResults,
+                isfav:false
+            })
         });
       }
 
       function isFavorite(flistId){
-        favService.checkIfFav(userId,flistId).then((res) =>{
+        favService.checkIfFav(userId, flistId).then((res) =>{
            setIsFav(res);
         })
        if(isFav==true){
@@ -241,13 +252,13 @@ export default function PropertyPage() {
                             (
                             <div style={{float:"right",marginBottom:"-35px"} }>
                                     {
-                                        isFavorite(localResults.id)
+                                        localResults.isfav
                                         ?
                                         <div>
                                             <Button 
                                                 startIcon={<FavoriteIcon />}
                                                 variant="contained"
-                                                color="secondary"
+                                                background="red"
                                                 onClick={(e) => handleUnFavoriteClick(e, localResults.id)}>
                                                 Unfavorite
                                             </Button>
