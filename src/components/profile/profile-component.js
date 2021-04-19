@@ -144,8 +144,8 @@ export default class ProfileComponent extends React.Component {
               Edit
             </Button>
           )}
-          <h1>
-            <p>
+         
+            
               {Array.from(this.state.us).map((property) => {
                 return (
                   <ProductCard
@@ -164,8 +164,8 @@ export default class ProfileComponent extends React.Component {
                   />
                 );
               })}
-            </p>
-          </h1>
+            
+         
           <Grid container spacing={1} direction="row">
             <Grid item md={7} xs={12}>
               {<div>{}</div>}
