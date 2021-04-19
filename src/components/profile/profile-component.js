@@ -81,6 +81,7 @@ export default class ProfileComponent extends React.Component {
                     this.setProfileData({
                         "First Name": user.firstName,
                         "Last Name": user.lastName,
+                        "Phone": user.phone,
                         "Username": user.userAuth.username,
                         "Password": user.userAuth.pwd,
                     })
