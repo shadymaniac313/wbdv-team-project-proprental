@@ -51,11 +51,13 @@ export default class ProfileComponent extends React.Component {
     };
   }
 
+
+
   componentDidMount() {
     if (localStorage.getItem("userId") !== null) {
       let mlist = [];
       userService
-        .fetchListingsFromUserid(2)
+        .fetchListingsFromUserid(localStorage.getItem("userId"))
         .then((response) => {
           this.setState({ listingsforid: response });
           console.log(response);
@@ -110,8 +112,12 @@ export default class ProfileComponent extends React.Component {
     }));
   };
 
+
+
   render() {
     this.parseProfileToDataRows(this.state.profileData);
+
+    
 
     return (
       localStorage.getItem("userId") !== null && (
@@ -147,6 +153,7 @@ export default class ProfileComponent extends React.Component {
          
             
               {Array.from(this.state.us).map((property) => {
+                console.log(property[0],'Consoling')
                 return (
                   <ProductCard
                     title={property[0]["propertyDetails"]["city"]}
