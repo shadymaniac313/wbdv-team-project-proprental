@@ -161,8 +161,11 @@ export default class ProfileComponent extends React.Component {
                         </Button>
                     )}
 
-
-                    {Array.from(this.state.us).map((property) => {
+                    {/*{console.log(localStorage.getItem("userId") === this.props.match.params.userId)}*/}
+                    {
+                        localStorage.getItem("userId") === this.props.match.params.userId
+                        &&
+                        Array.from(this.state.us).map((property) => {
                         console.log(property[0], 'Consoling')
                         return (
                             <ProductCard
@@ -180,8 +183,8 @@ export default class ProfileComponent extends React.Component {
                                 type="local"
                             />
                         );
-                    })}
-
+                        })
+                    }
 
                     <Grid container spacing={1} direction="row">
                         <Grid item md={7} xs={12}>

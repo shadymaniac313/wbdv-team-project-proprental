@@ -1,3 +1,4 @@
+import userService from "./user-service";
 
 export const findParcelByState = (cityObject) => {
     return fetch(
@@ -11,8 +12,14 @@ export const findParcelById = (Object) => {
         .then((response) => response.json())
 }
 
+export const findAgentId = (Object) => {
+    return fetch(`http://localhost:8080/api/listings/${Object.ListingId}`)
+        .then((response) => response.json())
+}
+
 const localSearchService = {
     findParcelByState,
-    findParcelById
+    findParcelById,
+    findAgentId,
 };
 export default localSearchService;
