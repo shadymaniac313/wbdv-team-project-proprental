@@ -441,7 +441,7 @@ export default function PropertyPage() {
                         </Grid>
                         <Grid item xs={12} md={3} style={{display: "flex", alignItems: "center"}}>
                             <Typography variant="h6" gutterBottom>
-                                Previous List Price:&nbsp;
+                                {/* Previous List Price:&nbsp; */}
                             </Typography>
                             <Typography variant="body1" gutterBottom>
                                 {singleresults.bundle.PreviousListPrice}

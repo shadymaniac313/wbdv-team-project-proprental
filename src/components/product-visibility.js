@@ -104,7 +104,7 @@ export default function ProductVisibility() {
                   <div>
 
                     {[localResults].map(
-                      (property) =>
+                      (property, index) =>
                         Object.keys(property).length !== 0 && (
                           <div>
                             <ProductCard
@@ -119,7 +119,7 @@ export default function ProductVisibility() {
                                  
                                 )
                               )}
-                              price={69}
+                              price={prices[index]}
                               PropertyType={property[0]["propertySource"]}
                               img="https://picsum.photos/200"
                               ListingId={
