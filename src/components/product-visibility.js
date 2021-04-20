@@ -71,6 +71,7 @@ export default function ProductVisibility() {
           });
         }
         setPrices(priceArray);
+        console.log(priceArray,'Prices')
       });
     }
   }, [city]);
@@ -118,7 +119,7 @@ export default function ProductVisibility() {
                                  
                                 )
                               )}
-                              price={100}
+                              price={69}
                               PropertyType={property[0]["propertySource"]}
                               img="https://picsum.photos/200"
                               ListingId={
@@ -133,13 +134,13 @@ export default function ProductVisibility() {
                 )}
 
                 {/* API Results */}
-                {results.bundle.map((City) => (
+                {results.bundle.map((City,index) => (
                   <ProductCard
                     title={City.address.full}
                     location={City.county}
                     bedroom={City.building[0].bedrooms}
                     bathroom={City.building[0].fullBaths}
-                    price={155}
+                    price={prices[index]}
                     PropertyType={City.landUseDescription}
                     img="https://picsum.photos/200"
                     ListingId={City.id}
