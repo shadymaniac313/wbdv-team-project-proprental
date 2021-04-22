@@ -130,8 +130,8 @@ export default function Home() {
                            price={City.ListPrice}
                           PropertyType={"Home"}
                           img={City.Media[1]["MediaURL"]}
-                          ListingId={City.id}
-                          type={"zillow"}
+                          ListingId={City.ListingId}
+                          type={"trial"}
                         />
                     
                   </Grid>

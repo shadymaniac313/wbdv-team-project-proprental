@@ -9,6 +9,7 @@ import SearchAppBar from "./search-bar.component";
 import FooterComponent from "./footer.component";
 import searchService from "../services/search-service";
 import favService from "../services/favorite-service";
+import homepageService from "../services/homepage-service"
 import {
   Carousel,
   CarouselCaption,
@@ -111,12 +112,18 @@ export default function PropertyPage() {
         isfav:false,
     });
 
+    console.log(paramObject,'Param Object')
+
     useEffect(() => {
         if (paramObject.type=="zillow") {
+            console.log('zillow invoked')
             searchService.findParcelById(paramObject).then((singleresults) => {
                 setsingleresults(singleresults); 
                 console.log(singleresults, 'Zillow Results')
             });
+        }
+        else if(paramObject.type=="trial"){
+            console.log("trial invoked")
         }
         else  {
             console.log('local API invoked')
@@ -158,7 +165,6 @@ export default function PropertyPage() {
             }))))
     }, [singleresults])
 
-
     useEffect(() => {
         setUserId(localStorage.getItem("userId"));
       }, []);
@@ -184,9 +190,6 @@ export default function PropertyPage() {
 
     const classes = useStyles();
   
-
-
-
     function handleFavoriteClick(e, ListingId) {
         favService.postFavListing(userId, ListingId).then((res) => {
             // window.location.reload();
@@ -195,9 +198,9 @@ export default function PropertyPage() {
                 isfav:true
             })
         });
-      }
+    }
     
-      function handleUnFavoriteClick(e, ListingId) {
+    function handleUnFavoriteClick(e, ListingId) {
         favService.postUnFavListing(userId, ListingId).then((res) => {
             // window.location.reload();
             setLocalResults({
@@ -205,9 +208,9 @@ export default function PropertyPage() {
                 isfav:false
             })
         });
-      }
+    }
 
-      function isFavorite(flistId){
+    function isFavorite(flistId){
         favService.checkIfFav(userId, flistId).then((res) =>{
            setIsFav(res);
         })
@@ -216,7 +219,7 @@ export default function PropertyPage() {
        }
        return false;
         
-      }
+    }
     
 
     return (

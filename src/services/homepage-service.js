@@ -9,7 +9,12 @@ export const fetchSix = async () => {
     ).then((response) => response.json());
 }
 
+export const getPropertyByID = async (ListingID) => {
+
+}
+
 const homepageService = {
     fetchSix,
+    getPropertyByID
 };
 export default homepageService;
