@@ -7,7 +7,7 @@ import "./product-card.css";
 import { Link, useHistory } from "react-router-dom";
 import { useState } from "react";
 import favService from "../../services/favorite-service";
-import FavoriteIcon from '@material-ui/icons/Favorite';
+import FavoriteIcon from "@material-ui/icons/Favorite";
 import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
@@ -71,7 +71,7 @@ export default function ProductCard({
   const history = useHistory();
   const [userId, setUserId] = useState(0);
   const [fav, setFav] = useState();
-  const[isFav, setIsFav] = useState();
+  const [isFav, setIsFav] = useState();
 
   useEffect(() => {
     if (userId) {
@@ -97,20 +97,18 @@ export default function ProductCard({
     });
   }
 
-  function isFavorite(flistId){
-    favService.checkIfFav(userId,flistId.ListingId).then((res) =>{
-       setIsFav(res);
-    })
-   if(isFav==true){
-     return true;
-   }
-   return false;
-    
+  function isFavorite(flistId) {
+    favService.checkIfFav(userId, flistId.ListingId).then((res) => {
+      setIsFav(res);
+    });
+    if (isFav == true) {
+      return true;
+    }
+    return false;
   }
 
   return (
-   <Card className={  classes.cardcontainer } >
- 
+    <Card className={classes.cardcontainer}>
       <Grid container spacing={3}>
         <Grid item lg={4} md={6} xs={12} sm={6}>
           <img className={classes.img} alt="could not load image" src={img} />
@@ -120,50 +118,40 @@ export default function ProductCard({
             <Grid item xs>
               <div className={"row ml-auto"} style={{ float: "left" }}>
                 <Typography gutterBottom variant="h6">
-                  <Link
-                    to = {`/propertypage/${type}/${ListingId}/`}
-                  >
+                  <Link to={`/propertypage/${type}/${ListingId}/`}>
                     {title}
                   </Link>
                 </Typography>
               </div>
-               {userId != null && type=='local'
-                ? 
-                (
-                <div style={{float:"right",marginBottom:"-35px"} }>  
-                   
-                   {
-                     isFavorite({ListingId})
-                     ?
-                     <div>
-                        <Button 
-                            startIcon={<FavoriteIcon />}
-                            variant="contained"
-                            color="secondary"
-                            onClick={(e) => handleUnFavoriteClick(e, ListingId)}>
-                            Unfavorite
-                        </Button>
-                    </div>
-                     :
-                     <div>
-                         <Button 
+              {userId != null && type == "local" ? (
+                <div style={{ float: "right", marginBottom: "-35px" }}>
+                  {isFavorite({ ListingId }) ? (
+                    <div>
+                      <Button
                         startIcon={<FavoriteIcon />}
                         variant="contained"
                         color="secondary"
-                        onClick={(e) => handleFavoriteClick(e, ListingId)}>
-                        Favorite
-                       </Button>
+                        onClick={(e) => handleUnFavoriteClick(e, ListingId)}
+                      >
+                        Unfavorite
+                      </Button>
                     </div>
-                   }
-                  
-                
+                  ) : (
+                    <div>
+                      <Button
+                        startIcon={<FavoriteIcon />}
+                        variant="contained"
+                        color="secondary"
+                        onClick={(e) => handleFavoriteClick(e, ListingId)}
+                      >
+                        Favorite
+                      </Button>
+                    </div>
+                  )}
                 </div>
-                ) 
-                : 
-                (
-                   <br />
-                )}
-              
+              ) : (
+                <br />
+              )}
             </Grid>
             <Grid item xs>
               <Typography variant="body1">Locality : {location}</Typography>

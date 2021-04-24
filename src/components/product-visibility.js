@@ -71,15 +71,15 @@ export default function ProductVisibility() {
           });
         }
         setPrices(priceArray);
-        console.log(priceArray,'Prices')
+        console.log(priceArray, "Prices");
       });
     }
   }, [city]);
 
   useEffect(() => {
-      localSearchService.findParcelByState(city).then((response) => {
-        setLocalResults(response);
-      });
+    localSearchService.findParcelByState(city).then((response) => {
+      setLocalResults(response);
+    });
   });
 
   return (
@@ -92,65 +92,61 @@ export default function ProductVisibility() {
         </Typography>
         &nbsp;
         <Grid container spacing={1} direction="row">
-
-        {/* Left Side -- Data */}
-          <Grid item md={7} xs={12}  
+          {/* Left Side -- Data */}
+          <Grid
+            item
+            md={7}
+            xs={12}
             md={7}
             xs={12}
             style={{ height: "90vh", overflowX: "hidden" }}
           >
-                {/* Local Results */}
-                {localResults !== undefined && (
-                  <div>
-
-                    {[localResults].map(
-                      (property, index) =>
-                        Object.keys(property).length !== 0 && (
-                          <div>
-                            <ProductCard
-                              title={property[0]["propertyDetails"]["city"]}
-                              location={property[0]["propertyDetails"]["city"]}
-                              bedroom={property[0]["propertyDetails"]["bedCount"]}
-                              bathroom={property[0]["propertyDetails"]["bathCount"]}
-                              local={true}
-                              description={property[0]["amenities"].map(
-                                (item) => (
-                                  <>{item.description}</>
-                                 
-                                )
-                              )}
-                              price={prices[index]}
-                              PropertyType={property[0]["propertySource"]}
-                              img="https://picsum.photos/200"
-                              ListingId={
-                                property[0]["propertyDetails"]["propertyId"]
-                              }
-                              type={"local"}
-                            />
-                          </div>
-                        )
-                    )}
-                  </div>
+            {/* Local Results */}
+            {localResults !== undefined && (
+              <div>
+                {[localResults].map(
+                  (property, index) =>
+                    Object.keys(property).length !== 0 && (
+                      <div>
+                        <ProductCard
+                          title={property[0]["propertyDetails"]["city"]}
+                          location={property[0]["propertyDetails"]["city"]}
+                          bedroom={property[0]["propertyDetails"]["bedCount"]}
+                          bathroom={property[0]["propertyDetails"]["bathCount"]}
+                          local={true}
+                          description={property[0]["amenities"].map((item) => (
+                            <>{item.description}</>
+                          ))}
+                          price={prices[index]}
+                          PropertyType={property[0]["propertySource"]}
+                          img="https://picsum.photos/200"
+                          ListingId={
+                            property[0]["propertyDetails"]["propertyId"]
+                          }
+                          type={"local"}
+                        />
+                      </div>
+                    )
                 )}
+              </div>
+            )}
 
-                {/* API Results */}
-                {results.bundle.map((City,index) => (
-                  <ProductCard
-                    title={City.address.full}
-                    location={City.county}
-                    bedroom={City.building[0].bedrooms}
-                    bathroom={City.building[0].fullBaths}
-                    price={prices[index]}
-                    PropertyType={City.landUseDescription}
-                    img="https://picsum.photos/200"
-                    ListingId={City.id}
-                    type={"zillow"}
-                  />
-                ))}
+            {/* API Results */}
+            {results.bundle.map((City, index) => (
+              <ProductCard
+                title={City.address.full}
+                location={City.county}
+                bedroom={City.building[0].bedrooms}
+                bathroom={City.building[0].fullBaths}
+                price={prices[index]}
+                PropertyType={City.landUseDescription}
+                img="https://picsum.photos/200"
+                ListingId={City.id}
+                type={"zillow"}
+              />
+            ))}
           </Grid>
 
-          
-          
           {/* Right Side -- MAP */}
 
           <Grid item md={5} style={{ height: "90vh", overflow: "hidden" }}>
@@ -158,7 +154,6 @@ export default function ProductVisibility() {
               <Gmap lat={City.coordinates[1]} lng={City.coordinates[0]} />
             ))}
           </Grid>
-
         </Grid>
       </main>
 
