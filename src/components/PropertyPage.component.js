@@ -164,9 +164,12 @@ export default function PropertyPage({ price1 }) {
   }, []);
 
   useEffect(() => {
-    searchService.findPropertyByListingID(paramObject).then((response) => {
-      setPriceProperty(response.bundle[0].rental.zestimate);
-    });
+      console.log(paramObject, "PARAM OBJECT");
+    if (paramObject.type === "zillow") {
+      searchService.findPropertyByListingID(paramObject).then((response) => {
+        setPriceProperty(response.bundle[0].rental.zestimate);
+      });
+    }
   }, []);
 
   const next = () => {
