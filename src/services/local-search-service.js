@@ -17,9 +17,15 @@ export const findAgentId = (Object) => {
         .then((response) => response.json())
 }
 
+export const findPropertiesByListing = (Object) => {
+    return fetch(`http://localhost:8080/api/properties/listing/${Object.ListingId}`)
+        .then((response) => response.json())
+}
+
 const localSearchService = {
     findParcelByState,
     findParcelById,
     findAgentId,
+    findPropertiesByListing,
 };
 export default localSearchService;
