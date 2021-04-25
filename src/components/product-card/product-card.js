@@ -66,6 +66,7 @@ export default function ProductCard({
   PropertyType,
   ListingId,
   type,
+  home
 }) {
   const classes = useStyles();
   const history = useHistory();
@@ -118,9 +119,16 @@ export default function ProductCard({
             <Grid item xs>
               <div className={"row ml-auto"} style={{ float: "left" }}>
                 <Typography gutterBottom variant="h6">
-                  <Link to={`/propertypage/${type}/${ListingId}/`}>
-                    {title}
-                  </Link>
+                  {(home === true) && <>{title}</>}
+                  {(home !== true) &&
+                  <>
+                    <Link
+                        // to = {`/propertypage/${type}/${ListingId}/`}
+                        to={`/property/details/${ListingId}/`}
+                    >
+                      {title}
+                    </Link>
+                  </>}
                 </Typography>
               </div>
               {userId != null && type == "local" ? (

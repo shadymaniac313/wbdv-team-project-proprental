@@ -49,6 +49,7 @@ export default function PropertyPage({ price1 }) {
   const paramObject = useParams();
   const propertyType = paramObject.type;
   const [priceProperty, setPriceProperty] = useState(1500);
+  const [ptype, setPtype] = useState(null)
 
   //API Results Stored Here
   const [singleresults, setsingleresults] = useState({
@@ -114,32 +115,79 @@ export default function PropertyPage({ price1 }) {
   console.log(paramObject, "Param Object");
 
   useEffect(() => {
-    if (paramObject.type == "zillow") {
-      searchService.findParcelById(paramObject).then((singleresults) => {
-        setsingleresults(singleresults);
-      });
-    } else if (paramObject.type == "trial") {
-    } else {
-      localSearchService.findParcelById(paramObject).then((lresults) => {
-        localSearchService.findAgentId(paramObject).then((response) => {
-          console.log("fetching agent id");
-          console.log(response.agentId);
-          userService.fetchUserByUserId(response.agentId).then((r) => {
-            console.log(r);
-            setLocalResults({
-              ...lresults,
-              agent: {
-                userId: r.userId,
-                firstName: r.firstName,
-                lastName: r.lastName,
-              },
-              isfav: isFavorite(lresults.id),
-            });
-            return r;
-          });
+    localSearchService.findPropertiesByListing(paramObject).then(response => {
+      console.log(response[0], "ffffffffffffffffffffffffffffff")
+      if (response[0] && response[0].propertySource === "local") {
+        setPtype(response[0].propertySource)
+
+        console.log('local API invoked')
+        localSearchService.findParcelById(paramObject).then((lresults) => {
+          // setLocalResults({
+          //     ...localResults,
+          //     lresults
+          // })
+          localSearchService.findAgentId(paramObject).then(response => {
+            console.log("fetching agent id");
+            console.log(response.agentId)
+            userService.fetchUserByUserId(response.agentId).then(r => {
+              console.log(r)
+              setLocalResults({
+                ...lresults,
+                agent: {
+                  userId: r.userId,
+                  firstName: r.firstName,
+                  lastName: r.lastName
+                },
+                isfav: isFavorite(lresults.id)
+              })
+              return r
+            })
+          })
+          console.log(localResults, 'Local Results')
         });
-      });
+      }
+      else{
+        //local not set
+        // invoke zillow
+        console.log('zillow invoked')
+        searchService.findParcelById(paramObject).then((singleresults) => {
+          setsingleresults(singleresults);
+          console.log(singleresults, 'Zillow Results')
+        });
+      }
+    })
+
+    if(ptype === null){
+
     }
+
+
+    // if (paramObject.type == "zillow") {
+    //   searchService.findParcelById(paramObject).then((singleresults) => {
+    //     setsingleresults(singleresults);
+    //   });
+    // } else if (paramObject.type == "trial") {
+    // } else {
+    //   localSearchService.findParcelById(paramObject).then((lresults) => {
+    //     localSearchService.findAgentId(paramObject).then((response) => {
+    //       console.log("fetching agent id");
+    //       console.log(response.agentId);
+    //       userService.fetchUserByUserId(response.agentId).then((r) => {
+    //         console.log(r);
+    //         setLocalResults({
+    //           ...lresults,
+    //           agent: {
+    //             userId: r.userId,
+    //             firstName: r.firstName,
+    //             lastName: r.lastName,
+    //           },
+    //           isfav: isFavorite(lresults.id),
+    //         });
+    //         return r;
+    //       });
+    //     });
+    //   });
+    // }
   }, [paramObject]);
 
   useEffect(() => {
@@ -229,7 +277,7 @@ export default function PropertyPage({ price1 }) {
         <SearchAppBar />
         <CssBaseline />
         <div className={classes.propertypage}>
-          {propertyType == "local" ? (
+          {ptype == "local" ? (
             //
             // Local Propery Page
             //

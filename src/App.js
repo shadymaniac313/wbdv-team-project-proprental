@@ -35,7 +35,8 @@ function App() {
 
         {/* API and Website Functioning Routes here */}
         <Route 
-          path="/propertypage/:type/:ListingId"
+          // path="/propertypage/:type/:ListingId"
+            path="/property/details/:ListingId"
           exact={true}
           component={PropertyPage}  />
         <Route

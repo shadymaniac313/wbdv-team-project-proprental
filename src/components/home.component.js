@@ -13,6 +13,7 @@ import InputBase from "@material-ui/core/InputBase";
 import { Link, useHistory } from "react-router-dom";
 import background from "../resources/imgs/skyscrapers-sunset.jpg";
 import ProductCard from "./product-card/product-card";
+import userService from "../services/user-service";
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -57,13 +58,26 @@ export default function Home() {
   const classes = useStyles();
   const [cityName, setCityName] = useState("");
   const history = useHistory();
+  const [username, setUsername] = useState("");
+
 
   const [results, setResults] = useState({ bundle: [] });
+
   useEffect(() => {
     homepageService.fetchSix().then((results) => {
       setResults(results);
       console.log(results,'RESULTS ')
     });
+
+    if (localStorage.getItem("userId") !== null) {
+      userService
+          .fetchUserById(localStorage.getItem("userId"))
+          .then((response) => {
+            setUsername(response["firstName"]);
+            // console.log(response);
+            return;
+          })
+    }
   }, []);
 
   return (
@@ -91,6 +105,14 @@ export default function Home() {
             <Typography variant="h5" align="center" color="white" paragraph>
               Your World is Worth Sharing. Turn your extra space into your next
               opportunity.
+            </Typography>
+            <Typography
+                component="h4"
+                variant="h4"
+                align="center"
+                color="white"
+                gutterBottom>
+              Welcome back {username}!
             </Typography>
             <div className={classes.searchElement}>
               <InputBase
@@ -132,6 +154,7 @@ export default function Home() {
                           img={City.Media[1]["MediaURL"]}
                           ListingId={City.ListingId}
                           type={"trial"}
+                          home={true}
                         />
                     
                   </Grid>
