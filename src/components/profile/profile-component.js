@@ -168,7 +168,7 @@ export default class ProfileComponent extends React.Component {
                   description={property[0]["amenities"].map((item, index) => (
                     <>{item.description}</>
                   ))}
-                  price={0}
+                  price={Math.floor(Math.random() * (5000 - 1000 + 1) + 1000)}
                   PropertyType={property[0]["propertySource"]}
                   img="https://picsum.photos/200"
                   ListingId={property[0]["propertyDetails"]["propertyId"]}
