@@ -80,7 +80,7 @@ export default function ProductVisibility() {
     localSearchService.findParcelByState(city).then((response) => {
       setLocalResults(response);
     });
-  });
+  }, []);
 
   return (
     <div>
