@@ -48,9 +48,9 @@ const fetchPropertiesFromListingId = async (id) => {
 };
 
 const fetchUserByUserId = async (id) => {
-  return fetch(`${LOCAL_HOST}users/${id}/`).then((response) =>
-      response.json()
-  );
+    return fetch(`${LOCAL_HOST}users/${id}/`).then((response) =>
+        response.json()
+    );
 }
 
 export const saveUserProfile = async (
@@ -58,18 +58,19 @@ export const saveUserProfile = async (
     firstName,
     lastName,
     username,
-    password
+    password,
+    phone
 ) => {
     const newUser = {
         firstName: firstName,
         lastName: lastName,
-        phone: "12345",
+        phone: phone,
         userType: 1,
         pwd: password,
         username: username,
     };
 
-    const response = await fetch(`${LOCAL_HOST}update/${userId}`, {
+    const response = await fetch(`${LOCAL_HOST}/users/update/${userId}`, {
         method: "PUT",
         body: JSON.stringify(newUser),
         headers: {
@@ -80,13 +81,13 @@ export const saveUserProfile = async (
 };
 
 const userService = {
-  saveUserProfile,
-  signInService,
-  signUpService,
-  fetchListingsFromUserid,
-  fetchPropertiesFromListingId,
-  fetchUserByUserId,
-  fetchUserById
+    saveUserProfile,
+    signInService,
+    signUpService,
+    fetchListingsFromUserid,
+    fetchPropertiesFromListingId,
+    fetchUserByUserId,
+    fetchUserById
 };
 
 export default userService;

@@ -77,8 +77,8 @@ export default class ProfileComponent extends React.Component {
       // update profile details to details of currently logged in user
       userService.fetchUserById(localStorage.getItem("userId")).then((user) => {
         this.setProfileData({
-          "First Name": user.firstName,
-          "Last Name": user.lastName,
+          FirstName: user.firstName,
+          LastName: user.lastName,
           Phone: user.phone,
           Username: user.userAuth.username,
           Password: user.userAuth.pwd,
@@ -158,7 +158,6 @@ export default class ProfileComponent extends React.Component {
           {/*{console.log(localStorage.getItem("userId") === this.props.match.params.userId)}*/}
           {localStorage.getItem("userId") === this.props.match.params.userId &&
             Array.from(this.state.us).map((property) => {
-              console.log(property[0], "Consoling");
               return (
                 <ProductCard
                   title={property[0]["propertyDetails"]["city"]}
