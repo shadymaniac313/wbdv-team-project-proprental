@@ -138,18 +138,23 @@ export default class EditableProfileData extends React.Component {
                     onChange={this.handlePhoneChange}
                 />
                 <Button
-                    onClick={() =>
-                        this.handleSave(
-                            {
-                                FirstName: this.state.FirstName,
-                                LastName: this.state.LastName,
-                                Phone: this.state.Phone,
-                                Username: this.state.Username,
-                                Password: this.state.Password
-                            },
-                            this.props.setProfileData,
-                            this.props.setEditing
-                        )
+                    onClick={() => {
+                        if (this.state.Password.length < 8) {
+                            alert("Password must be at least 8 characters long!")
+                        } else {
+                            this.handleSave(
+                                {
+                                    FirstName: this.state.FirstName,
+                                    LastName: this.state.LastName,
+                                    Phone: this.state.Phone,
+                                    Username: this.state.Username,
+                                    Password: this.state.Password
+                                },
+                                this.props.setProfileData,
+                                this.props.setEditing
+                            )
+                        }
+                    }
                     }
                     fullWidth
                     variant="contained"
