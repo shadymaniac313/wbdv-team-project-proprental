@@ -438,7 +438,7 @@ export default function PropertyPage({price1}) {
                                     Amenities:&nbsp;
                                 </Typography>
                                 <Typography variant="body1" gutterBottom>
-                                    {localResults.amenities[0].description}
+                                    {localResults.amenities.length > 0 ? localResults.amenities[0].description: "NA"}
                                 </Typography>
                             </Grid>
                             <Grid
