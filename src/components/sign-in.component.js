@@ -47,7 +47,13 @@ export default function SignIn() {
       localStorage.setItem("token", "valid");
       localStorage.setItem("userId", response);
       const userId = localStorage.getItem("userId");
-      history.replace(`/profile/${userId}`);
+      console.log(localStorage.getItem("agentIdRequested"), 'agent')
+      if(localStorage.getItem("agentIdRequested") !== null){
+        history.replace(`/profile/${localStorage.getItem("agentIdRequested")}`);
+      }else{
+        history.replace(`/profile/${userId}`);
+      }
+      
       alert("Success");
     } else {
       alert("Failed");
