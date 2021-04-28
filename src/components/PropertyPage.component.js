@@ -48,7 +48,7 @@ export default function PropertyPage({price1}) {
     const paramObject = useParams();
     const {ListingId} = useParams();
     const propertyType = paramObject.type;
-    const [priceProperty, setPriceProperty] = useState(1500);
+    const [priceProperty, setPriceProperty] = useState(-1);
     const [ptype, setPtype] = useState(null);
 
     //API Results Stored Here
@@ -146,23 +146,25 @@ export default function PropertyPage({price1}) {
                                         ...prevState,
                                         price: price.rate
                                     }))
-                                    console.log("local price has been set")
                                 })
 
                             return r;
                         });
                     });
-                    // console.log(localResults, "Local Results");
-
-
                 });
             } else {
-                //local not set
-                // invoke zillow
-                console.log("zillow invoked");
+                // console.log("zillow invoked");
                 searchService.findParcelById(paramObject).then((singleresults) => {
                     setsingleresults(singleresults);
                     console.log(singleresults, "Zillow Results");
+
+                    searchService.findZestimateByParcel(singleresults.bundle.id)
+                        .then((zestimate) => (
+
+                            setPriceProperty(zestimate.bundle.length > 0 ?  zestimate.bundle[0].rental.zestimate:
+                                Math.round((Math.random() * (5000 - 1000) + 1000) / 10) * 10
+                            ))
+                        )
                 });
             }
         });
@@ -438,7 +440,7 @@ export default function PropertyPage({price1}) {
                                     Amenities:&nbsp;
                                 </Typography>
                                 <Typography variant="body1" gutterBottom>
-                                    {localResults.amenities.length > 0 ? localResults.amenities[0].description: "NA"}
+                                    {localResults.amenities.length > 0 ? localResults.amenities[0].description : "NA"}
                                 </Typography>
                             </Grid>
                             <Grid
@@ -633,7 +635,9 @@ export default function PropertyPage({price1}) {
                                     List Price:&nbsp;
                                 </Typography>
                                 <Typography variant="body1" gutterBottom>
-                                    {Math.round((Math.random() * (5000 - 1000) + 1000) / 10) * 10}
+                                    {/*{Math.round((Math.random() * (5000 - 1000) + 1000) / 10) * 10}*/}
+                                    ${" "}
+                                    {priceProperty}
                                 </Typography>
                             </Grid>
                             <Grid item xs={12}>
