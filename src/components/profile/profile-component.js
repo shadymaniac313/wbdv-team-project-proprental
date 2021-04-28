@@ -166,6 +166,7 @@ export default class ProfileComponent extends React.Component {
             </Button>
           )}
           {/*{console.log(localStorage.getItem("userId") === this.props.match.params.userId)}*/}
+          <h1>Liked Listings</h1>
           {localStorage.getItem("userId") === this.props.match.params.userId &&
             Array.from(this.state.us).map((property) => {
               return (
