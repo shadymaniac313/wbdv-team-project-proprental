@@ -112,7 +112,7 @@ export default function Home() {
                 align="center"
                 color="white"
                 gutterBottom>
-              Welcome back {username}!
+              {localStorage.getItem("userId") === null ? "Welcome!" : "Welcome Back, " + username + "!"}
             </Typography>
             <div className={classes.searchElement}>
               <InputBase
