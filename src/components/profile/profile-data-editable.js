@@ -44,7 +44,6 @@ export default class EditableProfileData extends React.Component {
     handleFirstNameChange = (e) => {
         this.setState((prevState) => ({
             ...prevState,
-            // profileData.FirstName: e.target.value,
             FirstName: e.target.value
         }));
     };
@@ -141,6 +140,8 @@ export default class EditableProfileData extends React.Component {
                     onClick={() => {
                         if (this.state.Password.length < 8) {
                             alert("Password must be at least 8 characters long!")
+                        } else if (this.state.Phone.length !== 10) {
+                            alert("Length of phone number must be 10")
                         } else {
                             this.handleSave(
                                 {

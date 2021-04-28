@@ -28,21 +28,11 @@ export const ProfileData = ({rows}) => {
                                     <h6>{row}</h6>
                                 </TableCell>
                                 <TableCell component="td" scope="row">
-                                    {rows[row]}
+                                    {row !== "Password" ? rows[row] : "********"}
                                 </TableCell>
                             </TableRow>
                         ))
                     }
-                    {/*{rows.map((row) => (*/}
-                    {/*    <TableRow key={row.id} >*/}
-                    {/*        <TableCell component="th" scope="row">*/}
-                    {/*            <h6>{row.col1}</h6>*/}
-                    {/*        </TableCell>*/}
-                    {/*        <TableCell component="th" scope="row">*/}
-                    {/*            {row.col2}*/}
-                    {/*        </TableCell>*/}
-                    {/*    </TableRow>*/}
-                    {/*))}*/}
                 </TableBody>
             </Table>
         </TableContainer>
