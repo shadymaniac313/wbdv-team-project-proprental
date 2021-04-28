@@ -453,7 +453,8 @@ export default function PropertyPage({ price1 }) {
                   List Price:&nbsp;
                 </Typography>
                 <Typography variant="body1" gutterBottom>
-                  $ {Math.floor(Math.random() * (5000 - 1000 + 1) + 1000)}
+                  ${" "}
+                  {Math.round((Math.random() * (5000 - 1000) + 1000) / 10) * 10}
                 </Typography>
               </Grid>
             </Grid>
@@ -617,7 +618,7 @@ export default function PropertyPage({ price1 }) {
                   List Price:&nbsp;
                 </Typography>
                 <Typography variant="body1" gutterBottom>
-                  $ {Math.floor(Math.random() * (5000 - 1000 + 1) + 1000)}
+                  {Math.round((Math.random() * (5000 - 1000) + 1000) / 10) * 10}
                 </Typography>
               </Grid>
               <Grid item xs={12}>
