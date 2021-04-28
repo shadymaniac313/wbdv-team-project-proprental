@@ -49,7 +49,7 @@ export default function PropertyPage({ price1 }) {
   const paramObject = useParams();
   const propertyType = paramObject.type;
   const [priceProperty, setPriceProperty] = useState(1500);
-  const [ptype, setPtype] = useState(null)
+  const [ptype, setPtype] = useState(null);
 
   //API Results Stored Here
   const [singleresults, setsingleresults] = useState({
@@ -115,52 +115,47 @@ export default function PropertyPage({ price1 }) {
   console.log(paramObject, "Param Object");
 
   useEffect(() => {
-    localSearchService.findPropertiesByListing(paramObject).then(response => {
-      console.log(response[0], "ffffffffffffffffffffffffffffff")
+    localSearchService.findPropertiesByListing(paramObject).then((response) => {
       if (response[0] && response[0].propertySource === "local") {
-        setPtype(response[0].propertySource)
+        setPtype(response[0].propertySource);
 
-        console.log('local API invoked')
         localSearchService.findParcelById(paramObject).then((lresults) => {
           // setLocalResults({
           //     ...localResults,
           //     lresults
           // })
-          localSearchService.findAgentId(paramObject).then(response => {
+          localSearchService.findAgentId(paramObject).then((response) => {
             console.log("fetching agent id");
-            console.log(response.agentId)
-            userService.fetchUserByUserId(response.agentId).then(r => {
-              console.log(r)
+            console.log(response.agentId);
+            userService.fetchUserByUserId(response.agentId).then((r) => {
+              console.log(r);
               setLocalResults({
                 ...lresults,
                 agent: {
                   userId: r.userId,
                   firstName: r.firstName,
-                  lastName: r.lastName
+                  lastName: r.lastName,
                 },
-                isfav: isFavorite(lresults.id)
-              })
-              return r
-            })
-          })
-          console.log(localResults, 'Local Results')
+                isfav: isFavorite(lresults.id),
+              });
+              return r;
+            });
+          });
+          console.log(localResults, "Local Results");
         });
-      }
-      else{
+      } else {
         //local not set
         // invoke zillow
-        console.log('zillow invoked')
+        console.log("zillow invoked");
         searchService.findParcelById(paramObject).then((singleresults) => {
           setsingleresults(singleresults);
-          console.log(singleresults, 'Zillow Results')
+          console.log(singleresults, "Zillow Results");
         });
       }
-    })
+    });
 
-    if(ptype === null){
-
+    if (ptype === null) {
     }
-
 
     // if (paramObject.type == "zillow") {
     //   searchService.findParcelById(paramObject).then((singleresults) => {
@@ -212,7 +207,7 @@ export default function PropertyPage({ price1 }) {
   }, []);
 
   useEffect(() => {
-      console.log(paramObject, "PARAM OBJECT");
+    console.log(paramObject, "PARAM OBJECT");
     if (paramObject.type === "zillow") {
       searchService.findPropertyByListingID(paramObject).then((response) => {
         setPriceProperty(response.bundle[0].rental.zestimate);
@@ -449,6 +444,19 @@ export default function PropertyPage({ price1 }) {
                   </Link>
                 </Typography>
               </Grid>
+              <Grid
+                item
+                xs={12}
+                md={4}
+                style={{ display: "flex", alignItems: "center" }}
+              >
+                <Typography variant="h6" gutterBottom>
+                  List Price:&nbsp;
+                </Typography>
+                <Typography variant="body1" gutterBottom>
+                  {Math.floor(Math.random() * (5000 - 1000 + 1) + 1000)}
+                </Typography>
+              </Grid>
             </Grid>
           ) : (
             //
@@ -610,7 +618,7 @@ export default function PropertyPage({ price1 }) {
                   List Price:&nbsp;
                 </Typography>
                 <Typography variant="body1" gutterBottom>
-                  {priceProperty}
+                  {Math.floor(Math.random() * (5000 - 1000 + 1) + 1000)}
                 </Typography>
               </Grid>
               <Grid item xs={12}>
