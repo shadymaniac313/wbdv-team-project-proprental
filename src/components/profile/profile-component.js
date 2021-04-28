@@ -75,7 +75,8 @@ export default class ProfileComponent extends React.Component {
         });
 
       // update profile details to details of currently logged in user
-      userService.fetchUserById(localStorage.getItem("userId")).then((user) => {
+      // userService.fetchUserById(localStorage.getItem("userId")).then((user) => {
+      userService.fetchUserById(this.props.match.params.userId).then((user) => {
         this.setProfileData({
           "First Name": user.firstName,
           "Last Name": user.lastName,
