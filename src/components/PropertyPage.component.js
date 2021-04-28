@@ -9,7 +9,6 @@ import SearchAppBar from "./search-bar.component";
 import FooterComponent from "./footer.component";
 import searchService from "../services/search-service";
 import favService from "../services/favorite-service";
-import homepageService from "../services/homepage-service";
 import {
   Carousel,
   CarouselCaption,
@@ -629,7 +628,11 @@ export default function PropertyPage({ price1 }) {
             </Grid>
           )}
         </div>
-        <br /><br /><br /><br /><br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
       </Container>
       <FooterComponent />
     </div>
