@@ -10,13 +10,14 @@ export const signUpService = async (
     firstName,
     lastName,
     username,
-    password
+    password,
+    userType
 ) => {
     const newUser = {
         firstName: firstName,
         lastName: lastName,
         phone: "12345",
-        userType: 1,
+        userType: userType,
         pwd: password,
         username: username,
     };
