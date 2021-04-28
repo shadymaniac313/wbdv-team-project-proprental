@@ -1,4 +1,5 @@
-const LOCAL_HOST = "http://localhost:8080/api/";
+// const LOCAL_HOST = "http://localhost:8080/api/";
+const LOCAL_HOST = " https://wbdv-sp21-proprental-server-ja.herokuapp.com/api/"
 
 export const getFavListing = async (userId) => {
   return fetch(`${LOCAL_HOST}listings/user/${userId}`).then((response) =>
