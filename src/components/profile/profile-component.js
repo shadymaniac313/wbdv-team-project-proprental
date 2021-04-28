@@ -6,7 +6,7 @@ import EditableProfileData from "./profile-data-editable";
 import userService from "../../services/user-service";
 import Grid from "@material-ui/core/Grid";
 import ProductCard from "../product-card/product-card";
-import { Redirect } from "react-router";
+import { Redirect, useParams } from "react-router";
 import { useHistory } from "react-router";
 import SearchAppBar from "../search-bar.component";
 import favService from "../../services/favorite-service";
@@ -35,7 +35,9 @@ const useStyles = makeStyles((theme) => ({
 var proplist = [];
 
 export default class ProfileComponent extends React.Component {
+  
   constructor(props) {
+    localStorage.setItem("agentIdRequested", props.match.params.userId);
     super(props);
     this.state = {
       editing: false,
@@ -51,8 +53,14 @@ export default class ProfileComponent extends React.Component {
     };
   }
 
+ 
+
   componentDidMount() {
+    
+   
+
     if (localStorage.getItem("userId") !== null) {
+     
       let mlist = [];
       userService
         .fetchListingsFromUserid(localStorage.getItem("userId"))
@@ -86,8 +94,8 @@ export default class ProfileComponent extends React.Component {
         });
       });
     } else {
+      
       alert("Please LogIn to continue");
-      // this.props.history.push("/");
       window.location ="/Login"
     }
   }
