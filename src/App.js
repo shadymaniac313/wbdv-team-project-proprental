@@ -28,6 +28,7 @@ function App() {
         
          
         {/* Admin route begins here */}
+        <Route path="/AddProperty" component={AddProperty}/>
         <Route path="/AdminSignIn" component={AdminSignIn} />
         <Route path="/admin/home" component={AdminHome} />
         <Route path="/admin/AddProperty" component={AddProperty} />
