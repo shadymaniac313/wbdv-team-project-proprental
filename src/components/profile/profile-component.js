@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import {Button} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 import ProfileData from "./profile-data";
@@ -6,11 +6,7 @@ import EditableProfileData from "./profile-data-editable";
 import userService from "../../services/user-service";
 import Grid from "@material-ui/core/Grid";
 import ProductCard from "../product-card/product-card";
-import {Redirect, useParams} from "react-router";
-import {useHistory} from "react-router";
 import SearchAppBar from "../search-bar.component";
-import favService from "../../services/favorite-service";
-import FavoriteIcon from "@material-ui/icons/Favorite";
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -164,12 +160,11 @@ export default class ProfileComponent extends React.Component {
                         </Button>
                     )}
                     {/*{console.log(localStorage.getItem("userId") === this.props.match.params.userId)}*/}
-
+                    {localStorage.getItem("userId") === this.props.match.params.userId && <h1>Liked Listings</h1>}
                     {localStorage.getItem("userId") === this.props.match.params.userId &&
                     Array.from(this.state.us).map((property) => {
                         return (
                             <>
-                                <h1>Liked Listings</h1>
                                 <ProductCard
                                     title={property[0]["propertyDetails"]["city"]}
                                     location={property[0]["propertyDetails"]["city"]}
