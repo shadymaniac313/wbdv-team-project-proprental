@@ -149,7 +149,9 @@ export default class ProfileComponent extends React.Component {
                             />
                         )}
                     </div>
-                    {!this.state.editing && (
+                    {!this.state.editing &&
+                    localStorage.getItem("userId") === this.props.match.params.userId &&
+                    (
                         <Button
                             onClick={this.handleEdit}
                             fullWidth
