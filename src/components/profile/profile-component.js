@@ -94,7 +94,7 @@ export default class ProfileComponent extends React.Component {
         } else {
 
             alert("Please LogIn to continue");
-            window.location = "/Login"
+            window.location = "/login"
         }
     }
 

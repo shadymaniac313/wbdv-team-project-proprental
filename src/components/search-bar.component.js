@@ -115,13 +115,13 @@ export default function SearchAppBar() {
 
 
 
-                            <Link to="/SignUp">
+                            <Link to="/register">
                                 <Button variant="contained" color="primary">
                                     Sign Up
                                 </Button>
                             </Link>
                             &nbsp;&nbsp;
-                            <Link to="/Login">
+                            <Link to="/login">
                                 <Button variant="contained" color="primary">
                                     Sign In
                                 </Button>

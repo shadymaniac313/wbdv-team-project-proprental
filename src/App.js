@@ -23,8 +23,8 @@ function App() {
         {/* User & Basic Routes here */}
         <Route path="/" component={Home} exact={true} />
         <Route path={"/profile/:userId"} component={ProfileComponent} />
-        <Route path="/Login" component={SignIn} />
-        <Route path="/SignUp" component={SignUp} />
+        <Route path="/login" component={SignIn} />
+        <Route path="/register" component={SignUp} />
         <Route path="/privacypolicy" component={PrivacyPolicy} />
         
          
