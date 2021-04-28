@@ -9,7 +9,6 @@ import SearchAppBar from "./search-bar.component";
 import FooterComponent from "./footer.component";
 import searchService from "../services/search-service";
 import favService from "../services/favorite-service";
-import homepageService from "../services/homepage-service";
 import {
   Carousel,
   CarouselCaption,
@@ -454,7 +453,7 @@ export default function PropertyPage({ price1 }) {
                   List Price:&nbsp;
                 </Typography>
                 <Typography variant="body1" gutterBottom>
-                  {Math.floor(Math.random() * (5000 - 1000 + 1) + 1000)}
+                  $ {Math.floor(Math.random() * (5000 - 1000 + 1) + 1000)}
                 </Typography>
               </Grid>
             </Grid>
@@ -618,7 +617,7 @@ export default function PropertyPage({ price1 }) {
                   List Price:&nbsp;
                 </Typography>
                 <Typography variant="body1" gutterBottom>
-                  {Math.floor(Math.random() * (5000 - 1000 + 1) + 1000)}
+                  $ {Math.floor(Math.random() * (5000 - 1000 + 1) + 1000)}
                 </Typography>
               </Grid>
               <Grid item xs={12}>
@@ -629,7 +628,11 @@ export default function PropertyPage({ price1 }) {
             </Grid>
           )}
         </div>
-        <br /><br /><br /><br /><br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
       </Container>
       <FooterComponent />
     </div>
