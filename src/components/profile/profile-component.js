@@ -42,11 +42,11 @@ export default class ProfileComponent extends React.Component {
     this.state = {
       editing: false,
       profileData: {
-        Email: "adalovelace@gmail.com",
-        Password: "****",
-        FirstName: "Ada",
-        LastName: "Lovelace",
-        Phone: "+15456362198",
+        Email: "",
+        Password: "",
+        FirstName: "",
+        LastName: "",
+        Phone: "",
       },
       us: { listings: [] },
       listingsforid: [],

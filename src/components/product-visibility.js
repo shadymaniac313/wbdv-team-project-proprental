@@ -13,6 +13,7 @@ import localSearchService from "../services/local-search-service";
 import { Link, useParams, useHistory } from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
 import FooterComponent from "./footer.component";
+import Button  from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -53,14 +54,16 @@ export default function ProductVisibility() {
   const [results, setResults] = useState({ bundle: [] });
   const [localResults, setLocalResults] = useState({});
   const [prices, setPrices] = useState([]);
+  const [validState, setValidState] = useState(true);
 
   useEffect(() => {
     if (city) {
       searchService.findParcelByState(city).then((response) => {
         setResults(response);
-        if(response.bundle.length==0){
-          alert("State does not exists, Return to home to search again")
-          window.location= "/"
+       
+        if(response.total == 0){
+          setValidState(false);
+
         }
         const idArray = [];
         for (let i = 0; i < response.bundle.length; i += 1) {
@@ -86,20 +89,41 @@ export default function ProductVisibility() {
     });
   }, );
 
+  
+  
+  
   return (
     <div>
       <SearchAppBar />
 
       <main className={classes.paper2}>
 
+     
 
 
-
-        <Typography variant="h6" align="left">
+       {
+         validState == false
+         ?
+          <div align="center">
+            <Typography variant="h4" align="left">
+                No Property found in {city.city} State.
+            </Typography>
+            <br />
+             Go back to &nbsp;
+              <Link to="/">
+                    <Button  color="primary">
+                      Home
+                    </Button>
+              </Link>
+              &nbsp;to search again
+          </div>
+         :
+           <div style={{width:"100%"}}>
+        <Typography variant="h6" align="center">
           Let's have a look at properties in {city.city} :
         </Typography>
-        &nbsp;
-        <Grid container spacing={1} direction="row">
+        <br />
+         <Grid container spacing={1} direction="row">
           {/* Left Side -- Data */}
           <Grid
             item
@@ -163,6 +187,13 @@ export default function ProductVisibility() {
             ))}
           </Grid>
         </Grid>
+         
+         </div>
+       }
+
+
+  
+        
       </main>
 
       <br />
