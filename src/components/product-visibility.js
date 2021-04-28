@@ -58,6 +58,10 @@ export default function ProductVisibility() {
     if (city) {
       searchService.findParcelByState(city).then((response) => {
         setResults(response);
+        if(response.bundle.length==0){
+          alert("State does not exists, Return to home to search again")
+          window.location= "/"
+        }
         const idArray = [];
         for (let i = 0; i < response.bundle.length; i += 1) {
           idArray.push(response.bundle[i].id);
@@ -69,7 +73,7 @@ export default function ProductVisibility() {
               priceArray.push(response.bundle[i].rental.zestimate);
             }
           });
-        }
+        } 
         setPrices(priceArray);
         console.log(priceArray, "Prices");
       });
@@ -87,6 +91,10 @@ export default function ProductVisibility() {
       <SearchAppBar />
 
       <main className={classes.paper2}>
+
+
+
+
         <Typography variant="h6" align="left">
           Let's have a look at properties in {city.city} :
         </Typography>

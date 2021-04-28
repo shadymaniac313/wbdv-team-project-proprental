@@ -75,7 +75,8 @@ export default class ProfileComponent extends React.Component {
         });
 
       // update profile details to details of currently logged in user
-      userService.fetchUserById(localStorage.getItem("userId")).then((user) => {
+      // userService.fetchUserById(localStorage.getItem("userId")).then((user) => {
+      userService.fetchUserById(this.props.match.params.userId).then((user) => {
         this.setProfileData({
           FirstName: user.firstName,
           LastName: user.lastName,
@@ -86,7 +87,8 @@ export default class ProfileComponent extends React.Component {
       });
     } else {
       alert("Please LogIn to continue");
-      this.props.history.push("/");
+      // this.props.history.push("/");
+      window.location ="/Login"
     }
   }
 
