@@ -12,6 +12,7 @@ import ProductVisibility from "./components/product-visibility";
 import ProfileComponent from "./components/profile/profile-component";
 import PropertyPage from "./components/PropertyPage.component"
 import PrivacyPolicy from "./components/PrivacyPolicy"
+import NoProductVisibility from "./components/noproductvisibility"
 
 function App() {
 
@@ -44,6 +45,10 @@ function App() {
           path="/search/:city"
           exact={true}
           component={ProductVisibility} />
+        <Route
+          path="/search"
+          exact={true}
+          component={NoProductVisibility} />
         
        
       </div>

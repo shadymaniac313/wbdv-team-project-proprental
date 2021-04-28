@@ -15,6 +15,7 @@ import Typography from "@material-ui/core/Typography";
 import FooterComponent from "./footer.component";
 import Button  from "@material-ui/core/Button";
 
+
 const useStyles = makeStyles((theme) => ({
   paper: {
     alignItems: "center",
@@ -63,8 +64,9 @@ export default function ProductVisibility() {
        
         if(response.total == 0){
           setValidState(false);
-
+          
         }
+
         const idArray = [];
         for (let i = 0; i < response.bundle.length; i += 1) {
           idArray.push(response.bundle[i].id);
@@ -89,6 +91,10 @@ export default function ProductVisibility() {
     });
   }, );
 
+  const history = useHistory();
+  if(validState==false){
+    history.push(`/search`)
+  }
   
   
   
@@ -97,10 +103,6 @@ export default function ProductVisibility() {
       <SearchAppBar />
 
       <main className={classes.paper2}>
-
-     
-
-
        {
          validState == false
          ?
