@@ -629,6 +629,7 @@ export default function PropertyPage({ price1 }) {
             </Grid>
           )}
         </div>
+        <br /><br /><br /><br /><br />
       </Container>
       <FooterComponent />
     </div>

@@ -62,7 +62,6 @@ export default function ProductVisibility() {
           alert("State does not exists, Return to home to search again")
           window.location= "/"
         }
-        
         const idArray = [];
         for (let i = 0; i < response.bundle.length; i += 1) {
           idArray.push(response.bundle[i].id);
@@ -74,12 +73,9 @@ export default function ProductVisibility() {
               priceArray.push(response.bundle[i].rental.zestimate);
             }
           });
-        }
-        
-        
+        } 
         setPrices(priceArray);
         console.log(priceArray, "Prices");
-
       });
     }
   }, [city]);

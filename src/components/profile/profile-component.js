@@ -87,7 +87,8 @@ export default class ProfileComponent extends React.Component {
       });
     } else {
       alert("Please LogIn to continue");
-      this.props.history.push("/");
+      // this.props.history.push("/");
+      window.location ="/Login"
     }
   }
 
