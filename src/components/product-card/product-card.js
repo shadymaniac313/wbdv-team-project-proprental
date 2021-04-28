@@ -181,7 +181,7 @@ export default function ProductCard({
                 </Typography>
               </Grid>
               <Grid item xs={6}>
-                <Typography variant="subtitle1">Price : $ {price}</Typography>
+                {/* <Typography variant="subtitle1">Price : $ {price}</Typography> */}
               </Grid>
             </Grid>
           </Grid>
